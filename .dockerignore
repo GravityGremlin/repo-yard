@@ -1,0 +1,15 @@
+# Build context hygiene for the repo-yard search image
+.git
+.venv
+*.md
+docs/
+deploy/
+music-hub/
+qoochie/
+tidalwave/
+deeznutz/
+spotifryer/
+data/
+downloads/
+__pycache__/
+*.pyc

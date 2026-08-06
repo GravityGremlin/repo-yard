@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}qoochie — Library{% endblock %}
+
+{% block content %}
+<div class="library-page">
+  <h1>Library</h1>
+  <div class="library-tabs">
+    <button onclick="showTab('browse')" id="tab-browse" class="active">Browse</button>
+    <button onclick="showTab('recent')" id="tab-recent">Recent</button>
+    <button onclick="showTab('search')" id="tab-search">Search</button>
+  </div>
+    <button onclick="showTab('browse')" id="tab-browse" class="active">Browse</button>
+    <button onclick="showTab('recent')" id="tab-recent">Recent</button>
+  </div>
+
+  <div id="tab-content-search" class="tab-content hidden">
+    <form hx-get="/library/search" hx-target="#library-search-results" hx-trigger="submit, keyup changed delay:300ms from:input" class="library-search-form">
+      <input type="search" name="q" placeholder="Search library" value="{{ query or '' }}" autofocus>
+    </form>
+    <div id="library-search-results" class="library-search-results">
+      <p class="hint">Type 2+ characters to search the library...</p>
+    </div>
+  </div>
+
+  <div id="tab-content-browse" class="tab-content">
+    <div id="browse-panel"
+         hx-get="/library/browse/"
+         hx-trigger="load"
+         hx-swap="innerHTML">
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <div id="tab-content-recent" class="tab-content hidden">
+    <div hx-get="/library/recent"
+         hx-trigger="load"
+         hx-swap="innerHTML">
+      <p>Loading...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.library-tabs button').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('tab-content-' + tab).classList.remove('hidden');
+}
+</script>
+{% endblock %}

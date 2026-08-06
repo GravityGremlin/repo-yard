@@ -1,0 +1,32 @@
+# repo-yard — unified cross-service search control plane.
+# Host: cthulhu (10.8.0.10), port 19297. Route: Traefik on singularity → ry.n0g.xyz.
+name: repo-yard
+
+services:
+  app:
+    build: .
+    image: repo-yard:latest
+    container_name: repo-yard
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19297:19297"
+    volumes:
+      - ./app:/app/app
+    environment:
+      - FLASK_PORT=19297
+      - REPO_YARD_SPOTIFRYER_URL=http://10.8.0.10:19293
+      - REPO_YARD_QOOCHIE_URL=http://10.8.0.10:19295
+      - REPO_YARD_TIDALWAVE_URL=http://10.8.0.10:19290
+      - REPO_YARD_DEEZNUTZ_URL=http://10.8.0.10:19294
+      - REPO_YARD_SEARCH_TIMEOUT=5
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:19297/', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"

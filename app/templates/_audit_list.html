@@ -1,0 +1,9 @@
+<div id="audit-list" class="audit-list">
+  {% if failures %}<p class="audit-warning">some services could not be read: {% for service, error in failures.items() %}{{ service }}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+  {% if entries %}
+    <div class="audit-table" role="table" aria-label="Audit events">
+      <div class="audit-row audit-header" role="row"><span>time</span><span>service</span><span>action</span><span>detail</span><span>job id</span></div>
+      {% for entry in entries %}<div class="audit-row" role="row"><time>{{ entry.get('time', '—') }}</time><span class="audit-service">{{ entry.get('service', '—') }}</span><span class="audit-action">{{ entry.get('action', '—') }}</span><span class="audit-detail">{{ entry.get('detail', '—') }}</span><code>{{ entry.get('job_id') or '—' }}</code></div>{% endfor %}
+    </div>
+  {% else %}<div class="jobs-empty"><span class="empty-mark">[ ]</span><strong>no audit events yet</strong><span>Activity will appear here as jobs run.</span></div>{% endif %}
+</div>

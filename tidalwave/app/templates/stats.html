@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}tidalwave — Stats{% endblock %}
+
+{% block content %}
+<div class="stats-page">
+  <h1>Stats & Settings</h1>
+
+  <div class="stats-tabs" style="margin-bottom:1rem">
+    <button onclick="showSubTab('stats')" id="subtab-stats" class="active">Dashboard</button>
+    <button onclick="showSubTab('audit')" id="subtab-audit">Audit Log</button>
+  </div>
+
+  <div id="subtab-content-stats">
+    <div class="result-section">
+      <h2>Library</h2>
+      <div id="stats-library"
+           hx-get="/stats/partial"
+           hx-trigger="load, every 10s"
+           hx-swap="innerHTML">
+        <p class="hint">Loading stats…</p>
+      </div>
+      <p class="hint">Stats cached for 5 minutes — auto-refreshing every 10s</p>
+    </div>
+
+    <div class="result-section">
+      <h2>Configuration</h2>
+      <div id="stats-config"
+           hx-get="/stats/partial/config"
+           hx-trigger="load"
+           hx-swap="innerHTML">
+        <p class="hint">Loading config…</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="subtab-content-audit" class="hidden"
+       hx-get="/audit/" hx-trigger="load" hx-swap="innerHTML"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showSubTab(tab) {
+  document.querySelectorAll('#subtab-content-stats, #subtab-content-audit').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.stats-tabs button').forEach(el=>el.classList.remove('active'));
+  document.getElementById('subtab-'+tab).classList.add('active');
+  document.getElementById('subtab-content-'+tab).classList.remove('hidden');
+}
+</script>
+{% endblock %}

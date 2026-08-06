@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}qoochie — Collection{% endblock %}
+
+{% block content %}
+<div class="collection-page">
+  <h1>Collection</h1>
+
+  {% if not stats.exists %}
+    <div class="empty-state">
+      <p>Library directory not found.</p>
+      <p class="hint"><code>{{ stats.path }}</code></p>
+      <p class="hint">Make sure the library volume is mounted and LIBRARY_DIR is set.</p>
+    </div>
+  {% else %}
+  {% if stats.scanning %}
+    <div class="empty-state">
+      <p>Scanning library…</p>
+      <p class="hint">Checking {% if stats.path %}<code>{{ stats.path }}</code>{% endif %}</p>
+    </div>
+  {% else %}
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num">{{ stats.artists }}</span><span class="stat-lbl">Artists</span></div>
+      <div class="stat-card"><span class="stat-num">{{ stats.albums }}</span><span class="stat-lbl">Albums</span></div>
+      <div class="stat-card"><span class="stat-num">{{ stats.tracks }}</span><span class="stat-lbl">Tracks</span></div>
+      <div class="stat-card"><span class="stat-num">{{ stats.total_bytes|human_size }}</span><span class="stat-lbl">Total size</span></div>
+    </div>
+
+    <div class="stat-actions">
+      <button hx-post="/collection/refresh"
+              hx-target=".collection-page"
+              hx-swap="innerHTML"
+              class="btn-download">Refresh stats</button>
+    </div>
+
+    <h2>Artist catalog</h2>
+    <div class="empty-state" id="catalog"
+         hx-get="/collection/catalog"
+         hx-trigger="load"
+         hx-swap="innerHTML">
+      <p>Loading artist catalog… <span class="htmx-indicator spinner" aria-label="Loading"></span></p>
+      <p class="hint">Browsing artists and albums from <code>{{ stats.path }}</code>.</p>
+    </div>
+
+
+    <h2>By format</h2>
+    {% if stats.by_ext %}
+    <table class="collection-table">
+      <thead><tr><th>Format</th><th>Tracks</th></tr></thead>
+      <tbody>
+        {% for ext, count in stats.by_ext.items() %}
+        <tr><td>{{ ext }}</td><td>{{ count }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state"><p>No audio files found in the library.</p></div>
+    {% endif %}
+
+    <p class="hint">Scanned {{ stats.scanned }} entries{% if stats.capped %} (scan capped at {{ stats.scanned }}){% endif %} in <code>{{ stats.path }}</code></p>
+
+    <h2>Qobuz matching</h2>
+    <div class="empty-state">
+      <p>Match your library against Qobuz's catalogue via ISRC/UPC to find gaps and quality upgrades.</p>
+      <p class="hint">This is on the roadmap.</p>
+    </div>
+  {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="masthead">
+    <h1>Repo Yard</h1>
+    <span class="eyebrow">unified search · spotifryer / qoochie / tidalwave / deeznutz</span>
+  </div>
+
+  <form id="search-form" hx-get="/search" hx-target="#results" hx-include="#search-form">
+    <input type="hidden" name="type" id="search-type" value="{{ active_type }}">
+
+    <div class="tabs" role="tablist" aria-label="Search type">
+      {% for key, label in type_tabs %}
+        <button type="button" class="tab{% if key == active_type %} active{% endif %}"
+                data-type="{{ key }}" role="tab" aria-selected="{{ 'true' if key == active_type else 'false' }}">
+          {{ label }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <div class="searchbar">
+      <input type="search" name="q" id="q" placeholder="search all four services…"
+             autocomplete="off" autofocus
+             hx-trigger="keyup changed delay:300ms, search"
+             hx-indicator="#search-indicator">
+      <span id="search-indicator" class="htmx-indicator"><span class="spinner"></span>searching…</span>
+    </div>
+  </form>
+
+  <div id="results"><p class="hint">type to search — start with an artist to repo their discography<span class="caret"></span></p></div>
+
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.tab');
+      var typeInput = document.getElementById('search-type');
+      var qInput = document.getElementById('q');
+      function setActive(tab) {
+        tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+        typeInput.value = tab.dataset.type;
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          setActive(tab);
+          var q = qInput.value.trim();
+          if (q) {
+            htmx.ajax('GET', '/search', {
+              source: qInput,
+              target: '#results',
+              indicator: '#search-indicator',
+              values: { q: q, type: tab.dataset.type }
+            });
+          }
+        });
+      });
+    })();
+  </script>
+{% endblock %}

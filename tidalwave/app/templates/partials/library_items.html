@@ -1,0 +1,61 @@
+{# Directory listing / recent-files partial — loaded via HTMX into library tabs. #}
+{% if crumbs %}
+<nav class="breadcrumbs">
+  <a href="#"
+     hx-get="/library/browse/"
+     hx-target="#browse-panel"
+     hx-swap="innerHTML">Library</a>
+  {% for crumb in crumbs %}
+    / <a href="#"
+         hx-get="/library/browse/{{ crumb.path }}"
+         hx-target="#browse-panel"
+         hx-swap="innerHTML">{{ crumb.name }}</a>
+  {% endfor %}
+</nav>
+{% endif %}
+
+{% if scanning %}
+<div class="empty-state">
+  <p>Scanning library…</p>
+  <p class="hint">This may take a moment on large libraries.</p>
+</div>
+{% elif items %}
+<table class="library-table">
+  <thead>
+    <tr><th>Name</th><th>Size</th><th>Modified</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr class="{{ 'dir' if item.is_dir else 'file' }}">
+      <td>
+        {% if item.is_dir %}
+          <a href="#"
+             hx-get="/library/browse/{{ (current_path ~ '/' ~ item.name) if current_path else item.name }}"
+             hx-target="#browse-panel"
+             hx-swap="innerHTML">📁 {{ item.name }}</a>
+        {% elif recent %}
+          <a href="/library/serve/{{ item.path }}" target="_blank">🎵 {{ item.name }}</a>
+          <span class="hint">{{ item.path }}</span>
+        {% else %}
+          <a href="/library/serve/{{ (current_path ~ '/' ~ item.name) if current_path else item.name }}" target="_blank">🎵 {{ item.name }}</a>
+        {% endif %}
+      </td>
+      <td>{{ item.size|human_size if not item.is_dir else "—" }}</td>
+      <td>{{ item.modified }}</td>
+      <td>
+        {% if item.is_dir %}
+          <a href="/library/download/{{ (current_path ~ '/' ~ item.name) if current_path else item.name }}" class="btn-download btn-small">⬇ ZIP</a>
+        {% else %}
+          <a href="/library/serve/{{ (current_path ~ '/' ~ item.name) if current_path else item.name }}" target="_blank" class="btn-play btn-small">▶ Play</a>
+        {% endif %}
+      </td>
+      <td>{{ item.modified }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+  <p>{{ "No recent files found." if recent else "This directory is empty." }}</p>
+</div>
+{% endif %}

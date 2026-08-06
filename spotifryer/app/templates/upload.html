@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Import{% endblock %}
+
+{% block content %}
+<div class="upload-page">
+  <h1>Import</h1>
+  <p class="hint" style="color:var(--text-dim);margin-bottom:1rem;">Upload audio files or archives to import into the library.</p>
+
+  <div class="upload-container">
+    <!-- Drag-drop zone -->
+    <div id="drop-zone" class="drop-zone"
+         style="border:2px dashed var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;cursor:pointer;transition:background 0.2s,border-color 0.2s;background:var(--surface);margin:1.5rem 0;">
+      <div class="drop-zone-inner">
+        <div style="font-size:2rem;color:var(--accent);margin-bottom:0.5rem;">&#8682;</div>
+        <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.25rem;">Drop files here</p>
+        <p class="hint" style="font-size:0.85rem;color:var(--text-dim);">Accepted: {{ archive_exts|join(' ') }} &middot; {{ allowed_exts|join(' ') }}</p>
+      </div>
+    </div>
+
+    <!-- File input fallback -->
+    <div style="margin-bottom:1rem;">
+      <label for="file-input" class="btn-download" style="display:inline-block;cursor:pointer;">Choose Files</label>
+      <input type="file" id="file-input" name="files" multiple
+             accept="{{ (archive_exts + allowed_exts)|join(',') }}"
+             style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+      <span id="file-count" class="hint" style="margin-left:0.75rem;color:var(--text-dim);"></span>
+    </div>
+
+    <!-- Selected files list -->
+    <div id="file-list" style="margin-bottom:1rem;display:none;">
+      <p style="font-weight:600;margin-bottom:0.4rem;font-size:0.9rem;">Selected files:</p>
+      <ul id="file-items" style="list-style:none;padding:0;margin:0;"></ul>
+    </div>
+
+    <!-- Upload progress bar -->
+    <div id="upload-progress" style="display:none;margin-bottom:1rem;">
+      <div class="progress-bar" style="width:100%;height:8px;">
+        <div id="upload-progress-fill" class="progress-fill" style="width:0%;"></div>
+      </div>
+      <p id="upload-status" class="hint" style="margin-top:0.3rem;color:var(--text-dim);"></p>
+    </div>
+
+    <!-- Upload button -->
+    <button id="upload-btn" class="btn-download" disabled
+            style="padding:0.6rem 1.5rem;">Upload &amp; Import</button>
+  </div>
+
+  <!-- Import jobs section -->
+  <div style="margin-top:2.5rem;">
+    <h2 style="margin-bottom:0.75rem;">Import Jobs</h2>
+    <div id="import-jobs-list"
+         hx-get="/import/jobs/html"
+         hx-trigger="load, every 10s"
+         hx-swap="innerHTML">
+      <p class="hint" style="color:var(--text-dim);">Loading…</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .drop-zone.drag-over {
+    background: rgba(88, 166, 255, 0.05);
+    border-color: var(--accent);
+  }
+  .file-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.3rem 0.5rem; font-size: 0.85rem; color: var(--text-dim);
+  }
+  .file-item .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-item .file-remove {
+    cursor: pointer; color: var(--red); font-size: 0.8rem;
+    background: none; border: none; padding: 0 0.3rem;
+  }
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+
+  var dropZone = document.getElementById('drop-zone');
+  var fileInput = document.getElementById('file-input');
+  var fileList = document.getElementById('file-list');
+  var fileItems = document.getElementById('file-items');
+  var fileCount = document.getElementById('file-count');
+  var uploadBtn = document.getElementById('upload-btn');
+  var uploadProgress = document.getElementById('upload-progress');
+  var uploadProgressFill = document.getElementById('upload-progress-fill');
+  var uploadStatus = document.getElementById('upload-status');
+
+  var selectedFiles = [];
+
+  // ── Drag and drop ────────────────────────────────────────────
+  dropZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+  dropZone.addEventListener('dragleave', function() {
+    dropZone.classList.remove('drag-over');
+  });
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    addFiles(e.dataTransfer.files);
+  });
+  dropZone.addEventListener('click', function() {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', function() {
+    addFiles(fileInput.files);
+    fileInput.value = '';
+  });
+
+  function addFiles(fileListInput) {
+    for (var i = 0; i < fileListInput.length; i++) {
+      selectedFiles.push(fileListInput[i]);
+    }
+    renderFileList();
+  }
+
+  function renderFileList() {
+    fileItems.innerHTML = '';
+    if (selectedFiles.length === 0) {
+      fileList.style.display = 'none';
+      fileCount.textContent = '';
+      uploadBtn.disabled = true;
+      return;
+    }
+    fileList.style.display = 'block';
+    uploadBtn.disabled = false;
+    fileCount.textContent = selectedFiles.length + ' file(s)';
+    selectedFiles.forEach(function(f, idx) {
+      var li = document.createElement('li');
+      li.className = 'file-item';
+      li.innerHTML = '<span class="file-name">' + escapeHtml(f.name) + '</span>' +
+                     '<span style="color:var(--text-dim);font-size:0.8rem;">' + formatSize(f.size) + '</span>' +
+                     '<button class="file-remove" data-idx="' + idx + '">&times;</button>';
+      fileItems.appendChild(li);
+    });
+    fileItems.querySelectorAll('.file-remove').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        selectedFiles.splice(parseInt(btn.dataset.idx), 1);
+        renderFileList();
+      });
+    });
+  }
+
+  // ── Upload ───────────────────────────────────────────────────
+  uploadBtn.addEventListener('click', function() {
+    if (selectedFiles.length === 0) return;
+
+    var formData = new FormData();
+    selectedFiles.forEach(function(f) {
+      formData.append('files', f);
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/import/upload', true);
+
+    uploadBtn.disabled = true;
+    uploadProgress.style.display = 'block';
+    uploadProgressFill.style.width = '0%';
+    uploadStatus.textContent = 'Uploading…';
+
+    xhr.upload.addEventListener('progress', function(e) {
+      if (e.lengthComputable) {
+        var pct = Math.round((e.loaded / e.total) * 100);
+        uploadProgressFill.style.width = pct + '%';
+        uploadStatus.textContent = 'Uploading… ' + pct + '%';
+      }
+    });
+
+    xhr.addEventListener('load', function() {
+      if (xhr.status === 200) {
+        uploadStatus.textContent = 'Upload complete! Import queued.';
+        uploadProgressFill.style.width = '100%';
+        selectedFiles = [];
+        renderFileList();
+        // Refresh the import jobs list
+        htmx.trigger('#import-jobs-list', 'load');
+      } else {
+        try {
+          var resp = JSON.parse(xhr.responseText);
+          uploadStatus.textContent = 'Error: ' + (resp.error || 'Upload failed');
+        } catch(e) {
+          uploadStatus.textContent = 'Error: Upload failed';
+        }
+      }
+      uploadBtn.disabled = false;
+    });
+
+    xhr.addEventListener('error', function() {
+      uploadStatus.textContent = 'Error: Network error';
+      uploadBtn.disabled = false;
+    });
+
+    xhr.send(formData);
+  });
+
+  // ── Helpers ──────────────────────────────────────────────────
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% if agg.query %}
+  {% set status_labels = {
+    'ok': 'ok', 'auth_expired': 'auth expired', 'provider_error': 'provider error', 'unavailable': 'unreachable'
+  } %}
+  <div class="statuses">
+    {% for tool in tools %}
+      {% set st = agg.statuses.get(tool, 'unavailable') %}
+      <span class="status {{ st }}">{{ tool }}<span class="reason"> · {{ status_labels.get(st, st) }}</span></span>
+    {% endfor %}
+  </div>
+
+  {% if agg.results %}
+    <p class="count">{{ agg.results | length }} result{{ '' if agg.results | length == 1 else 's' }} for “{{ agg.query }}”</p>
+
+    {% for r in agg.results %}
+      {% if r.type == 'artist' %}
+      <div class="card artist">
+        {% if r.cover_url %}<img src="{{ r.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+        <div class="meta">
+          <div class="title">{{ r.title }}</div>
+          <div class="sub">discography{% if r.album %} · {{ r.album }}{% endif %}</div>
+          <div class="tags"><span class="provider-tag">{{ r.provider }}</span></div>
+        </div>
+        <form class="dl" hx-post="/download" hx-target="this" hx-swap="outerHTML" hx-disabled-elt="this button">
+          <input type="hidden" name="service" value="{{ r.provider }}">
+          <input type="hidden" name="kind" value="artist">
+          <input type="hidden" name="artist_id" value="{{ r.id }}">
+          <input type="hidden" name="artist_name" value="{{ r.title }}">
+          <label class="dl-opt"><input type="checkbox" name="no_singles" value="true">no singles</label>
+          <label class="dl-opt"><input type="checkbox" name="prefer_explicit" value="true" checked>prefer explicit</label>
+          <button type="submit" class="dl-btn">repo discography</button>
+        </form>
+      </div>
+
+      {% elif r.type == 'playlist' %}
+      <div class="card playlist">
+        {% if r.cover_url %}<img src="{{ r.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+        <div class="meta">
+          <div class="title">{{ r.title }}</div>
+          <div class="sub">playlist{% if r.artist %} · {{ r.artist }}{% endif %}</div>
+          <div class="tags"><span class="provider-tag">{{ r.provider }}</span></div>
+        </div>
+        <form class="dl" hx-post="/download" hx-target="this" hx-swap="outerHTML" hx-disabled-elt="this button">
+          <input type="hidden" name="service" value="{{ r.provider }}">
+          <input type="hidden" name="kind" value="playlist">
+          <input type="hidden" name="url" value="{{ r.url }}">
+          <button type="submit" class="dl-btn">repo playlist</button>
+        </form>
+      </div>
+
+      {% elif r.type == 'album' %}
+      <div class="card album">
+        {% if r.cover_url %}<img src="{{ r.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+        <div class="meta">
+          <div class="title">{{ r.title }}</div>
+          <div class="sub">{{ r.artist }}{% if r.year %} · {{ r.year }}{% endif %}</div>
+          <div class="tags"><span class="provider-tag">{{ r.provider }}</span></div>
+        </div>
+        <form class="dl" hx-post="/download" hx-target="this" hx-swap="outerHTML" hx-disabled-elt="this button">
+          <input type="hidden" name="service" value="{{ r.provider }}">
+          <input type="hidden" name="kind" value="album">
+          <input type="hidden" name="url" value="{{ r.url }}">
+          <button type="submit" class="dl-btn">repo album</button>
+        </form>
+      </div>
+
+      {% else %}
+      <div class="card track">
+        {% if r.cover_url %}<img src="{{ r.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+        <div class="meta">
+          <div class="title">{{ r.title }}</div>
+          <div class="sub">{{ r.artist }}{% if r.album %} — {{ r.album }}{% endif %}</div>
+          <div class="tags"><span class="provider-tag">{{ r.provider }}</span></div>
+        </div>
+        <div class="dur">{% if r.duration_ms %}{{ r.duration_ms | duration }}{% endif %}</div>
+        <form class="dl" hx-post="/download" hx-target="this" hx-swap="outerHTML" hx-disabled-elt="this button">
+          <input type="hidden" name="service" value="{{ r.provider }}">
+          <input type="hidden" name="kind" value="track">
+          <input type="hidden" name="url" value="{{ r.url }}">
+          <button type="submit" class="dl-btn">repo track</button>
+        </form>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <p class="empty">nothing found for “{{ agg.query }}”.{% if agg.statuses.values() | select('equalto', 'ok') | list | length < tools | length %} Some tools didn't answer — see the status badges above.{% endif %}</p>
+  {% endif %}
+{% else %}
+  <p class="empty">no query</p>
+{% endif %}

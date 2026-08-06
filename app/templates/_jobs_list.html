@@ -1,0 +1,55 @@
+<div id="jobs-list" class="jobs-list">
+  {% set ns = namespace(job_count=0) %}
+  {% for service, payload in services.items() %}
+    {% set jobs = payload.get('jobs', []) %}
+    {% set ns.job_count = ns.job_count + (jobs | length) %}
+    <section class="service-section" aria-labelledby="service-{{ service }}">
+      <header class="service-heading">
+        <h2 id="service-{{ service }}">{{ service }}</h2>
+        {% if payload.get('error') %}
+          <span class="reachability unreachable"><i></i>{{ payload.get('error') }}</span>
+        {% else %}
+          <span class="reachability reachable"><i></i>reachable</span>
+        {% endif %}
+      </header>
+
+      {% if jobs %}
+        <div class="job-rows">
+          {% for job in jobs %}
+            {% set status = job.get('status', 'queued') %}
+            <article class="job-row job-{{ status }}">
+              <div class="job-main">
+                <div class="job-title-line">
+                  <span class="status-badge status-{{ status }}">{{ 'done' if status == 'completed' else status }}</span>
+                  <strong class="job-title">{{ job.get('title') or job.get('name') or ('Job ' ~ job.get('id')) }}</strong>
+                </div>
+                <div class="job-detail">
+                  <span class="job-phase">{{ job.get('phase') or status }}</span>
+                  {% if job.get('files') is not none %}<span class="job-files">{{ job.get('files') }} file{{ '' if job.get('files') == 1 else 's' }}</span>{% endif %}
+                </div>
+                {% if status == 'running' or job.get('progress') is not none %}
+                  {% set progress = job.get('progress') if job.get('progress') is not none else (0.1 if status == 'running' else 0) %}
+                  <div class="job-progress" role="progressbar" aria-valuenow="{{ (progress * 100) | round | int }}" aria-valuemin="0" aria-valuemax="100">
+                    <span style="width: {{ (progress * 100) | round | int }}%"></span>
+                  </div>
+                {% endif %}
+                {% if status == 'failed' and job.get('error') %}<p class="job-error">{{ job.get('error') }}</p>{% endif %}
+              </div>
+              <div class="job-actions" aria-label="Actions for {{ job.get('title') or job.get('name') or 'job' }}">
+                {% for action in job.get('actions', []) %}
+                  <button type="button" class="job-action action-{{ action }}"
+                          hx-post="/jobs/{{ service }}/{{ job.get('id') }}/{{ action }}"
+                          hx-target="#jobs-list" hx-swap="outerHTML">{{ action }}</button>
+                {% endfor %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  {% endfor %}
+
+  {% if ns.job_count == 0 %}
+    <div class="jobs-empty"><span class="empty-mark">[ ]</span><strong>no jobs yet</strong><span>Start a download from Search and it will appear here.</span></div>
+  {% endif %}
+</div>

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Local state — never commit these
+data/*.db
+data/*.db-*
+downloads/*
+!downloads/.gitkeep
+
+# Tidal OAuth token store (contains refresh tokens!) — keep dir, ignore contents
+config/tidal/*
+!config/tidal/.gitkeep
+
+# Local env / secrets
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+*.swp

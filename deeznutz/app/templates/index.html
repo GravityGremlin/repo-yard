@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}deeznutz — Search{% endblock %}
+
+{% block content %}
+<div class="search-page">
+  <div class="search-bar">
+    <form hx-get="/search" hx-target="#search-results" hx-swap="innerHTML" hx-trigger="submit, keyup changed delay:400ms from:input">
+      <input type="text" name="q" id="search-input" placeholder="Search Deezer — albums, tracks, artists..."
+             value="{{ query or '' }}" autofocus autocomplete="off">
+      <select name="type" id="search-type">
+        <option value="all" {{ 'selected' if (type or 'all') == 'all' else '' }}>All</option>
+        <option value="album" {{ 'selected' if type == 'album' else '' }}>Albums</option>
+        <option value="track" {{ 'selected' if type == 'track' else '' }}>Tracks</option>
+        <option value="artist" {{ 'selected' if type == 'artist' else '' }}>Artists</option>
+      </select>
+      
+      <button type="submit">Search</button>
+      <span class="htmx-indicator spinner" aria-label="Loading"></span>
+    </form>
+  </div>
+
+  <div id="search-results">
+    {% if results %}
+      {% include "partials/search_results.html" %}
+    {% endif %}
+  </div>
+
+  {% if not results %}
+  <div class="empty-state">
+    <p>Search for music on Deezer. Type an artist, album, or track name above.</p>
+    {% if not connected %}
+    <p class="hint">⚠️ Not connected to Deezer — <a href="/deezer/auth">connect your account</a> first.</p>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

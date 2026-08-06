@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jobs-heading">
+    <div>
+      <div class="masthead"><h1>Jobs</h1></div>
+      <p class="eyebrow">download queue · all services</p>
+    </div>
+    <span class="refresh-note" aria-live="polite"><span class="refresh-dot"></span>refreshes every 5s</span>
+  </div>
+
+  <div id="jobs-list" class="jobs-list"
+       hx-get="/jobs/list" hx-trigger="load, every 5s"
+       hx-target="this" hx-swap="outerHTML">
+    <p class="jobs-loading">loading jobs<span class="caret"></span></p>
+  </div>
+{% endblock %}

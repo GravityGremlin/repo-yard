@@ -1,0 +1,40 @@
+server:
+  port: 19291
+  gunicorn_workers: 1
+  gunicorn_threads: 8
+paths:
+  download_dir: /app/downloads
+  library_dir: /music
+  spotify_config_dir: /app/.config/spotify
+  streamrip_config_dir: /app/.config/streamrip
+  jobs_dir: /app/data
+  beets_dir: /app/.config/beets
+spotify:
+  client_id: ""
+  client_secret: ""
+  redirect_uri: "https://sf.n0g.xyz/spotify/auth/callback"
+sources:
+  priority: [streamrip, ytdlp]
+  streamrip:
+    enabled: true
+    binary: rip
+    timeout: 300
+    quality: lossless
+  ytdlp:
+    enabled: true
+    format: m4a/bestaudio/best
+    ratelimit: 1000000
+    sleep_interval_requests: 3
+    max_concurrent: 2
+downloads:
+  max_concurrent: 8
+  promote_to_library: true
+  promote_exists: skip
+  organize_with_beets: true
+  override_existing: false
+  filename_template: "{artist} - {title}"
+network:
+  proxy_list: ['']
+navidrome:
+  url: http://navidrome:4533
+  auto_scan: true

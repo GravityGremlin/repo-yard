@@ -1,0 +1,13 @@
+{% if jobs %}
+<div class="jobs-list">
+  {% for job in jobs %}
+  <div class="import-job-wrapper" style="margin-bottom:0.5rem;">
+    {% include "partials/import_job_row.html" %}
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No import jobs yet. <a href="/import/">Upload files to import.</a></p>
+</div>
+{% endif %}

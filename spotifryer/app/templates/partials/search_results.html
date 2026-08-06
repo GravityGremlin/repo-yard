@@ -1,0 +1,118 @@
+<div class="search-results">
+  {% if results %}
+    {% if type == 'track' %}
+      <div class="results-grid">
+        {% for track in results %}
+        <div class="result-card track">
+          <div class="cover-art">
+            <img src="{{ track.cover_url or '/static/placeholder.svg' }}" alt="{{ track.title }} cover art" loading="lazy">
+     
+          </div>
+          <div class="track-info">
+            <h3>{{ track.title }}</h3>
+            <p class="artist">{{ track.artist }}</p>
+            <p class="album">{{ track.album }}</p>
+          </div>
+          <div class="track-actions">
+            <form hx-post="/download/enqueue"
+                  hx-swap="none"
+                  hx-on::after-request="if(event.detail.successful){var b=this.querySelector('button');b.textContent='Queued!';b.disabled=true}"
+                  style="display:inline">
+              <input type="hidden" name="url" value="https://open.spotify.com/track/{{ track.spotify_id }}">
+              <input type="hidden" name="kind" value="track">
+              <input type="hidden" name="title" value="{{ track.title }}">
+              <input type="hidden" name="artist" value="{{ track.artist }}">
+              <button type="submit" class="btn-download">Download</button>
+            </form>
+            <button hx-get="/track/{{ track.spotify_id }}/lyrics"
+                    hx-target="#lyrics-{{ track.spotify_id }}"
+                    hx-swap="innerHTML"
+                    class="btn-small">Lyrics</button>
+          </div>
+        </div>
+        <div id="lyrics-{{ track.spotify_id }}"></div>
+        {% endfor %}
+      </div>
+    {% elif type == 'album' %}
+      <div class="results-grid">
+        {% for album in results %}
+        <div class="result-card album">
+          <div class="cover-art">
+            <img src="{{ album.cover_url or '/static/placeholder.svg' }}" alt="{{ album.title }} cover art" loading="lazy">
+          </div>
+          <div class="album-info">
+            <h3>{{ album.title }}</h3>
+            <p class="artist">{{ album.artist }}</p>
+            <p class="tracks">{{ album.track_count }} tracks</p>
+          </div>
+          <div class="album-actions">
+            <form hx-post="/download/enqueue"
+                  hx-swap="none"
+                  hx-on::after-request="if(event.detail.successful){var b=this.querySelector('button');b.textContent='Queued!';b.disabled=true}"
+                  style="display:inline">
+              <input type="hidden" name="url" value="https://open.spotify.com/album/{{ album.spotify_id }}">
+              <input type="hidden" name="kind" value="album">
+              <input type="hidden" name="title" value="{{ album.title }}">
+              <input type="hidden" name="artist" value="{{ album.artist }}">
+              <button type="submit" class="btn-download">Download All</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% elif type == 'playlist' %}
+      <div class="results-grid">
+        {% for playlist in results %}
+        <div class="result-card playlist">
+          <div class="cover-art">
+            <img src="{{ playlist.cover_url or '/static/placeholder.svg' }}" alt="{{ playlist.title }} cover art" loading="lazy">
+          </div>
+          <div class="playlist-info">
+            <h3>{{ playlist.title }}</h3>
+            <p class="owner">{{ playlist.artist }}</p>
+            <p class="tracks">{{ playlist.track_count }} tracks</p>
+          </div>
+          <div class="playlist-actions">
+            <form hx-post="/download/enqueue"
+                  hx-swap="none"
+                  hx-on::after-request="if(event.detail.successful){var b=this.querySelector('button');b.textContent='Queued!';b.disabled=true}"
+                  style="display:inline">
+              <input type="hidden" name="url" value="{{ playlist.url }}">
+              <input type="hidden" name="kind" value="playlist">
+              <input type="hidden" name="title" value="{{ playlist.title }}">
+              <input type="hidden" name="artist" value="{{ playlist.artist }}">
+              <button type="submit" class="btn-download">Download All</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% elif type == 'artist' %}
+      <div class="results-grid">
+        {% for artist in results %}
+        <div class="result-card artist">
+          <div class="cover-art">
+            <img src="{{ artist.cover_url or '/static/placeholder.svg' }}" alt="{{ artist.title }} photo" loading="lazy" class="artist-photo">
+          </div>
+          <div class="artist-info">
+            <h3>{{ artist.title }}</h3>
+            {% if artist.artist %}
+            <p class="genres">{{ artist.artist }}</p>
+            {% endif %}
+            {% if artist.followers and artist.followers != '0' %}
+            <p class="followers">{{ artist.followers }} followers</p>
+            {% endif %}
+          </div>
+          <div class="artist-actions">
+            <a href="{{ artist.url }}" target="_blank" rel="noopener" class="btn-spotify">View on Spotify</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="empty-state">
+      <p>No results found for "{{ query }}". Try a different search.</p>
+    </div>
+  {% endif %}
+</div>

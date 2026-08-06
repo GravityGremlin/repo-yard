@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}tidalwave — Auth{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <h1>Tidal Connection</h1>
+
+  {% if connected %}
+    <div class="auth-status connected">
+      <p>✅ Connected to Tidal</p>
+      {% if token_info.expires_in %}
+        <p class="hint">Token expires in {{ (token_info.expires_in / 60)|round(0) }} minutes</p>
+      {% endif %}
+      <p class="hint">Token stored at <code>~/.config/tidal_dl_ng/token.json</code></p>
+    </div>
+  {% else %}
+    <div class="auth-status disconnected">
+      <p>⚪ Not connected to Tidal</p>
+      <p>Click below to start the device login flow. You'll be redirected to Tidal's website to authorise this app.</p>
+      <button id="login-btn" onclick="startLogin()">Connect to Tidal</button>
+      <div id="login-status" class="login-status"></div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+function startLogin() {
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.textContent = 'Starting...';
+  const status = document.getElementById('login-status');
+
+  const meta = document.querySelector('meta[name="csrf-token"]');
+  const token = meta ? meta.getAttribute('content') : '';
+  fetch('/tidal/auth/start', { method: 'POST', headers: { 'X-CSRFToken': token } })
+    .then(r => r.json())
+    .then(data => {
+      const url = data.url;
+      window.open(url, '_blank');
+      status.innerHTML = '<p>Visit the opened tab to log in. Waiting for authorisation...</p>' +
+                         '<p class="hint">Code expires in ' + data.expires_in + ' seconds</p>';
+      pollStatus(data.device_code);
+    })
+    .catch(e => {
+      status.innerHTML = '<p class="error">Failed to start login: ' + e + '</p>';
+      btn.disabled = false;
+      btn.textContent = 'Connect to Tidal';
+    });
+}
+
+function pollStatus(deviceCode) {
+  const startedAt = Date.now();
+  const expiresIn = parseInt(document.getElementById('login-status').querySelector('.hint')?.textContent?.match(/\d+/)?.[0] || '300', 10);
+  const interval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+    const remaining = Math.max(0, expiresIn - elapsed);
+    const statusEl = document.getElementById('login-status');
+
+    if (remaining <= 0) {
+      clearInterval(interval);
+      statusEl.innerHTML = '<p class="error">⏰ Code expired. <a href="/tidal/auth">Try again.</a></p>';
+      document.getElementById('login-btn').disabled = false;
+      document.getElementById('login-btn').textContent = 'Connect to Tidal';
+      return;
+    }
+
+    fetch('/tidal/auth/status/' + deviceCode)
+      .then(r => r.json())
+      .then(data => {
+        if (data.status === 'completed') {
+          clearInterval(interval);
+          statusEl.innerHTML = '<p class="success">✅ Login successful! <a href="/">Go to search</a></p>';
+        } else if (data.status === 'failed') {
+          clearInterval(interval);
+          statusEl.innerHTML = '<p class="error">❌ Login failed or timed out. Try again.</p>';
+          document.getElementById('login-btn').disabled = false;
+          document.getElementById('login-btn').textContent = 'Connect to Tidal';
+        } else {
+          // Update countdown on pending
+          const hint = statusEl.querySelector('.hint');
+          if (hint) hint.textContent = 'Code expires in ' + remaining + ' seconds';
+        }
+      })
+      .catch(() => {});
+  }, 3000);
+}
+</script>
+{% endblock %}

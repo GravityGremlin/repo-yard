@@ -1,0 +1,56 @@
+{% set status_labels = {
+  'ok': 'ok', 'auth_expired': 'auth expired', 'provider_error': 'provider error', 'unavailable': 'unreachable', 'invalid_url': 'invalid URL'
+} %}
+<div class="statuses">
+  {% for tool in tools %}
+    {% set st = statuses.get(tool, 'unavailable') %}
+    <span class="status {{ st }}">{{ tool }}<span class="reason"> · {{ status_labels.get(st, st) }}</span></span>
+  {% endfor %}
+</div>
+
+{% if payload.error %}
+  <p class="empty">
+    {% if payload.error == 'invalid_url' %}that doesn't look like a playlist URL for any of the four services.
+    {% elif payload.error == 'auth_expired' %}{{ payload.provider }} needs re-authentication to resolve playlists.
+    {% else %}{{ payload.provider }} failed to resolve that playlist.{% endif %}
+  </p>
+{% elif payload.playlist %}
+  <div class="card artist">
+    {% if payload.playlist.cover_url %}<img src="{{ payload.playlist.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+    <div class="meta">
+      <div class="title">{{ payload.playlist.title }}</div>
+      <div class="sub">
+        playlist{% if payload.playlist.owner %} · {{ payload.playlist.owner }}{% endif %}
+        {% if payload.playlist.track_count %} · {{ payload.playlist.track_count }} tracks{% endif %}
+      </div>
+      <div class="tags"><span class="provider-tag">{{ payload.provider }}</span></div>
+    </div>
+    {% if payload.url %}
+    <form class="dl" hx-post="/download" hx-target="this" hx-swap="outerHTML" hx-disabled-elt="this button">
+      <input type="hidden" name="service" value="{{ payload.provider }}">
+      <input type="hidden" name="kind" value="playlist">
+      <input type="hidden" name="url" value="{{ payload.url }}">
+      <button type="submit" class="dl-btn">repo playlist</button>
+    </form>
+    {% endif %}
+  </div>
+
+  {% if payload.tracks %}
+    <p class="count">{{ payload.tracks | length }} tracks</p>
+    {% for t in payload.tracks %}
+      <div class="card track">
+        {% if t.cover_url %}<img src="{{ t.cover_url }}" alt="" loading="lazy">{% else %}<span class="imgph"></span>{% endif %}
+        <div class="meta">
+          <div class="title">{{ loop.index }}. {{ t.title }}</div>
+          <div class="sub">{{ t.artist }}{% if t.album %} — {{ t.album }}{% endif %}</div>
+          <div class="tags"><span class="provider-tag">{{ payload.provider }}</span></div>
+        </div>
+        <div class="dur">{% if t.duration_ms %}{{ t.duration_ms | duration }}{% endif %}</div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty">playlist has no tracks</p>
+  {% endif %}
+{% else %}
+  <p class="empty">no playlist data</p>
+{% endif %}

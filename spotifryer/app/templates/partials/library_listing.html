@@ -1,0 +1,59 @@
+<div class="library-listing">
+  {% if tab == 'recently-downloaded' %}
+    <h2>Recently Downloaded</h2>
+    {% if items %}
+    <div class="library-grid">
+      {% for item in items %}
+      <div class="library-item file">
+        <div class="item-icon">
+          <img src="{{ item.cover_art or '/static/audio-file.svg' }}" alt="Audio file" loading="lazy">
+        </div>
+        <div class="item-name">{{ item.title }}</div>
+        <div class="item-artist">{{ item.artist }}</div>
+        <div class="item-actions">
+          <button class="btn-play" onclick="playTrack('{{ item.path }}')">Play</button>
+          <a href="/library/serve/{{ item.path }}" class="btn-download" download>Download</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <p>No recently downloaded tracks. Download some tracks to see them here.</p>
+    </div>
+    {% endif %}
+  {% else %}
+    {% if items %}
+      <div class="library-grid">
+        {% for item in items %}
+          {% if item.type == 'directory' %}
+          <div class="library-item directory">
+            <a href="#" hx-get="/library/browse/{{ item.path }}" hx-target="#library-listing" hx-swap="innerHTML">
+              <div class="item-icon">
+                <img src="/static/folder.svg" alt="Folder icon" loading="lazy">
+              </div>
+              <div class="item-name">{{ item.name }}</div>
+              <div class="item-count">{{ item.count }} items</div>
+            </a>
+          </div>
+          {% else %}
+          <div class="library-item file">
+            <div class="item-icon">
+              <img src="/static/audio-file.svg" alt="Audio file icon" loading="lazy">
+            </div>
+            <div class="item-name">{{ item.name }}</div>
+            <div class="item-actions">
+              <button class="btn-play" onclick="playTrack('{{ item.path }}')">Play</button>
+              <a href="/library/serve/{{ item.path }}" class="btn-download" download>Download</a>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>This folder is empty.</p>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>

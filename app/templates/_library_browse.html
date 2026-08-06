@@ -1,0 +1,52 @@
+{% macro bytes(value) -%}
+  {% if value is none or value == '' %}—
+  {% else %}
+    {% set n = value | float %}
+    {% if n < 1024 %}{{ n | round | int }} B
+    {% elif n < 1048576 %}{{ (n / 1024) | round(1) }} KB
+    {% elif n < 1073741824 %}{{ (n / 1048576) | round(1) }} MB
+    {% else %}{{ (n / 1073741824) | round(1) }} GB{% endif %}
+  {% endif %}
+{%- endmacro %}
+<div id="library-browse" class="library-browse">
+  {% set ns = namespace(count=0) %}
+  {% for service, payload in services.items() %}
+    {% set items = payload.get('items', []) %}
+    {% set ns.count = ns.count + (items | length) %}
+    <section class="service-section library-section" aria-labelledby="library-service-{{ service }}">
+      <header class="service-heading">
+        <h2 id="library-service-{{ service }}">{{ service }}</h2>
+        {% if payload.get('error') %}
+          <span class="reachability unreachable"><i></i>{{ payload.get('error') }}</span>
+        {% else %}
+          <span class="reachability reachable"><i></i>reachable</span>
+        {% endif %}
+      </header>
+      {% if items %}
+        <div class="library-path">/ <span>library</span></div>
+        <div class="library-rows">
+          {% for item in items %}
+            {% set kind = (item.get('kind') or 'file') | lower %}
+            {% set is_dir = kind in ('dir', 'directory', 'folder') %}
+            {% set item_name = item.get('name') or item.get('path') %}
+            {% set audio = (not is_dir) and (item_name | lower).endswith(('.flac', '.mp3', '.m4a', '.ogg', '.opus', '.wav', '.aac', '.alac')) %}
+            <div class="library-row {{ 'library-dir' if is_dir else 'library-file' }}"{% if is_dir %} role="button" tabindex="0"{% endif %}>
+              {% if is_dir %}
+                <button class="library-item-link" type="button" hx-get="/library/browse?path={{ item.get('path') | urlencode }}" hx-target="#library-browse" hx-swap="outerHTML">
+                  <span class="kind-icon" aria-hidden="true">[+]</span><span class="library-name">{{ item_name }}</span>
+                </button>
+              {% else %}
+                <span class="kind-icon" aria-hidden="true">[·]</span><span class="library-name">{{ item_name }}</span>
+              {% endif %}
+              <span class="library-size">{{ bytes(item.get('size')) }}</span>
+              {% if audio %}<a class="stream-link" href="/library/serve/{{ service }}/{{ item.get('path') | urlencode }}" target="_blank" rel="noopener">stream</a>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="library-empty">empty</p>
+      {% endif %}
+    </section>
+  {% endfor %}
+  {% if ns.count == 0 and not services %}<div class="jobs-empty"><span class="empty-mark">[ ]</span><strong>library is empty</strong><span>No files are available to browse yet.</span></div>{% endif %}
+</div>

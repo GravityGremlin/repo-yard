@@ -1,0 +1,63 @@
+{% if not results or (results.albums|length == 0 and results.tracks|length == 0 and results.artists|length == 0 and results.playlists|length == 0) %}
+  <div class="empty-state">
+    <p>No results found for "{{ query }}"</p>
+  </div>
+{% else %}
+  <div class="download-options">
+    <label class="checkbox-label" title="Replace existing library copies of re-downloaded albums instead of skipping them">
+      <input type="checkbox" id="override-existing" name="override_existing">
+      Override existing library copy
+    </label>
+  </div>
+  {% if results.albums %}
+  <div class="result-section">
+    <h2>Albums ({{ results.albums|length }})</h2>
+    <div class="result-grid">
+      {% for album in results.albums %}
+      <div class="album-card">
+        {% if album.cover %}
+        <img src="{{ album.cover }}" alt="{{ album.title }}" loading="lazy">
+        {% endif %}
+        <div class="album-info">
+          <span class="album-title">{{ album.title }}</span>
+          {% if album.in_library %}<span class="in-library-badge">&#10003; Downloaded</span>{% endif %}
+          <span class="album-artist">{{ album.artist }}</span>
+          {% if album.year %}<span class="album-year">{{ album.year }}</span>{% endif %}
+          <span class="album-tracks">{{ album.num_tracks or '?' }} tracks</span>
+        </div>
+        <div class="album-actions">
+          <button onclick="downloadAlbum(event, '{{ album.id }}', '{{ album.title|e }}', '{{ album.artist|e }}')"
+                  class="btn-download">Download</button>
+          <button hx-get="/search/album/{{ album.id }}/tracks"
+                  hx-target="#album-{{ album.id }}-tracks"
+                  hx-swap="innerHTML">Tracks</button>
+        </div>
+        <div id="album-{{ album.id }}-tracks"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if results.artists %}
+  <div class="result-section">
+    <h2>Artists ({{ results.artists|length }})</h2>
+    <div class="result-list">
+      {% for artist in results.artists %}
+      <div class="artist-row" data-artist-id="{{ artist.id }}">
+        <span class="artist-name">{{ artist.name }}</span>
+        {% if artist.in_library %}<span class="in-library-badge">&#10003; Downloaded</span>{% endif %}
+        <div class="artist-actions">
+          <label class="checkbox-label singles-toggle" title="Include EPs/singles (releases with 1-2 tracks) in discography download">
+            <input type="checkbox" class="include-singles">
+            Include singles
+          </label>
+          <button onclick="downloadDiscography(event, '{{ artist.id }}', '{{ artist.name|e }}')"
+                  class="btn-download btn-discography">Download Discography</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+{% endif %}

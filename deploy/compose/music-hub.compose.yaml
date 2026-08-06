@@ -1,0 +1,30 @@
+# Music Hub compose — reference copy for the deploy script.
+# The authoritative compose file lives at ~/Projects/music-hub/compose.yaml
+# (on cthulhu, no git repo). Keep this mirror in sync when editing there.
+# The deploy script treats the repo-yard copy of music-hub/ as the deploy
+# artifact and rsyncs it to the target dir before `compose up`.
+#
+# Host: cthulhu (10.8.0.10), Route: Traefik on singularity → music-hub (19296) nginx:alpine
+name: music-hub
+
+services:
+  app:
+    image: nginx:alpine
+    container_name: music-hub
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19296:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./style.css:/usr/share/nginx/html/style.css:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"

@@ -1,0 +1,83 @@
+<div class="job-row job-{{ job.status }}" data-job-id="{{ job.id }}">
+  <div class="job-info">
+    <span class="job-title">{{ job.title or job.url }}</span>
+    <span class="job-artist">{{ job.artist }}</span>
+    {% if job.group_id %}<span class="job-group" title="batch {{ job.group_id }}">⊕ {{ job.group_id }}</span>{% endif %}
+  </div>
+  <div class="job-status">
+    <span class="status-badge status-{{ job.status }}">{{ job.status }}</span>
+    {% if job.status == 'running' %}
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ (job.progress * 100)|round(1) }}%"></div>
+      </div>
+      <span class="progress-text">{{ (job.progress * 100)|round(0) }}%</span>
+    {% endif %}
+    {% if job.status == 'error' %}
+      <span class="job-error">{{ job.error }}</span>
+    {% endif %}
+    {% if job.status == 'completed' %}
+      <span class="job-files">{{ job.files|length }} files</span>
+    {% endif %}
+    <span class="phase-badge duplicate-skipped-badge" style="display:none">Skipped duplicate</span>
+    <span class="phase-badge overrode-existing-badge" style="display:none">Replaced existing</span>
+  </div>
+  {% if job.status in ['completed', 'error', 'cancelled'] %}
+  <label class="job-select-label" title="Select for batch delete"><input type="checkbox" class="job-select" value="{{ job.id }}"></label>
+  {% endif %}
+    {% if job.status in ['queued', 'running'] %}
+    <button hx-post="/download/jobs/{{ job.id }}/pause"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-pause">Pause</button>
+    <button hx-post="/download/jobs/{{ job.id }}/cancel"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-cancel">Cancel</button>
+    {% endif %}
+    {% if job.status == 'queued' %}
+    <button hx-post="/download/jobs/{{ job.id }}/priority/up"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-priority" title="Move up">↑</button>
+    <button hx-post="/download/jobs/{{ job.id }}/priority/down"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-priority" title="Move down">↓</button>
+    {% endif %}
+    {% if job.status == 'paused' %}
+    <button hx-post="/download/jobs/{{ job.id }}/resume"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-resume">Resume</button>
+    <button hx-post="/download/jobs/{{ job.id }}/cancel"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-cancel">Cancel</button>
+    {% endif %}
+    {% if job.status in ['completed', 'error', 'cancelled'] %}
+    {% if job.status in ['error', 'cancelled'] %}
+    <button hx-post="/download/jobs/{{ job.id }}/retry"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-retry">Retry</button>
+    {% endif %}
+    <button hx-post="/download/jobs/{{ job.id }}/delete"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-delete">Delete</button>
+    {% endif %}
+  </div>
+    {% if job.status in ['queued', 'running'] %}
+    <button hx-post="/download/jobs/{{ job.id }}/cancel"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-cancel">Cancel</button>
+    {% endif %}
+    {% if job.status in ['completed', 'error', 'cancelled'] %}
+    <button hx-post="/download/jobs/{{ job.id }}/delete"
+            hx-target="closest .job-row"
+            hx-swap="outerHTML"
+            class="btn-delete">Delete</button>
+    {% endif %}
+  </div>
+</div>

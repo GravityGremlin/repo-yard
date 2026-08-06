@@ -1,0 +1,37 @@
+<div class="stats-cards">
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.completed }}</div>
+    <div class="stat-label">Completed</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.running }}</div>
+    <div class="stat-label">Running</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.queued }}</div>
+    <div class="stat-label">Queued</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.failed }}</div>
+    <div class="stat-label">Failed</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.total_bytes|human_size }}</div>
+    <div class="stat-label">Total Data</div>
+  </div>
+</div>
+
+<div class="config-section">
+  <h2>Configuration</h2>
+  <div class="config-toggles">
+    <div class="config-toggle">
+      <form hx-post="/stats/config" hx-target="closest .config-toggles" hx-swap="outerHTML">
+        <input type="hidden" name="key" value="downloads.organize_with_beets">
+        <label>
+          <span>Organize with Beets</span>
+          <input type="checkbox" name="value" value="1" {{ 'checked' if config.organize_with_beets else '' }} onchange="this.form.submit()">
+        </label>
+      </form>
+    </div>
+  </div>
+</div>

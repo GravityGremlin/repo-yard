@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Downloads{% endblock %}
+
+{% block content %}
+<div class="jobs-page">
+  <h1>Download Jobs</h1>
+  <div class="jobs-toolbar">
+    <button hx-post="/download/jobs/retry-all-errored"
+            hx-confirm="Retry all errored and cancelled jobs?"
+            hx-target="#jobs-list"
+            hx-swap="innerHTML"
+            class="btn-retry">Retry All Errored</button>
+    <button hx-post="/download/jobs/purge"
+            hx-confirm="Delete all completed jobs?"
+            hx-target="#jobs-list"
+            hx-swap="innerHTML"
+            class="btn-purge">Purge Completed</button>
+    <button type="button"
+            onclick="deleteSelected()"
+            class="btn-delete-selected">Delete Selected</button>
+  </div>
+  <div id="jobs-list"
+       hx-get="/download/jobs/html"
+       hx-trigger="load, every 10s"
+       hx-swap="innerHTML">
+    {% include "partials/jobs_list.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function deleteSelected() {
+  const checked = document.querySelectorAll('.job-select:checked');
+  const ids = Array.from(checked).map(c => c.value);
+  if (!ids.length) {
+    alert('Select one or more completed/errored/cancelled jobs to delete.');
+    return;
+  }
+  if (!confirm('Delete ' + ids.length + ' selected job(s)?')) return;
+  fetch('/download/jobs/delete-selected', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken(),
+      'HX-Request': 'true'
+    },
+    body: JSON.stringify({ids: ids})
+  }).then(r => {
+    if (!r.ok) {
+      console.error('delete-selected failed', r.status);
+      return;
+    }
+    return r.text().then(html => {
+      document.getElementById('jobs-list').innerHTML = html;
+    });
+  });
+}
+</script>
+{% endblock %}

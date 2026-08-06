@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repo Yard — unified search</title>
+  <meta name="theme-color" content="#090907">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/progress.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <div class="chrome"></div>
+  <header class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/" aria-label="Repo Yard home">REPO YARD<span class="nav-caret">_</span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="/" class="nav-link">Search</a>
+        <a href="/jobs" class="nav-link">Jobs</a>
+        <a href="/library" class="nav-link">Library</a>
+        <a href="/stats" class="nav-link">Stats</a>
+        <a href="/auth" class="nav-link">Auth</a>
+        <a href="/audit" class="nav-link">Audit</a>
+      </nav>
+      <div class="service-pills" aria-label="Service status">
+        {% for service in ('spotifryer', 'qoochie', 'tidalwave', 'deeznutz') %}
+          <span class="service-pill"><i aria-hidden="true"></i>{{ service }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </header>
+  <div class="wrap">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

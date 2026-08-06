@@ -1,0 +1,43 @@
+<div class="album-tracks">
+  <div class="album-header">
+    <div class="cover-art">
+      <img src="{{ album.cover_url or '/static/placeholder.svg' }}" alt="{{ album.title }} cover art" loading="lazy">
+    </div>
+    <div class="album-meta">
+      <h2>{{ album.title }}</h2>
+      <p class="artist">{{ album.artist }}</p>
+      <p class="details">{{ album.year }} &#8226; {{ album.track_count }} tracks</p>
+      <button class="btn-download btn-large"
+              onclick="downloadItem('https://open.spotify.com/album/{{ album.spotify_id }}', '{{ album.title }}', '{{ album.artist }}', 'album', event)">
+        Download All
+      </button>
+    </div>
+  </div>
+
+  <div class="track-list">
+    <div class="track-list-header">
+      <span class="track-number">#</span>
+      <span class="track-title">Title</span>
+      <span class="track-duration">Duration</span>
+      <span class="track-actions"></span>
+    </div>
+    {% for track in tracks %}
+    <div class="track-row">
+      <span class="track-number">{{ loop.index }}</span>
+      <span class="track-title">{{ track.title }}</span>
+      <span class="track-duration">{{ track.duration_ms|format_duration }}</span>
+      <span class="track-actions">
+        <button class="btn-download btn-small"
+                onclick="downloadTrack(event, '{{ track.spotify_id }}', '{{ track.title }}', '{{ track.artist }}')">
+          Download
+        </button>
+        <button hx-get="/track/{{ track.spotify_id }}/lyrics"
+                hx-target="#lyrics-{{ track.spotify_id }}"
+                hx-swap="innerHTML"
+                class="btn-small">Lyrics</button>
+      </span>
+    </div>
+    <div id="lyrics-{{ track.spotify_id }}"></div>
+    {% endfor %}
+  </div>
+</div>

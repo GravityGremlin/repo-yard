@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}tidalwave — Audit{% endblock %}
+
+{% block content %}
+<div class="audit-page">
+  <h1>Audit Log</h1>
+  <div id="audit-list">
+    {% include "partials/audit_list.html" %}
+  </div>
+</div>
+{% endblock %}

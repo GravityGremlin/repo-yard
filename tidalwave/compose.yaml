@@ -1,0 +1,46 @@
+name: tidalwave
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+        BUILD_TIME: ${BUILD_TIME:-unknown}
+    image: tidalwave:latest
+    pull_policy: never
+    container_name: tidalwave
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19290:19290"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:19290/', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+    volumes:
+      - ./app:/app/app
+      - ./tidalwave.yaml:/app/config/tidalwave.yaml:ro
+      - ./config/tidal:/app/.config/tidal_dl_ng
+      - ./config/beets:/app/.config/beets
+      - /opt/stacks/beets/config/library.db:/app/.config/beets/library.db
+      - /opt/stacks/beets/config/state.pickle:/app/.config/beets/state.pickle
+      - /mnt/hive/library/music_morpheus:/music
+      - /opt/data/tidalwave:/app/downloads
+      - /opt/data/tidalwave/import_staging:/app/import_staging
+      - /opt/backups/tidalwave-auth:/opt/backups/tidalwave-auth:ro
+      - ./data:/app/data
+    environment:
+      - DOWNLOAD_DIR=/app/downloads
+      - LIBRARY_DIR=/music
+      - TIDAL_CONFIG_DIR=/app/.config/tidal_dl_ng
+      - CONFIG_PATH=/app/config/tidalwave.yaml
+      - FLASK_PORT=19290
+      - BEETSDIR=/app/.config/beets
+      - SECRET_KEY=${SECRET_KEY:-}  # Set in .env (gitignored); random per restart if unset

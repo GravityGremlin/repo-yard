@@ -1,0 +1,44 @@
+{% if jobs %}
+<div class="jobs-list">
+  {% for job in jobs %}
+  <div class="job-row" id="import-job-{{ job.id }}">
+    <div class="job-info">
+      <div class="job-title">{{ job.title }}</div>
+      <div class="job-artist" style="font-size:0.8rem;color:var(--text-dim);">
+        {{ job.created_at[:16] if job.created_at else '' }}
+      </div>
+      {% if job.error %}
+      <div class="job-error">{{ job.error }}</div>
+      {% endif %}
+      {% if job.files %}
+      <div class="job-files">{{ job.files|length }} file(s) imported</div>
+      {% endif %}
+    </div>
+
+    <div class="job-status">
+      <span class="status-badge status-{{ job.status }}">{{ job.status }}</span>
+      {% if job.status in ('queued', 'running', 'importing') %}
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:{{ (job.progress * 100)|int }}%"></div>
+      </div>
+      <span class="progress-text">{{ (job.progress * 100)|int }}%</span>
+      {% endif %}
+    </div>
+
+    <div class="job-actions">
+      {% if job.status in ('queued', 'running') %}
+      <button class="btn-cancel btn-small"
+              hx-post="/import/{{ job.id }}/cancel"
+              hx-confirm="Cancel this import job?"
+              hx-target="#import-job-{{ job.id }}"
+              hx-swap="outerHTML">Cancel</button>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state" style="padding:1.5rem;text-align:center;color:var(--text-dim);">
+  <p>No import jobs yet. <a href="/import/">Upload files to import.</a></p>
+</div>
+{% endif %}

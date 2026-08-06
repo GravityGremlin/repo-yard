@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Spotify Auth{% endblock %}
+
+{% block content %}
+<div class="container auth-page">
+  <div class="auth-card">
+    <h1>Spotify Connection</h1>
+
+    {% if authenticated %}
+    <div class="auth-status connected">
+      <div class="status-indicator">
+        <span class="dot connected"></span>
+        <span>Connected to Spotify</span>
+      </div>
+      <div class="user-info">
+        {% if user_info %}
+        <p>{{ user_info.display_name or "Spotify User" }}</p>
+        <p class="hint">{{ user_info.email or user_info.id }}</p>
+        {% endif %}
+      </div>
+      <form hx-post="/spotify/auth/logout" hx-target="body" hx-swap="outerHTML">
+        <button type="submit" class="btn-disconnect">Disconnect</button>
+      </form>
+    </div>
+    {% else %}
+    <div class="auth-status disconnected">
+      <div class="status-indicator">
+        <span class="dot disconnected"></span>
+        <span>Not connected to Spotify</span>
+      </div>
+      <p class="authexplain">
+        Spotify credentials in <code>.env</code> identify the <em>app</em>.
+        Connecting authorizes <em>you</em> — required for private playlists and saved tracks.
+        The app works for public tracks without it.
+      </p>
+      <a href="/spotify/auth/start" class="btn-connect">Connect to Spotify</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.body.addEventListener('htmx:afterOnLoad', function(evt) {
+    var el = evt.detail.elt;
+    if (el.id === 'auth-status') {
+      try {
+        var data = JSON.parse(el.textContent.trim());
+        if (data.auth_url) {
+          window.location.href = data.auth_url;
+        }
+      } catch(e) {}
+    }
+  });
+</script>
+{% endblock %}

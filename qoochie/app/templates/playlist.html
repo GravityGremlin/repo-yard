@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}qoochie — Playlist Import{% endblock %}
+
+{% block content %}
+<div class="playlist-page">
+  <h1>Playlist Import</h1>
+  <p>Paste a Qobuz playlist URL to resolve and batch-download its tracks.</p>
+
+  <form id="playlist-form" class="playlist-form">
+    <input type="text" name="url" id="playlist-url"
+           placeholder="https://qobuz.com/playlist/..."
+           autocomplete="off" required>
+    <button type="submit">Resolve</button>
+    <span class="htmx-indicator spinner" id="playlist-resolve-indicator" aria-label="Loading"></span>
+  </form>
+
+  <div id="playlist-results"></div>
+</div>
+
+<script>
+document.getElementById('playlist-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const url = document.getElementById('playlist-url').value.trim();
+  const results = document.getElementById('playlist-results');
+  const token = (typeof csrfToken === 'function')
+    ? csrfToken()
+    : (document.querySelector('meta[name="csrf-token"]') || {}).getAttribute('content') || '';
+  const form = document.getElementById('playlist-form');
+
+  form.classList.add('htmx-request');
+  results.innerHTML = '<p class="resolving-state">Resolving… <span class="htmx-indicator spinner" aria-label="Loading"></span></p>';
+
+  fetch('/playlist/resolve', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': token},
+    body: JSON.stringify({url: url})
+  }).then(r => r.text()).then(html => {
+    results.innerHTML = html;
+  }).catch(e => {
+    results.innerHTML = '<p class="error">Failed: ' + e + '</p>';
+  }).finally(() => {
+    form.classList.remove('htmx-request');
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Search{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="hero">
+    <h1>spotifryer</h1>
+    <p class="subtitle">Download Spotify tracks in high quality</p>
+  </div>
+
+  <div class="search-section">
+    <div class="search-bar">
+      <form hx-get="/search" hx-target="#results" hx-trigger="submit, keyup changed delay:300ms from:input" hx-indicator=".spinner">
+        <input type="text" name="q" placeholder="Search Spotify — tracks, albums, artists..." value="{{ query or '' }}" autofocus autocomplete="off" aria-label="Search Spotify">
+        <div class="form-row">
+          <select name="type" aria-label="Search type">
+            <option value="track" {{ 'selected' if (type or 'track') == 'track' else '' }}>Tracks</option>
+            <option value="album" {{ 'selected' if type == 'album' else '' }}>Albums</option>
+            <option value="artist" {{ 'selected' if type == 'artist' else '' }}>Artists</option>
+            <option value="playlist" {{ 'selected' if type == 'playlist' else '' }}>Playlists</option>
+          </select>
+          <button type="submit" class="btn-search">Search</button>
+        </div>
+        <span class="htmx-indicator spinner" aria-label="Loading"></span>
+      </form>
+      <div class="tooltip">
+        <span class="tooltip-icon">?</span>
+        <span class="tooltip-text">Search for tracks, albums, or playlists on Spotify. Results will appear below.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="playlist-url-section">
+    <h2>Import Playlist</h2>
+    <form hx-post="/playlist/resolve" hx-target="#playlist-results" hx-trigger="submit" hx-indicator=".spinner">
+      <input type="text" name="url" placeholder="Paste Spotify playlist URL here..." autocomplete="off" aria-label="Spotify playlist URL">
+      <button type="submit" class="btn-import">Import Playlist</button>
+      <span class="htmx-indicator spinner" aria-label="Loading"></span>
+    </form>
+    <div class="tooltip">
+      <span class="tooltip-icon">?</span>
+      <span class="tooltip-text">Paste a Spotify playlist URL to import all tracks from that playlist.</span>
+    </div>
+  </div>
+
+  <div id="results">
+    {% if query and results is none %}
+    <div class="skeleton-grid">
+      {% for i in range(3) %}
+      <div class="skeleton-card">
+        <div class="skeleton" style="width: 60px; height: 60px; margin-bottom: 0.5rem;"></div>
+        <div class="skeleton skeleton-text" style="height: 1.2rem; width: 80%;"></div>
+        <div class="skeleton skeleton-text" style="height: 1rem; width: 60%;"></div>
+        <div class="skeleton skeleton-text" style="height: 1rem; width: 70%;"></div>
+      </div>
+      {% endfor %}
+    </div>
+    {% elif query and not results %}
+    <div class="empty-state">
+      <p>No results found for "{{ query }}". Try a different search.</p>
+    </div>
+    {% elif not query and not results %}
+    <div class="empty-state">
+      <p>Search for music on Spotify. Type a track, album, or artist name above.</p>
+      {% if not authenticated %}
+      <p class="hint">⚠️ Not connected to Spotify — <a href="/spotify/auth">connect your account</a> first.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div id="playlist-results">
+    {% if playlist_results is none %}
+    <div class="skeleton-grid">
+      <div class="skeleton-card">
+        <div class="skeleton" style="width: 100px; height: 100px; margin-bottom: 1rem;"></div>
+        <div class="skeleton skeleton-text" style="height: 1.5rem; width: 90%; margin-bottom: 0.5rem;"></div>
+        <div class="skeleton skeleton-text" style="height: 1rem; width: 70%; margin-bottom: 0.5rem;"></div>
+        <div class="skeleton skeleton-text" style="height: 1rem; width: 80%;"></div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Auto-focus search input on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('input[name="q"]');
+    if (searchInput && !searchInput.value) {
+      searchInput.focus();
+    }
+  });
+</script>
+{% endblock %}

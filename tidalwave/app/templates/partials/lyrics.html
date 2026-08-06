@@ -1,0 +1,9 @@
+{# Lyrics display partial — loaded via HTMX #}
+{% if lyrics.text %}
+<div class="lyrics-box">
+  <pre>{{ lyrics.text }}</pre>
+  <span class="lyrics-source">Source: {{ lyrics.source }}</span>
+</div>
+{% else %}
+<p class="hint">Lyrics not available.</p>
+{% endif %}

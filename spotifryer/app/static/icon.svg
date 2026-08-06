@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Spotify Green Circle -->
+  <circle cx="50" cy="50" r="48" fill="#1DB954"/>
+
+  <!-- Deep Fryer Basket (replaces Spotify waves) -->
+  <path d="M30 40 C30 35, 35 30, 40 30 L60 30 C65 30, 70 35, 70 40 L70 50 C70 55, 65 60, 60 60 L40 60 C35 60, 30 55, 30 50 Z" fill="white" stroke="#000" stroke-width="1.5"/>
+
+  <!-- Fryer Handle -->
+  <path d="M40 30 C35 25, 30 20, 30 15 C30 10, 35 5, 40 5 L60 5 C65 5, 70 10, 70 15 C70 20, 65 25, 60 25" stroke="#000" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Heat Waves (replaces Spotify sound waves) -->
+  <path d="M35 65 C38 60, 42 58, 45 60 C48 62, 52 60, 55 65" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M40 70 C43 65, 47 63, 50 65 C53 67, 57 65, 60 70" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M45 75 C48 70, 52 68, 55 70 C58 72, 62 70, 65 75" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Optional: Small oil bubbles -->
+  <circle cx="38" cy="55" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="50" cy="53" r="1" fill="white" opacity="0.8"/>
+  <circle cx="62" cy="56" r="1.2" fill="white" opacity="0.8"/>
+</svg>

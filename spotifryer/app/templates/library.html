@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Library{% endblock %}
+
+{% block content %}
+<div class="container library-page">
+  <div class="library-header">
+    <h1>Library</h1>
+    <div class="breadcrumb">
+      {% for part in breadcrumb %}
+        {% if not loop.last %}
+          <a href="#" hx-get="/library/browse/{{ part.path }}" hx-target="#library-listing" hx-swap="innerHTML">{{ part.name }}</a>
+          <span class="separator">/</span>
+        {% else %}
+          <span>{{ part.name }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="library-tabs">
+    <button id="tab-recently-downloaded" hx-get="/library/recent" hx-target="#library-listing" hx-swap="innerHTML">Recently Downloaded</button>
+    <button id="tab-recent" hx-get="/library/recent" hx-target="#library-listing" hx-swap="innerHTML">Recent</button>
+    <button id="tab-browse" class="active" hx-get="/library/browse/{{ current_path or '' }}" hx-target="#library-listing" hx-swap="innerHTML">Browse</button>
+  </div>
+
+  <div id="library-listing">
+    {% if recently_downloaded is none %}
+    <div class="skeleton-grid">
+      {% for i in range(4) %}
+      <div class="skeleton-card">
+        <div class="skeleton" style="width: 60px; height: 60px; margin-bottom: 0.5rem;"></div>
+        <div class="skeleton skeleton-text" style="height: 1.2rem; width: 80%;"></div>
+        <div class="skeleton skeleton-text" style="height: 1rem; width: 60%;"></div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      {% include "partials/library_listing.html" %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Handle tab switching
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.library-tabs button');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  });
+</script>
+{% endblock %}

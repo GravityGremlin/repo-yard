@@ -1,0 +1,50 @@
+name: qoochie
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+        BUILD_TIME: ${BUILD_TIME:-unknown}
+    image: qoochie:latest
+    pull_policy: never
+    container_name: qoochie
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19295:19290"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:19290/', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+    volumes:
+      - ./app:/app/app
+      - ./qoochie.yaml:/app/config/qoochie.yaml:ro
+      - ./config/qobuz:/app/.config/qobuz
+      - ./config/beets:/app/.config/beets
+      - /opt/stacks/beets/config/library.db:/app/.config/beets/library.db
+      - /opt/stacks/beets/config/state.pickle:/app/.config/beets/state.pickle
+      - /mnt/hive/library/music_morpheus:/music
+      - /opt/data/qoochie:/app/downloads
+      - /opt/data/qoochie/import_staging:/app/import_staging
+      - /opt/backups/qoochie-auth:/opt/backups/qoochie-auth:ro
+      - ./data:/app/data
+    environment:
+      - DOWNLOAD_DIR=/app/downloads
+      - LIBRARY_DIR=/music
+      - QOBUZ_CONFIG_DIR=/app/.config/qobuz
+      - CONFIG_PATH=/app/config/qoochie.yaml
+      - FLASK_PORT=19290
+      - BEETSDIR=/app/.config/beets
+      - SECRET_KEY=${SECRET_KEY:-}  # Set in .env (gitignored); random per restart if unset
+      - QOBUZ_TOKEN=${QOBUZ_TOKEN:-}
+      - QOBUZ_USER_ID=${QOBUZ_USER_ID:-}
+      - QOBUZ_APP_ID=${QOBUZ_APP_ID:-}
+      - QOBUZ_APP_SECRET=${QOBUZ_APP_SECRET:-}

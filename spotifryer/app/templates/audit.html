@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Audit{% endblock %}
+
+{% block content %}
+<div class="audit-page">
+  <h1>Audit Log</h1>
+
+  <div class="audit-controls">
+    <input type="text"
+           id="audit-job-filter"
+           name="job_id"
+           placeholder="Filter by Job ID…"
+           value="{{ job_id }}"
+           hx-get="/audit/list"
+           hx-trigger="input changed delay:300ms"
+           hx-target="#audit-list"
+           hx-include="#audit-job-filter"
+           hx-vals='js:{"job_id": document.getElementById("audit-job-filter").value}' />
+
+    {% if job_id %}
+      <a href="/audit/" class="btn btn-sm" style="margin-left:0.5rem;">Clear filter</a>
+    {% endif %}
+  </div>
+
+  <div id="audit-list"
+       hx-get="/audit/list"
+       hx-trigger="every 15s"
+       hx-target="this">
+    {% include "partials/audit_list.html" %}
+  </div>
+</div>
+{% endblock %}

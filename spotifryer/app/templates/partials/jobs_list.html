@@ -1,0 +1,21 @@
+{% if jobs %}
+<div class="jobs-list" data-active-count="{{ active_count|default(0) }}" data-limit="{{ limit|default(20) }}">
+  {% for job in jobs %}
+  <div id="job-{{ job.id }}" class="job-row-wrapper">
+    {% include "partials/job_row.html" %}
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No download jobs yet. <a href="/">Search for music to download.</a></p>
+</div>
+{% endif %}
+{% if has_more %}
+<div class="jobs-list-more" style="text-align:center; margin-top:1rem;">
+  <button class="btn-download"
+          hx-get="/download/jobs/html?limit=100"
+          hx-target="#jobs-list"
+          hx-swap="innerHTML">Show All Jobs</button>
+</div>
+{% endif %}

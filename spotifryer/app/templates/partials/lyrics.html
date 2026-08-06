@@ -1,0 +1,18 @@
+<div class="lyrics-panel">
+  {% if lyrics %}
+    {% if lyrics.syncedLyrics %}
+    <div class="lyrics-synced">
+      <pre>{{ lyrics.syncedLyrics }}</pre>
+    </div>
+    {% elif lyrics.plainLyrics %}
+    <div class="lyrics-plain">
+      <pre>{{ lyrics.plainLyrics }}</pre>
+    </div>
+    {% else %}
+    <p class="lyrics-empty">No lyrics available.</p>
+    {% endif %}
+    <span class="lyrics-source">Source: {{ lyrics.source }}</span>
+  {% else %}
+    <p class="lyrics-empty">No lyrics available for this track.</p>
+  {% endif %}
+</div>

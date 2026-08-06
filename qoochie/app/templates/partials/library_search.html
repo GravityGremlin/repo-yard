@@ -1,0 +1,20 @@
+{% if query %}
+  <h3>{{ results|length }} matches for "{{ query }}"</h3>
+  {% if results %}
+  <table class="library-table">
+    <thead>
+      <tr><th>Artist</th><th>Album</th><th>Track</th><th>Size</th></tr>
+    </thead>
+    <tbody>
+      {% for r in results %}
+      <tr>
+        <td>{{ r.artist }}</td>
+        <td>{{ r.album }}</td>
+        <td>{{ r.track }}</td>
+        <td>{{ r.size|human_size }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+{% endif %}

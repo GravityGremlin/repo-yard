@@ -1,0 +1,12 @@
+# Python artifacts (repo-yard's own app code)
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# Tool-local state stays protected by each tool's committed .gitignore (data/,
+# downloads/, config secrets). Nothing here ignores those — be deliberate with
+# git add inside tool dirs, never `git add -A`.
+# deepwork progress
+.slim/deepwork/

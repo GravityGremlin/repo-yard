@@ -1,0 +1,47 @@
+name: deeznutz
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+        BUILD_TIME: ${BUILD_TIME:-unknown}
+    image: deeznutz:latest
+    pull_policy: never
+    container_name: deeznutz
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19294:19290"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:19290/', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+    volumes:
+      - ./app:/app/app
+      - ./deeznutz.yaml:/app/config/deeznutz.yaml:ro
+      - ./config/deezer:/app/.config/deeznutz_dz
+      - ./config/beets:/app/.config/beets
+      - /opt/stacks/beets/config/library.db:/app/.config/beets/library.db
+      - /opt/stacks/beets/config/state.pickle:/app/.config/beets/state.pickle
+      - /mnt/hive/library/music_morpheus:/music
+      - /opt/data/deeznutz:/app/downloads
+      - /opt/data/deeznutz/import_staging:/app/import_staging
+      - /opt/backups/deeznutz-auth:/opt/backups/deeznutz-auth:ro
+      - ./data:/app/data
+    environment:
+      - DOWNLOAD_DIR=/app/downloads
+      - LIBRARY_DIR=/music
+      - DEEZER_CONFIG_DIR=/app/.config/deeznutz_dz
+      - CONFIG_PATH=/app/config/deeznutz.yaml
+      - FLASK_PORT=19290
+      - BEETSDIR=/app/.config/beets
+      - SECRET_KEY=${SECRET_KEY:-}  # Set in .env (gitignored); random per restart if unset
+      - DEEZER_ARL=${DEEZER_ARL:-}  # ARL cookie — set in .env or pass via docker run -e

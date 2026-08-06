@@ -1,0 +1,22 @@
+<div id="auth-status" class="auth-grid">
+  {% for service, info in services.items() %}
+    {% set status = info.get('status', 'unknown') %}
+    <article class="auth-card auth-{{ status }}">
+      <header class="auth-card-head"><h2>{{ service }}</h2><span class="auth-badge auth-badge-{{ status }}">{{ status }}</span></header>
+      <p class="auth-label">{{ info.get('label') or 'account not identified' }}</p>
+      {% if info.get('last_updated') %}<p class="auth-updated">updated {{ info.get('last_updated') }}</p>{% endif %}
+      {% if info.get('error') %}<p class="auth-error">{{ info.get('error') }}</p>{% endif %}
+      {% if service == 'spotifryer' %}
+        <p class="auth-note">OAuth is managed on the <a href="https://sf.n0g.xyz" target="_blank" rel="noopener">spotifryer page</a>.</p>
+      {% elif service in ('qoochie', 'tidalwave', 'deeznutz') %}
+        <form class="validate-form" hx-post="/auth/validate" hx-target="#validate-{{ service }}" hx-swap="innerHTML">
+          <input type="hidden" name="service" value="{{ service }}">
+          <input type="password" name="{{ 'arl' if service == 'deeznutz' else 'token' }}" placeholder="{{ 'ARL' if service == 'deeznutz' else 'token' }}" autocomplete="off" required>
+          <button type="submit">validate</button>
+        </form>
+        <p id="validate-{{ service }}" class="validate-result" aria-live="polite"></p>
+      {% endif %}
+    </article>
+  {% endfor %}
+  {% if not services %}<div class="jobs-empty"><span class="empty-mark">[!]</span><strong>no services found</strong><span>Service status is unavailable.</span></div>{% endif %}
+</div>

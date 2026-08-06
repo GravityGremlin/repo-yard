@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+*.db
+config/spotify/
+config/streamrip/
+data/
+music/
+downloads/
+instance/
+*.log
+.vscode/
+.idea/
+.DS_Store

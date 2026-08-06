@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Statistics{% endblock %}
+
+{% block content %}
+<div class="container stats-page">
+  <h1>Statistics</h1>
+
+  <div class="stats-grid"
+       hx-get="/stats/refresh"
+       hx-trigger="load, every 10s"
+       hx-swap="innerHTML">
+    {% include "partials/stats_partial.html" %}
+  </div>
+
+  <div class="recent-activity">
+    <h2>Recent Activity</h2>
+    <div class="activity-list">
+      {% if recent_jobs %}
+      <div class="activity-table">
+        <div class="table-header">
+          <span>Track</span>
+          <span>Status</span>
+          <span>Time</span>
+        </div>
+        {% for job in recent_jobs %}
+        <div class="activity-row">
+          <span class="track-name">{{ job.title }} — {{ job.artist }}</span>
+          <span class="status-badge {{ job.status|lower }}">{{ job.status }}</span>
+          <span class="time">{{ job.updated_at|relative_time }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <p>No recent activity. Download some tracks to see statistics.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

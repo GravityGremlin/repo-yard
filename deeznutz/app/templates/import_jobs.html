@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}deeznutz — Imports{% endblock %}
+
+{% block content %}
+<div class="jobs-page">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+    <h1 style="margin:0;">Import Jobs</h1>
+    <a href="/import/" class="btn-download" style="text-decoration:none;padding:0.5rem 1rem;">+ New Import</a>
+  </div>
+
+  <div class="jobs-toolbar">
+    <button hx-post="/import/jobs/purge-completed"
+            hx-confirm="Delete all completed import jobs?"
+            hx-target="#import-jobs-list"
+            hx-swap="innerHTML"
+            class="btn-purge"
+            style="border:1px solid var(--border);border-radius:4px;padding:0.3rem 0.6rem;background:transparent;color:var(--text-dim);font-size:0.8rem;cursor:pointer;"
+            title="Delete all completed import jobs">Purge Completed</button>
+  </div>
+
+  <div id="import-jobs-list"
+       hx-get="/import/jobs/list"
+       hx-trigger="load, every 10s"
+       hx-swap="innerHTML">
+    {% include "partials/import_jobs_list.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+
+  // ── SSE log panels for running import jobs ──────────────────────────
+  function connectImportSSE(jobId) {
+    var logEl = document.getElementById('import-log-' + jobId);
+    if (!logEl) return;
+
+    logEl.style.display = 'block';
+    var linesEl = logEl.querySelector('.log-lines');
+    if (!linesEl) return;
+    linesEl.textContent = 'Connecting…';
+
+    var evtSource = new EventSource('/import/stream/' + jobId);
+
+    evtSource.onmessage = function(event) {
+      try {
+        var data = JSON.parse(event.data);
+      } catch (_) {
+        return;
+      }
+
+      if (data.type === 'log' && data.line) {
+        linesEl.textContent += data.line + '\n';
+        // Auto-scroll if user hasn't scrolled up
+        if (logEl.scrollTop + logEl.clientHeight >= logEl.scrollHeight - 30) {
+          logEl.scrollTop = logEl.scrollHeight;
+        }
+      } else if (data.type === 'result' || data.type === 'error') {
+        evtSource.close();
+        // Trigger HTMX refresh of the jobs list
+        if (typeof htmx !== 'undefined') {
+          var target = document.getElementById('import-jobs-list');
+          if (target) htmx.trigger(target, 'refresh');
+        }
+      }
+    };
+
+    evtSource.onerror = function() {
+      evtSource.close();
+    };
+  }
+
+  // Watch for new log panels appearing in the DOM (HTMX swaps)
+  var observer = new MutationObserver(function() {
+    document.querySelectorAll('.import-log-panel[data-sse-connected]').forEach(function(el) {
+      var jobId = el.dataset.jobId;
+      if (!jobId) return;
+      el.removeAttribute('data-sse-connected');
+      connectImportSSE(jobId);
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Also auto-connect for any log panels already in the DOM on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.import-log-panel[data-job-id]').forEach(function(el) {
+      var jobId = el.dataset.jobId;
+      if (jobId) connectImportSSE(jobId);
+    });
+  });
+})();
+</script>
+{% endblock %}

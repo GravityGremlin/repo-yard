@@ -1,0 +1,70 @@
+<div class="job-row job-{{ job.status }}" data-job-id="{{ job.id }}">
+  <div class="job-info" style="flex:1;min-width:0;">
+    <span class="job-title">{{ job.title or "Untitled" }}</span>
+    {% if job.files %}
+    <span class="job-files" style="margin-left:0.5rem;">({{ job.files|length }} file{{ 's' if job.files|length != 1 }})</span>
+    {% endif %}
+  </div>
+  <div class="job-status">
+    <span class="status-badge status-{{ job.status }}">{{ job.status }}</span>
+    {% if job.status == 'running' %}
+    <span class="progress-text" style="font-size:0.8rem;color:var(--text-dim);">
+      {% if job.progress is not none %}{{ (job.progress * 100)|round(0) }}%{% endif %}
+    </span>
+    {% endif %}
+    {% if job.status == 'error' and job.error %}
+    <span class="job-error">{{ job.error }}</span>
+    {% endif %}
+  </div>
+  <div class="job-actions" style="display:flex;gap:0.4rem;align-items:center;">
+    {% if job.status == 'running' %}
+    <button hx-post="/import/jobs/{{ job.id }}/cancel"
+            hx-swap="none"
+            class="btn-cancel"
+            style="border-color:var(--yellow);color:var(--yellow);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Cancel</button>
+    {% endif %}
+    {% if job.status == 'queued' %}
+    <button hx-post="/import/jobs/{{ job.id }}/cancel"
+            hx-swap="none"
+            class="btn-cancel"
+            style="border-color:var(--yellow);color:var(--yellow);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Cancel</button>
+    {% endif %}
+    {% if job.status == 'error' %}
+    <button hx-post="/import/jobs/{{ job.id }}/retry"
+            hx-swap="none"
+            class="btn-retry"
+            style="border-color:var(--accent);color:var(--accent);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Retry</button>
+    <button hx-post="/import/jobs/{{ job.id }}/delete"
+            hx-swap="none"
+            class="btn-delete"
+            style="border-color:var(--border);color:var(--text-dim);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Delete</button>
+    {% endif %}
+    {% if job.status == 'completed' %}
+    <button hx-post="/import/jobs/{{ job.id }}/delete"
+            hx-swap="none"
+            class="btn-delete"
+            style="border-color:var(--border);color:var(--text-dim);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Delete</button>
+    {% endif %}
+    {% if job.status == 'cancelled' %}
+    <button hx-post="/import/jobs/{{ job.id }}/delete"
+            hx-swap="none"
+            class="btn-delete"
+            style="border-color:var(--border);color:var(--text-dim);padding:0.3rem 0.6rem;background:transparent;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;cursor:pointer;"
+            hx-on::after-request="htmx.trigger('#import-jobs-list', 'refresh')">Delete</button>
+    {% endif %}
+  </div>
+</div>
+
+{% if job.status == 'running' %}
+<div class="import-log-panel" id="import-log-{{ job.id }}" data-job-id="{{ job.id }}" style="display:none;">
+  <pre class="import-log"
+       style="max-height:200px;overflow-y:auto;background:#000000;color:#ffffff;font-family:monospace;font-size:12px;padding:8px;margin:0 0 0.5rem 0;border:1px solid var(--border);border-radius:var(--radius);">
+    <code class="log-lines">Connecting…</code>
+  </pre>
+</div>
+{% endif %}

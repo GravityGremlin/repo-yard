@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jobs-heading page-heading">
+    <div><div class="masthead"><h1>Auth</h1></div><p class="eyebrow">service credentials · connection status</p></div>
+    <span class="refresh-note"><span class="refresh-dot"></span>refreshes every 10s</span>
+  </div>
+  <div id="auth-status" class="auth-grid" hx-get="/auth/partial" hx-trigger="load, every 10s" hx-target="this" hx-swap="outerHTML">
+    <p class="jobs-loading">checking services<span class="caret"></span></p>
+  </div>
+{% endblock %}

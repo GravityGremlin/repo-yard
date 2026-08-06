@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+{% block title %}deeznutz — Import{% endblock %}
+
+{% block content %}
+<div class="upload-page">
+  <h1>Import</h1>
+  <p class="hint">Upload audio files or archives to import into the Navidrome library.</p>
+
+  <div class="upload-container">
+    <!-- Drag-drop zone -->
+    <div id="drop-zone"
+         class="drop-zone"
+         style="border:2px dashed var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;cursor:pointer;transition:background 0.2s,border-color 0.2s;background:var(--surface);margin:1.5rem 0;">
+      <div class="drop-zone-inner">
+        <div style="font-size:2rem;color:var(--accent);margin-bottom:0.5rem;">&#8682;</div>
+        <p style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.25rem;">Drop files here</p>
+        <p class="hint" style="font-size:0.85rem;">Accepted: .zip .tar.gz .tar &middot; .flac .wav .mp3 .m4a .aac .ogg .dsf .aiff .wma</p>
+      </div>
+    </div>
+
+    <!-- File input fallback -->
+    <div style="margin-bottom:1rem;">
+      <label for="file-input" class="btn-download" style="display:inline-block;cursor:pointer;">Choose Files</label>
+      <input type="file" id="file-input" name="files" multiple
+             accept=".zip,.tar,.tar.gz,.flac,.wav,.mp3,.m4a,.aac,.ogg,.dsf,.aiff,.wma"
+             style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+      <span id="file-count" class="hint" style="margin-left:0.75rem;"></span>
+    </div>
+
+    <!-- Selected files list -->
+    <div id="file-list" style="margin-bottom:1rem;display:none;">
+      <p style="font-weight:600;margin-bottom:0.4rem;font-size:0.9rem;">Selected files:</p>
+      <ul id="file-items" style="list-style:none;padding:0;margin:0;"></ul>
+    </div>
+
+    <!-- Error message area -->
+    <div id="upload-error" class="error" style="display:none;margin-bottom:1rem;padding:0.5rem;border:1px solid var(--red);border-radius:var(--radius);background:rgba(239,68,68,0.1);"></div>
+
+    <!-- Upload button -->
+    <button id="upload-btn" class="btn-download" disabled
+            style="padding:0.65rem 2rem;font-size:1rem;">
+      Upload &amp; Import
+    </button>
+
+    <!-- Progress bar -->
+    <div id="progress-container" style="display:none;margin-top:1.5rem;">
+      <div class="progress-bar" style="width:100%;height:10px;">
+        <div id="progress-fill" class="progress-fill" style="width:0%;background:var(--green);height:100%;"></div>
+      </div>
+      <p id="progress-text" style="font-size:0.85rem;color:var(--text-dim);margin-top:0.3rem;text-align:center;">0%</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  'use strict';
+
+  // ── DOM refs ──────────────────────────────────────────────────────────
+  var dropZone    = document.getElementById('drop-zone');
+  var fileInput   = document.getElementById('file-input');
+  var fileList    = document.getElementById('file-list');
+  var fileItems   = document.getElementById('file-items');
+  var fileCount   = document.getElementById('file-count');
+  var uploadBtn   = document.getElementById('upload-btn');
+  var progressC   = document.getElementById('progress-container');
+  var progressFill= document.getElementById('progress-fill');
+  var progressText= document.getElementById('progress-text');
+  var errorEl     = document.getElementById('upload-error');
+
+  // ── Accepted extensions (lowercase) ────────────────────────────────────
+  var ACCEPTED = [
+    '.zip', '.tar.gz', '.tar',
+    '.flac', '.wav', '.mp3', '.m4a', '.aac', '.ogg', '.dsf', '.aiff', '.wma'
+  ];
+
+  // Helper: match a filename against accepted extensions (try longest first)
+  function isAccepted(filename) {
+    var lower = filename.toLowerCase();
+    // Sort ACCEPTED by length descending so .tar.gz matches before .gz
+    var sorted = ACCEPTED.slice().sort(function(a, b) { return b.length - a.length; });
+    for (var i = 0; i < sorted.length; i++) {
+      if (lower.endsWith(sorted[i])) return true;
+    }
+    return false;
+  }
+
+  // ── File list rendering ────────────────────────────────────────────────
+  var currentFiles = [];
+  var activeXhr = null;
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+  }
+
+  function showFiles(files) {
+    // Cancel any active upload
+    if (activeXhr) {
+      activeXhr.abort();
+      activeXhr = null;
+      progressC.style.display = 'none';
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload & Import';
+    }
+
+    errorEl.style.display = 'none';
+    currentFiles = Array.from(files);
+
+    // Validate extensions
+    var invalid = currentFiles.filter(function(f) { return !isAccepted(f.name); });
+    if (invalid.length > 0) {
+      errorEl.textContent = 'Unsupported file type: ' + invalid.map(function(f) { return f.name; }).join(', ');
+      errorEl.style.display = 'block';
+      uploadBtn.disabled = true;
+      fileList.style.display = 'none';
+      return;
+    }
+
+    if (currentFiles.length === 0) {
+      fileList.style.display = 'none';
+      fileCount.textContent = '';
+      uploadBtn.disabled = true;
+      return;
+    }
+
+    // Populate list
+    fileItems.innerHTML = '';
+    currentFiles.forEach(function(f) {
+      var li = document.createElement('li');
+      li.style.cssText = 'display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);font-size:0.9rem;';
+      li.innerHTML = '<span>' + escapeHtml(f.name) + '</span><span class="hint">' + formatSize(f.size) + '</span>';
+      fileItems.appendChild(li);
+    });
+
+    fileList.style.display = 'block';
+    fileCount.textContent = currentFiles.length + ' file(s) selected';
+    uploadBtn.disabled = false;
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  // ── Drag-drop events ──────────────────────────────────────────────────
+  function highlight() {
+    dropZone.style.borderColor = 'var(--accent)';
+    dropZone.style.background = 'rgba(88,166,255,0.08)';
+  }
+
+  function unhighlight() {
+    dropZone.style.borderColor = 'var(--border)';
+    dropZone.style.background = 'var(--surface)';
+  }
+
+  dropZone.addEventListener('dragenter', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    highlight();
+  });
+
+  dropZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    highlight();
+  });
+
+  dropZone.addEventListener('dragleave', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    unhighlight();
+  });
+
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    unhighlight();
+
+    var files = e.dataTransfer.files;
+    if (files.length > 0) {
+      showFiles(files);
+    }
+  });
+
+  // Click drop zone to open file picker
+  dropZone.addEventListener('click', function() {
+    fileInput.click();
+  });
+
+  // ── File input ─────────────────────────────────────────────────────────
+  fileInput.addEventListener('change', function() {
+    if (fileInput.files.length > 0) {
+      showFiles(fileInput.files);
+    }
+  });
+
+  // ── Upload ─────────────────────────────────────────────────────────────
+  uploadBtn.addEventListener('click', function() {
+    if (currentFiles.length === 0) return;
+
+    uploadBtn.disabled = true;
+    uploadBtn.textContent = 'Uploading…';
+    errorEl.style.display = 'none';
+    progressC.style.display = 'block';
+    progressFill.style.width = '0%';
+    progressText.textContent = '0%';
+
+    var fd = new FormData();
+    currentFiles.forEach(function(f) { fd.append('files', f, f.name); });
+
+    var xhr = new XMLHttpRequest();
+    activeXhr = xhr;
+
+    xhr.upload.onprogress = function(e) {
+      if (e.lengthComputable) {
+        var pct = Math.round((e.loaded / e.total) * 100);
+        progressFill.style.width = pct + '%';
+        progressText.textContent = pct + '%';
+      }
+    };
+
+    xhr.onload = function() {
+      activeXhr = null;
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          // Redirect to import jobs page
+          window.location.href = '/import/jobs';
+        } catch (parseErr) {
+          errorEl.textContent = 'Invalid response from server.';
+          errorEl.style.display = 'block';
+          uploadBtn.disabled = false;
+          uploadBtn.textContent = 'Upload & Import';
+        }
+      } else {
+        var msg = 'Upload failed (HTTP ' + xhr.status + ')';
+        try {
+          var errData = JSON.parse(xhr.responseText);
+          if (errData.error) msg = errData.error;
+        } catch (_) {}
+        errorEl.textContent = msg;
+        errorEl.style.display = 'block';
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = 'Upload & Import';
+      }
+    };
+
+    xhr.onerror = function() {
+      activeXhr = null;
+      errorEl.textContent = 'Network error — upload failed.';
+      errorEl.style.display = 'block';
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload & Import';
+    };
+
+    xhr.onabort = function() {
+      activeXhr = null;
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload & Import';
+      progressC.style.display = 'none';
+    };
+
+    xhr.open('POST', '/import/upload');
+    xhr.setRequestHeader('X-CSRFToken', csrfToken());
+    xhr.send(fd);
+  });
+})();
+</script>
+{% endblock %}

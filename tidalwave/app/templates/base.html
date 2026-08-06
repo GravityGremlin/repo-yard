@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="tidalwave">
+  <link rel="apple-touch-icon" href="/static/icon.svg">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/sw.js');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}tidalwave{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23000000'/><path d='M6 16 Q12 8 16 16 Q20 24 26 16' stroke='%2300ffff' fill='none' stroke-width='3' stroke-linecap='round'/><path d='M6 22 Q12 14 16 22 Q20 30 26 22' stroke='%2366ffff' fill='none' stroke-width='2' stroke-linecap='round' opacity='0.5'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <script src="{{ url_for('static', filename='js/htmx.min.js') }}" defer></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('htmx:configRequest', function(evt) {
+        evt.detail.headers['X-CSRFToken'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="/">tidalwave</a>
+      <span class="version">v{{ version }}{% if build_time %} · built {{ build_time }}{% endif %}</span>
+    </div>
+    <div class="nav-links">
+      <a href="/">Search</a>
+      <a href="/download/jobs">Downloads</a>
+      <a href="/import/">Import</a>
+      <a href="/playlist/">Playlists</a>
+      <a href="/library/">Library</a>
+      <a href="/collection/">Collection</a>
+      <a href="/stats/">Stats</a>
+      <span id="nav-auth" class="auth-badge {{ 'connected' if connected else 'disconnected' }}">
+        {% if connected %}
+          <a href="/tidal/auth" title="Tidal connected">● Tidal</a>
+        {% else %}
+          <a href="/tidal/auth" title="Connect Tidal">○ Tidal</a>
+          <button hx-post="/tidal/auth/restore"
+                  hx-target="#nav-auth"
+                  hx-swap="outerHTML"
+                  title="Restore Tidal auth from backup"
+                  style="margin-left:0.5rem;padding:0.15rem 0.5rem;font-size:0.7rem;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text-dim);cursor:pointer;vertical-align:middle;">Restore</button>
+        {% endif %}
+      </span>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

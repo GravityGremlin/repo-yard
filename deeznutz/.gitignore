@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Local state — never commit these
+data/*.db
+data/*.db-*
+downloads/*
+!downloads/.gitkeep
+
+# Deezer ARL token store — keep dir, ignore contents
+config/deezer/*
+!config/deezer/.gitkeep
+
+# Beets — keep config, ignore test-generated state
+config/beets/library.db
+config/beets/state.pickle
+
+# Local env / secrets
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+*.swp

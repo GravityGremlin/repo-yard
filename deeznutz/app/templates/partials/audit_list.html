@@ -1,0 +1,26 @@
+{% if events %}
+<table class="tracks-table">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Job</th>
+      <th>Data</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td><span class="status-badge">{{ event.event }}</span></td>
+      <td><code>{{ event.job_id or '—' }}</code></td>
+      <td class="hint">{{ event.data or '—' }}</td>
+      <td class="hint">{{ event.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+  <p>No audit events yet.</p>
+</div>
+{% endif %}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title>Repo Yard</title>
+  <rect width="32" height="32" rx="7" fill="#090907"/>
+  <path d="M7 11.5 16 8l9 3.5v12L16 27l-9-3.5z" fill="#141310" stroke="#ffb000" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M16 8v7.5M7 11.5l9 4 9-4M11 19.5v4.2" fill="none" stroke="#a85a12" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 13v7m0 0-2.7-2.7M16 20l2.7-2.7" fill="none" stroke="#ffb000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21.5 14.8v4.5a1.8 1.8 0 1 1-1.2-1.7v-3.6l3.4-1v1.4z" fill="none" stroke="#ffb000" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

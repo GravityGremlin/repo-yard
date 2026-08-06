@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jobs-heading page-heading">
+    <div><div class="masthead"><h1>Audit</h1></div><p class="eyebrow">recent activity · all services</p></div>
+    <span class="refresh-note"><span class="refresh-dot"></span>refreshes every 5s</span>
+  </div>
+  <div id="audit-list" class="audit-list" hx-get="/audit/partial" hx-trigger="load, every 5s" hx-target="this" hx-swap="outerHTML">
+    <p class="jobs-loading">loading audit events<span class="caret"></span></p>
+  </div>
+{% endblock %}

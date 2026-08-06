@@ -1,0 +1,77 @@
+{# Artist→album catalog partial — lazy-loaded via hx-get="/collection/catalog".
+
+   First load (offset=0): renders the inline wrapper (#catalog > #catalog-list)
+   followed by the initial artist <details> sections and a Load-more region.
+   Load more (offset>0): the response carries the new artist <details> blocks
+   as out-of-band beforeend swaps into #catalog-list, plus a replacement
+   #catalog-more region that swaps itself in place — one round trip. #}
+{% if not exists %}
+  <div class="empty-state">
+    <p>Library directory not found.</p>
+    <p class="hint">Make sure the library volume is mounted and LIBRARY_DIR is set.</p>
+  </div>
+{% elif scanning %}
+  <div class="empty-state" id="catalog-scanning">
+    <p>Scanning library for artist catalog…</p>
+    <p class="hint">This may take a moment on large libraries.</p>
+    <p class="hint"><a href="#" hx-get="/collection/catalog" hx-target="#catalog" hx-swap="innerHTML">Retry</a></p>
+  </div>
+{% elif not artists %}
+  <div class="empty-state"><p>No artists found in the library.</p></div>
+{% else %}
+  {% set next_offset = offset + limit %}
+  {% set is_more = offset > 0 %}
+
+  {% if not is_more %}<div class="catalog"><div class="catalog-list" id="catalog-list">{% endif %}
+
+  {% for artist in artists %}
+  <details class="catalog-artist"{{ '' if is_more else ' open' }}{{ ' hx-swap-oob="beforeend:#catalog-list"' if is_more else '' }}>
+    <summary>
+      <span class="catalog-artist-name">{{ artist.name }}</span>
+      <span class="catalog-artist-count">{{ artist.albums|length }} album{{ '' if artist.albums|length == 1 else 's' }}</span>
+    </summary>
+    <div class="catalog-grid">
+      {% for album in artist.albums %}
+      <a class="catalog-album"
+         href="/library/browse/{{ artist.name }}/{{ album.name }}"
+         hx-get="/library/browse/{{ artist.name }}/{{ album.name }}"
+         hx-target="#browse-panel"
+         hx-swap="innerHTML">
+        <div class="catalog-album-cover">
+          {% if album.cover_url %}
+          <img src="{{ album.cover_url }}"
+               alt="{{ album.name }}"
+               loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          {% endif %}
+          <div class="catalog-album-cover-fallback"{{ ' style="display:flex"' if not album.cover_url else '' }}>🎵</div>
+        </div>
+        <div class="catalog-album-info">
+          <div class="catalog-album-title">{{ album.name }}</div>
+          <div class="catalog-album-tracks">{{ album.track_count }} track{{ '' if album.track_count == 1 else 's' }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </details>
+  {% endfor %}
+
+  {% if not is_more %}</div>{% endif %}{# /catalog-list #}
+
+  {% if next_offset < total %}
+  <div class="catalog-more" id="catalog-more"
+       hx-get="/collection/catalog?offset={{ next_offset }}"
+       hx-target="this"
+       hx-swap="outerHTML">
+    <button class="btn-download" type="button"
+            onclick="this.closest('.catalog-more').click()">Load more ({{ total - next_offset }} remaining)</button>
+    <span class="hint">Showing {{ next_offset }} of {{ total }} artists.</span>
+  </div>
+  {% elif offset > 0 %}
+  <div class="catalog-end" id="catalog-more"><p class="hint">Showing all {{ total }} artists.</p></div>
+  {% else %}
+  <p class="hint catalog-end">Showing all {{ total }} artists.</p>
+  {% endif %}
+
+  {% if not is_more %}</div>{% endif %}{# /catalog wrapper #}
+{% endif %}

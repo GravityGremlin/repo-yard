@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}deeznutz — {{ error_code }}{% endblock %}
+
+{% block content %}
+<div class="message-page">
+  <h1>{{ error_code }}</h1>
+  <p>{{ error_message }}</p>
+  <p><a href="/">← Back to search</a></p>
+</div>
+{% endblock %}

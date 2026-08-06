@@ -1,0 +1,51 @@
+name: spotifryer
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-unknown}
+        BUILD_TIME: ${BUILD_TIME:-unknown}
+    image: spotifryer:latest
+    pull_policy: never
+    container_name: spotifryer
+    restart: unless-stopped
+    ports:
+      - "10.8.0.10:19293:19291"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:19291/', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+    volumes:
+      - ./app:/app/app
+      - ./spotifryer.yaml:/app/config/spotifryer.yaml:ro
+      - ./config/streamrip:/app/.config/streamrip
+      - ./config/spotify:/app/.config/spotify
+      - ./config/beets:/app/.config/beets
+      - /opt/stacks/beets/config/library.db:/app/.config/beets/library.db
+      - /opt/stacks/beets/config/state.pickle:/app/.config/beets/state.pickle
+      - /mnt/hive/library/music_morpheus:/music
+      - /opt/data/spotifryer:/app/downloads
+      - /opt/data/spotifryer/data:/app/data
+      - /opt/backups/spotifryer-config:/opt/backups/spotifryer-config:ro
+    env_file:
+      - .env
+    environment:
+      - DOWNLOAD_DIR=/app/downloads
+      - LIBRARY_DIR=/music
+      - SPOTIFY_CONFIG_DIR=/app/.config/spotify
+      - STREAMRIP_CONFIG_DIR=/app/.config/streamrip
+      - CONFIG_PATH=/app/config/spotifryer.yaml
+      - FLASK_PORT=19291
+      - BEETSDIR=/app/.config/beets
+      - SECRET_KEY=${SECRET_KEY:-}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID:-}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET:-}

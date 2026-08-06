@@ -1,0 +1,19 @@
+{% macro size(value) -%}
+  {% if value is none %}—{% else %}{% set n = value | float %}{% if n < 1024 %}{{ n | round | int }} B{% elif n < 1048576 %}{{ (n / 1024) | round(1) }} KB{% elif n < 1073741824 %}{{ (n / 1048576) | round(1) }} MB{% else %}{{ (n / 1073741824) | round(1) }} GB{% endif %}{% endif %}
+{%- endmacro %}
+<div id="stats-cards" class="stats-grid">
+  {% for service, data in services.items() %}
+    <article class="stats-card">
+      <header class="stats-card-head"><h2>{{ service }}</h2>{% if data.get('error') %}<span class="reachability unreachable"><i></i>unreachable</span>{% else %}<span class="reachability reachable"><i></i>reachable</span>{% endif %}</header>
+      {% if data.get('error') %}<p class="stats-error">{{ data.get('error') }}</p>{% endif %}
+      <dl class="stat-list">
+        <div><dt>downloads today</dt><dd>{{ data.get('downloads_today', 0) }}</dd></div>
+        <div><dt>files managed</dt><dd>{{ data.get('files_managed', 0) }}</dd></div>
+        <div><dt>jobs active</dt><dd>{{ data.get('jobs_active', 0) }}</dd></div>
+        <div><dt>jobs queued</dt><dd>{{ data.get('jobs_queued', 0) }}</dd></div>
+        <div><dt>library size</dt><dd>{{ size(data.get('library_size_bytes')) }}</dd></div>
+      </dl>
+    </article>
+  {% endfor %}
+  {% if not services %}<div class="jobs-empty"><span class="empty-mark">[ ]</span><strong>no stats yet</strong><span>Service metrics are unavailable.</span></div>{% endif %}
+</div>

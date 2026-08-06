@@ -1,0 +1,49 @@
+<div class="playlist-results">
+  <div class="playlist-header">
+    <div class="cover-art">
+      <img src="{{ playlist.cover_url or '/static/placeholder.svg' }}" alt="{{ playlist.title }} cover art" loading="lazy">
+    </div>
+    <div class="playlist-meta">
+      <h2>{{ playlist.title }}</h2>
+      <p class="owner">By {{ playlist.artist }}</p>
+      <p class="details">{{ playlist.track_count }} tracks • {{ playlist.description or 'No description' }}</p>
+      <form hx-post="/playlist/download-all"
+            hx-target="#playlist-results"
+            hx-swap="innerHTML"
+            hx-confirm="Download all {{ playlist.track_count }} tracks from this playlist?">
+        <input type="hidden" name="url" value="https://open.spotify.com/playlist/{{ playlist.spotify_id }}">
+        <button type="submit" class="btn-download btn-large">Download All</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="track-list">
+    <div class="track-list-header">
+      <span class="track-number">#</span>
+      <span class="track-title">Title</span>
+      <span class="track-artist">Artist</span>
+      <span class="track-duration">Duration</span>
+      <span class="track-actions"></span>
+    </div>
+    {% for track in tracks %}
+    <div class="track-row">
+      <span class="track-number">{{ loop.index }}</span>
+      <span class="track-title">{{ track.title }}</span>
+      <span class="track-artist">{{ track.artist }}</span>
+      <span class="track-duration">{{ track.duration_ms|format_duration }}</span>
+      <span class="track-actions">
+        <form hx-post="/download/enqueue"
+              hx-swap="none"
+              hx-on::after-request="if(event.detail.successful){var b=this.querySelector('button');b.textContent='Queued!';b.disabled=true}"
+              style="display:inline">
+          <input type="hidden" name="url" value="https://open.spotify.com/track/{{ track.spotify_id }}">
+          <input type="hidden" name="kind" value="track">
+          <input type="hidden" name="title" value="{{ track.title }}">
+          <input type="hidden" name="artist" value="{{ track.artist }}">
+          <button type="submit" class="btn-download btn-small">Download</button>
+        </form>
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+</div>

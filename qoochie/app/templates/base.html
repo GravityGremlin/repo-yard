@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="qoochie">
+  <link rel="apple-touch-icon" href="/static/icon.svg">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/sw.js');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}qoochie{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23242424'/><circle cx='15' cy='15' r='9' fill='none' stroke='%23FFB12F' stroke-width='3'/><rect x='20' y='20' width='3' height='8' rx='1.5' fill='%23FFB12F' transform='rotate(45 21.5 24)'/><circle cx='15' cy='15' r='2' fill='%23FFB12F'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <script src="{{ url_for('static', filename='js/htmx.min.js') }}" defer></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('htmx:configRequest', function(evt) {
+        evt.detail.headers['X-CSRFToken'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="/">qoochie</a>
+      <span class="version">v{{ version }}{% if build_time %} · built {{ build_time }}{% endif %}</span>
+    </div>
+    <div class="nav-links">
+      <a href="/">Search</a>
+      <a href="/download/jobs">Downloads</a>
+      <a href="/import/">Import</a>
+      <a href="/playlist/">Playlists</a>
+      <a href="/library/">Library</a>
+      <a href="/collection/">Collection</a>
+      <a href="/stats/">Stats</a>
+      <span id="nav-auth" class="auth-badge {{ 'connected' if connected else 'disconnected' }}">
+        {% if connected %}
+          <a href="/qobuz/auth" title="Qobuz connected">● Qobuz</a>
+        {% else %}
+          <a href="/qobuz/auth" title="Connect Qobuz">○ Qobuz</a>
+          <button hx-post="/qobuz/auth/restore"
+                  hx-target="#nav-auth"
+                  hx-swap="outerHTML"
+                  title="Restore Qobuz auth from backup"
+                  style="margin-left:0.5rem;padding:0.15rem 0.5rem;font-size:0.7rem;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text-dim);cursor:pointer;vertical-align:middle;">Restore</button>
+        {% endif %}
+      </span>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

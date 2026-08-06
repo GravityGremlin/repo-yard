@@ -1,0 +1,12 @@
+<span id="nav-auth" class="auth-badge {{ 'connected' if connected else 'disconnected' }}">
+  {% if connected %}
+    <a href="/spotify/auth" title="Spotify connected">● Spotify</a>
+  {% else %}
+    <a href="/spotify/auth" title="Connect Spotify">○ Spotify</a>
+    <button hx-post="/spotify/auth/restore"
+            hx-target="#nav-auth"
+            hx-swap="outerHTML"
+            class="btn-restore"
+            title="Restore Spotify auth from backup">Restore</button>
+  {% endif %}
+</span>

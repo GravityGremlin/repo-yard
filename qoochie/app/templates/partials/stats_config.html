@@ -1,0 +1,77 @@
+{# Config form partial — PUTs to /api/config; swaps itself back in with feedback. #}
+{% if saved %}
+<div class="stats-saved" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);border-radius:4px;padding:0.5rem 1rem;margin-bottom:1rem;color:var(--green);font-size:0.9rem;animation:fadeOut 2s 1.5s forwards;">
+  {% if save_message %}
+  {{ save_message|replace('\n', '<br>')|safe }}
+  {% else %}
+  ✓ Config saved — changes applied
+  {% endif %}
+</div>
+{% endif %}
+{% if error %}
+<div class="stats-error" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);border-radius:4px;padding:0.5rem 1rem;margin-bottom:1rem;color:var(--red);font-size:0.9rem;">
+  ✗ {{ error }}
+</div>
+{% endif %}
+
+<form class="stats-config-form"
+      hx-put="/stats/api/config"
+      hx-target="#stats-config"
+      hx-swap="innerHTML"
+      hx-indicator="#config-spinner">
+  <div class="stats-config-row">
+    <label for="stats-quality" class="stats-config-label">Quality</label>
+    <select id="stats-quality" name="quality">
+      {% for q in quality_options %}
+      <option value="{{ q }}" {% if config.quality == q %}selected{% endif %}>{{ q }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="stats-config-row">
+    <label for="stats-concurrency" class="stats-config-label">Max concurrent</label>
+    <input id="stats-concurrency" type="number" name="max_concurrent"
+           min="1" max="32" value="{{ config.max_concurrent }}">
+  </div>
+
+  <div class="stats-config-row">
+    <label class="checkbox-label">
+      <input type="checkbox" name="organize_with_beets"
+             {% if config.organize_with_beets %}checked{% endif %}>
+      Organize with beets
+    </label>
+  </div>
+
+  <div class="stats-config-row">
+    <label class="checkbox-label">
+      <input type="checkbox" name="override_existing"
+             {% if config.override_existing %}checked{% endif %}>
+      Override existing files
+    </label>
+  </div>
+
+  <div class="stats-config-actions" style="display:flex;gap:0.5rem;align-items:center;">
+    <button type="submit" class="btn-save-config">
+      Save
+      <span id="config-spinner" class="htmx-indicator" style="margin-left:0.4rem;display:none;">&#8230;</span>
+    </button>
+    <button type="button"
+            hx-post="/stats/api/convert-library"
+            hx-target="#stats-config"
+            hx-swap="innerHTML"
+            hx-indicator="#convert-spinner"
+            class="btn-convert"
+            style="font-size:0.8rem;padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--text-dim);cursor:pointer;"
+            title="Convert all non-opus files in the library to opus (160kbps)">
+      Convert library to opus
+      <span id="convert-spinner" class="htmx-indicator" style="margin-left:0.3rem;display:none;">&#8230;</span>
+    </button>
+  </div>
+  <p class="hint">Note: changes to max_concurrent apply on next worker restart.</p>
+</form>
+
+<style>
+@keyframes fadeOut { to { opacity:0; } }
+.htmx-request .htmx-indicator { display:inline !important; }
+.htmx-request#config-spinner { display:inline !important; }
+</style>

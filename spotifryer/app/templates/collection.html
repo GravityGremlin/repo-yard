@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}spotifryer — Collection{% endblock %}
+
+{% block content %}
+<div class="collection-page">
+  <h1>Collection</h1>
+
+  {% if not exists %}
+    <div class="empty-state">
+      <p>Library directory not found.</p>
+      <p class="hint"><code>{{ path }}</code></p>
+    </div>
+  {% elif scanning and not artists %}
+    <div class="empty-state">
+      <p>Scanning library…</p>
+      <p class="hint">Building your collection catalog.</p>
+    </div>
+  {% elif not artists and not scanning %}
+    <div class="empty-state">
+      <p>Your collection is empty. Download some albums to build your library.</p>
+    </div>
+  {% else %}
+    <p class="collection-summary">{{ total_artists }} artist{{ '' if total_artists == 1 else 's' }} in your library</p>
+
+    <div class="catalog" id="catalog-grid">
+      {% for artist in artists %}
+      <details class="catalog-artist">
+        <summary>
+          <div class="catalog-artist-summary">
+            <div class="catalog-covers">
+              {% for album in artist.albums[:4] %}
+                {% if album.cover_url %}
+                  <img src="{{ album.cover_url }}" alt="{{ album.name }}" class="catalog-cover-thumb">
+                {% else %}
+                  <div class="catalog-cover-empty">♪</div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <span class="catalog-artist-name">{{ artist.name }}</span>
+            <span class="catalog-artist-count">{{ artist.albums|length }} album{{ '' if artist.albums|length == 1 else 's' }}</span>
+          </div>
+        </summary>
+        <div class="catalog-albums-grid">
+          {% for album in artist.albums %}
+          <div class="catalog-album">
+            {% if album.cover_url %}
+              <img src="{{ album.cover_url }}" alt="{{ album.name }}" class="catalog-album-cover">
+            {% else %}
+              <div class="catalog-album-cover catalog-cover-placeholder">♪</div>
+            {% endif %}
+            <div class="catalog-album-info">
+              <span class="catalog-album-name">{{ album.name }}</span>
+              <span class="catalog-album-tracks">{{ album.track_count }} track{{ '' if album.track_count == 1 else 's' }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+
+    {% if total_pages > 1 %}
+    <div class="pagination" hx-swap-oob="true" id="pagination">
+      {% if page > 1 %}
+        <a class="pagination-btn" href="/collection/?page={{ page - 1 }}"
+           hx-get="/collection/catalog?page={{ page - 1 }}"
+           hx-target="#catalog-grid"
+           hx-swap="innerHTML"
+           hx-push-url="/collection/?page={{ page - 1 }}">← Previous</a>
+      {% endif %}
+
+      <div class="pagination-pages">
+        {% for p in range(1, total_pages + 1) %}
+          {% if p == page %}
+            <span class="pagination-current">{{ p }}</span>
+          {% else %}
+            <a class="pagination-link" href="/collection/?page={{ p }}"
+               hx-get="/collection/catalog?page={{ p }}"
+               hx-target="#catalog-grid"
+               hx-swap="innerHTML"
+               hx-push-url="/collection/?page={{ p }}">{{ p }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if page < total_pages %}
+        <a class="pagination-btn" href="/collection/?page={{ page + 1 }}"
+           hx-get="/collection/catalog?page={{ page + 1 }}"
+           hx-target="#catalog-grid"
+           hx-swap="innerHTML"
+           hx-push-url="/collection/?page={{ page + 1 }}">Next →</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,587 @@
+/* tidalwave — minimal dark theme */
+
+:root {
+  --bg: #000000;
+  --surface: #111111;
+  --border: #262626;
+  --text: #ffffff;
+  --text-dim: #a3a3a3;
+  --accent: #00ffff;
+  --accent-hover: #4dffff;
+  --green: #00e676;
+  --red: #ff5252;
+  --yellow: #ffd54f;
+  --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand a { font-size: 1.3rem; font-weight: 700; color: var(--text); }
+.nav-brand .version { font-size: 0.75rem; color: var(--text-dim); margin-left: 0.5rem; }
+.nav-links { display: flex; gap: 1.2rem; align-items: center; }
+.nav-links a { color: var(--text-dim); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--text); }
+.auth-badge { font-size: 0.85rem; }
+.auth-badge.connected a { color: var(--green); }
+.auth-badge.disconnected a { color: var(--yellow); }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Search */
+.search-bar form { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+.search-bar input[type="text"] {
+  flex: 1; padding: 0.65rem 0.85rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); font-size: 1rem;
+}
+.search-bar input[type="text"]:focus { border-color: var(--accent); outline: none; }
+.search-bar select {
+  padding: 0.65rem 0.85rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text); font-size: 0.9rem;
+}
+.search-bar button {
+  padding: 0.65rem 1.5rem; background: var(--accent);
+  border: none; border-radius: var(--radius);
+  color: #000; font-weight: 600; cursor: pointer;
+}
+.search-bar button:hover { background: var(--accent-hover); }
+
+/* Search results */
+.result-section { margin-bottom: 2rem; }
+.result-section h2 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text-dim); }
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.album-card {
+  padding: 0.75rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+.album-card:hover { border-color: var(--accent); }
+.album-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; margin-bottom: 0.5rem; }
+.album-info { display: flex; flex-direction: column; gap: 0.15rem; }
+.album-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.album-artist { font-size: 0.85rem; color: var(--text-dim); }
+.album-year { font-size: 0.8rem; color: var(--text-dim); }
+.album-tracks { font-size: 0.8rem; color: var(--text-dim); }
+.album-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+
+.result-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.artist-row {
+  padding: 0.5rem 0.75rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+.artist-row:hover { border-color: var(--accent); }
+.artist-name { font-weight: 500; }
+
+.tracks-table {
+  width: 100%; border-collapse: collapse;
+}
+.tracks-table th {
+  text-align: left; font-size: 0.85rem; color: var(--text-dim);
+  padding: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.tracks-table td {
+  padding: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.tracks-table tr:hover { background: var(--surface); }
+
+.btn-download {
+  padding: 0.4rem 0.85rem; background: var(--accent);
+  border: none; border-radius: 4px; color: #000;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+}
+.btn-download:hover { background: var(--accent-hover); }
+.btn-download:disabled { opacity: 0.5; cursor: default; }
+.btn-small { padding: 0.25rem 0.6rem; font-size: 0.8rem; }
+.btn-play { padding: 0.4rem 0.85rem; background: var(--accent); border: none; border-radius: 4px; color: #000; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn-play:hover { background: var(--accent-hover); }
+
+/* Jobs */
+.job-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.65rem 0.85rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+.job-info { flex: 1; min-width: 0; }
+.job-info .job-title { font-weight: 600; }
+.job-info .job-artist { font-size: 0.8rem; color: var(--text-dim); }
+
+.status-badge {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  border-radius: 4px; font-size: 0.8rem; font-weight: 600;
+}
+.status-queued { background: var(--yellow); color: #000; }
+.status-running { background: var(--accent); color: #000; }
+.status-completed { background: var(--green); color: #000; }
+.status-error { background: var(--red); color: #fff; }
+.status-cancelled { background: var(--text-dim); color: #fff; }
+
+.job-status { display: flex; align-items: center; gap: 0.5rem; }
+.progress-bar {
+  width: 120px; height: 6px; background: var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+.progress-text { font-size: 0.8rem; color: var(--text-dim); }
+.job-error { color: var(--red); font-size: 0.8rem; }
+.job-files { color: var(--text-dim); font-size: 0.8rem; }
+.phase-badge {
+  display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.duplicate-skipped-badge { background: var(--yellow); color: #000; }
+.overrode-existing-badge { background: var(--accent); color: #000; }
+.download-options {
+  margin-bottom: 1rem; padding: 0.5rem 0;
+}
+.checkbox-label {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.85rem; color: var(--text-dim); cursor: pointer;
+}
+
+.in-library-badge {
+  display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px;
+  font-size: 0.75rem; font-weight: 600; background: var(--green); color: #000;
+  margin-left: 0.4rem; vertical-align: middle;
+}
+
+.job-actions button {
+  padding: 0.3rem 0.6rem; background: transparent;
+  border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-dim); font-size: 0.8rem; cursor: pointer;
+}
+.job-actions button:hover { border-color: var(--red); color: var(--red); }
+
+/* Batch delete selection */
+.job-select-label {
+  display: inline-flex; align-items: center;
+  margin-right: 0.4rem; cursor: pointer;
+  padding: 0.2rem; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--bg);
+  transition: border-color 0.15s, background 0.15s;
+}
+.job-select-label:hover { border-color: var(--accent); }
+.job-select {
+  width: 14px; height: 14px; margin: 0;
+  accent-color: var(--red); cursor: pointer;
+  background: var(--surface); color: var(--text);
+}
+.btn-delete-selected {
+  padding: 0.3rem 0.6rem; background: transparent;
+  border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-dim); font-size: 0.8rem; cursor: pointer;
+}
+.btn-delete-selected:hover { border-color: var(--red); color: var(--red); }
+
+.status-paused { background: var(--yellow); color: #000; }
+.btn-pause { border-color: var(--yellow); color: var(--yellow); }
+.btn-pause:hover { background: var(--yellow); color: #000; }
+.btn-resume { border-color: var(--green); color: var(--green); }
+.btn-resume:hover { background: var(--green); color: #000; }
+.btn-retry { border-color: var(--accent); color: var(--accent); }
+.btn-retry:hover { background: var(--accent); color: #000; }
+.btn-purge:hover { background: var(--red); color: #fff; }
+
+.btn-priority {
+  padding: 0.3rem 0.5rem; background: transparent;
+  border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-dim); font-size: 0.8rem; cursor: pointer;
+.library-search-form { margin-bottom: 1rem; }
+.library-search-form input { width: 100%; padding: 0.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); }
+.library-search-results { margin-top: 0.5rem; }
+  line-height: 1;
+}
+.btn-priority:hover {
+  border-color: var(--accent); color: var(--accent);
+  background: rgba(0, 255, 255, 0.1);
+}
+.jobs-toolbar { margin-bottom: 1rem; }
+/* Auth */
+.auth-page { max-width: 500px; }
+.auth-status { padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.lyrics-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-top: 0.5rem; }
+.lyrics-box pre { white-space: pre-wrap; font-family: inherit; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+.lyrics-source { display: block; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-dim); }
+.auth-status.connected { border-color: var(--green); }
+.auth-status.disconnected { border-color: var(--yellow); }
+.auth-status button {
+  padding: 0.75rem 1.5rem; background: var(--accent);
+  border: none; border-radius: var(--radius);
+  color: #000; font-weight: 600; cursor: pointer; margin-top: 1rem;
+}
+.auth-status button:disabled { opacity: 0.5; }
+.login-status { margin-top: 1rem; }
+.hint { color: var(--text-dim); font-size: 0.85rem; }
+.success { color: var(--green); }
+.error { color: var(--red); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 3rem; color: var(--text-dim); }
+
+/* Library */
+.library-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+.library-tabs button {
+  padding: 0.5rem 1rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-dim); cursor: pointer;
+}
+.library-tabs button.active { border-color: var(--accent); color: var(--text); }
+.hidden { display: none; }
+
+/* Browse */
+.browse-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border);
+}
+.browse-item:hover { background: var(--surface); }
+.browse-item .icon { font-size: 1.2rem; }
+.browse-item .name { flex: 1; }
+.browse-item .size { color: var(--text-dim); font-size: 0.85rem; }
+
+/* Playlist page */
+.playlist-page { max-width: 900px; }
+.playlist-page h1 { margin-bottom: 0.25rem; }
+.playlist-page > p { color: var(--text-dim); margin-bottom: 1.5rem; }
+
+.playlist-form {
+  display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+}
+.playlist-form input[type="text"] {
+  flex: 1; min-width: 300px; padding: 0.65rem 0.85rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); font-size: 1rem;
+}
+.playlist-form input[type="text"]:focus { border-color: var(--accent); outline: none; }
+.playlist-form button {
+  padding: 0.65rem 1.5rem; background: var(--accent);
+  border: none; border-radius: var(--radius);
+  color: #000; font-weight: 600; cursor: pointer;
+}
+.playlist-form button:hover { background: var(--accent-hover); }
+
+.resolving-state { color: var(--text-dim); padding: 1rem 0; }
+
+/* Resolved playlist header + toolbar */
+.playlist-tracks { margin-top: 1rem; }
+.playlist-header h2 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+.playlist-meta {
+  display: flex; align-items: center; gap: 0.5rem;
+  color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1rem;
+}
+.playlist-meta .dot-sep { opacity: 0.5; }
+
+.playlist-toolbar {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.6rem 0.75rem; margin-bottom: 0.75rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.playlist-toolbar .spacer { flex: 1; }
+.playlist-toolbar .select-all-label {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.85rem; color: var(--text-dim);
+}
+.playlist-toolbar .btn-link {
+  background: none; border: none; color: var(--accent);
+  font-size: 0.85rem; padding: 0.25rem 0.5rem; cursor: pointer;
+}
+.playlist-toolbar .btn-link:hover { color: var(--accent-hover); text-decoration: underline; }
+.playlist-toolbar .selected-count {
+  font-size: 0.85rem; color: var(--text-dim); white-space: nowrap;
+}
+.playlist-toolbar .btn-download {
+  padding: 0.4rem 1rem; font-size: 0.9rem;
+}
+.playlist-toolbar .btn-download:disabled { opacity: 0.5; cursor: default; }
+
+/* Track table extensions for the playlist view */
+.playlist-track-table th.col-check,
+.playlist-track-table td.col-check {
+  width: 2rem; text-align: center; vertical-align: middle;
+}
+.playlist-track-table th.col-num,
+.playlist-track-table td.col-num {
+  width: 2.5rem; text-align: right; color: var(--text-dim);
+  font-variant-numeric: tabular-nums; font-size: 0.85rem;
+}
+.playlist-track-table th.col-duration,
+.playlist-track-table td.col-duration {
+  width: 4.5rem; text-align: right;
+  font-variant-numeric: tabular-nums; color: var(--text-dim);
+}
+.playlist-track-table tbody tr { cursor: pointer; }
+
+/* Message */
+.message-page { max-width: 500px; text-align: center; }
+.message-page h1 { margin-bottom: 1rem; }
+
+/* Artist row layout — extends existing .artist-row from result-list */
+.artist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+.artist-name { font-size: 1.1rem; font-weight: 600; }
+.artist-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+/* Discography button variant */
+.btn-discography {
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+}
+.btn-discography:hover { background: var(--accent-hover); }
+
+/* Singles toggle inline */
+.singles-toggle {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.singles-toggle input { margin-right: 0.3rem; }
+
+/* Discography queued message */
+.discography-queued-message {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--green);
+  border-radius: var(--radius);
+  margin: 0.75rem 0;
+  color: var(--green);
+  font-size: 0.95rem;
+}
+
+/* Stats dashboard */
+.stats-page h1 { margin-bottom: 1rem; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+.stats-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.stats-card-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.stats-card-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.stats-card-queued { border-color: var(--yellow); }
+.stats-card-running { border-color: var(--accent); }
+.stats-card-completed { border-color: var(--green); }
+.stats-card-errored  { border-color: var(--red); }
+.stats-subhead { font-size: 1rem; color: var(--text-dim); margin: 1.5rem 0 0.5rem; }
+
+.stats-config-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 360px;
+}
+.stats-config-row { display: flex; align-items: center; gap: 0.75rem; }
+.stats-config-label {
+  flex: 0 0 130px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+.stats-config-row select,
+.stats-config-row input[type="number"] {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.stats-config-row select:focus,
+.stats-config-row input[type="number"]:focus { border-color: var(--accent); outline: none; }
+.stats-config-actions { margin-top: 0.5rem; }
+.btn-save-config {
+  padding: 0.5rem 1.5rem;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-save-config:hover { background: var(--accent-hover); }
+.stats-saved {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  margin-bottom: 0.75rem;
+  background: var(--green);
+  color: #000;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Collection catalog — artist→album tree, lazy-loaded via HTMX. */
+.catalog-page h2 { margin: 1.5rem 0 0.75rem; color: var(--text-dim); font-size: 1.1rem; }
+.catalog { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+.catalog-end, .catalog-more {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+.catalog-more button { cursor: pointer; }
+.catalog-end p { margin: 0; color: var(--text-dim); }
+
+/* Expandable artist section */
+.catalog-artist {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.catalog-artist summary {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.catalog-artist summary::-webkit-details-marker { display: none; }
+.catalog-artist summary::before {
+  content: "▸"; color: var(--text-dim); margin-right: 0.5rem;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+.catalog-artist[open] summary::before { transform: rotate(90deg); }
+.catalog-artist-name { font-weight: 600; color: var(--text); }
+.catalog-artist-count {
+  font-size: 0.8rem; color: var(--text-dim);
+  background: var(--bg);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Responsive album grid inside each artist section */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  padding: 0 0.75rem 0.75rem;
+}
+.catalog-album {
+  display: flex; flex-direction: column;
+  text-decoration: none; color: var(--text);
+}
+.catalog-album:hover { color: var(--accent); }
+.catalog-album-cover {
+  aspect-ratio: 1;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+.catalog-album-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+.catalog-album:hover .catalog-album-cover img { transform: scale(1.03); }
+.catalog-album-cover-fallback {
+  /* Hidden by default when a cover exists; revealed by <img> onerror. */
+  display: none;
+  align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  font-size: 2.5rem;
+  color: var(--text-dim);
+}
+.catalog-album-info { padding: 0.5rem 0.15rem; display: flex; flex-direction: column; gap: 0.1rem; }
+.catalog-album-title {
+  font-size: 0.9rem; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.catalog-album-tracks { font-size: 0.8rem; color: var(--text-dim); }
+
+@media (max-width: 600px) {
+  .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+
+/* htmx loading indicators */
+.htmx-indicator {
+  display: none;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  vertical-align: middle;
+}
+.htmx-request .htmx-indicator { display: inline; }
+.htmx-request.htmx-indicator { display: inline; }
+.htmx-indicator.spinner {
+  display: inline-block;
+  width: 0.9rem; height: 0.9rem;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: htmx-spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+.htmx-request .htmx-indicator.spinner,
+.htmx-request.htmx-indicator.spinner { display: inline-block; }
+@keyframes htmx-spin { to { transform: rotate(360deg); } }
+
+/* mobile responsive */
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; gap: 0.5rem; }
+  .nav-links { flex-wrap: wrap; gap: 0.8rem; }
+  .search-bar form { flex-direction: column; }
+  .search-bar input[type="text"] { min-width: 0; }
+  .result-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

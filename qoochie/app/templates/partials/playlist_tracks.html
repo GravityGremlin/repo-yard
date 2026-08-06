@@ -1,0 +1,155 @@
+{% if tracks|length == 0 %}
+  <div class="empty-state">
+    <p>This playlist has no tracks.</p>
+  </div>
+{% else %}
+<div class="playlist-tracks"
+     data-playlist-id="{{ playlist_id }}"
+     data-playlist-name="{{ playlist_name|e }}"
+     data-download-url="{{ url_for('playlist.download') }}">
+
+  <div class="playlist-header">
+    <h2>{{ playlist_name }}</h2>
+    <p class="playlist-meta">
+      <span>{{ tracks|length }} track{{ '' if tracks|length == 1 else 's' }}</span>
+      <span class="dot-sep">·</span>
+      {% set h = total_duration // 3600 %}
+      {% set m = (total_duration % 3600) // 60 %}
+      {% set s = total_duration % 60 %}
+      <span>{{ '%dh %02dm'|format(h, m) if h else '%d:%02d'|format(m, s) }}</span>
+    </p>
+  </div>
+
+  <div class="playlist-toolbar">
+    <label class="select-all-label">
+      <input type="checkbox" id="playlists-select-all" checked>
+      <span>All</span>
+    </label>
+    <button type="button" class="btn-link" data-select="all">Select All</button>
+    <button type="button" class="btn-link" data-select="none">Deselect All</button>
+    <span class="spacer"></span>
+    <span class="selected-count" id="playlist-selected-count">{{ tracks|length }} selected</span>
+    <button type="button" class="btn-download" id="playlist-download-selected">Download Selected</button>
+  </div>
+
+  <table class="tracks-table playlist-track-table">
+    <thead>
+      <tr>
+        <th class="col-check"></th>
+        <th class="col-num">#</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th class="col-duration">Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for track in tracks %}
+      <tr data-track-id="{{ track.id }}">
+        <td class="col-check">
+          <input type="checkbox" class="track-checkbox"
+                 name="track_id" value="{{ track.id }}" checked>
+        </td>
+        <td class="col-num">{{ loop.index }}</td>
+        <td>{{ track.title }}</td>
+        <td>{{ track.artist }}</td>
+        <td class="col-duration">{{ track.duration|duration }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function () {
+  var root = document.currentScript.closest('.playlist-tracks');
+  if (!root) {
+    root = document.querySelector('.playlist-tracks[data-playlist-id="{{ playlist_id|e }}"]');
+  }
+  var checkboxes = Array.prototype.slice.call(root.querySelectorAll('.track-checkbox'));
+  var selectAllMaster = root.querySelector('#playlists-select-all');
+  var countLabel = root.querySelector('#playlist-selected-count');
+  var downloadBtn = root.querySelector('#playlist-download-selected');
+
+  function updateCount() {
+    var n = checkboxes.filter(function (cb) { return cb.checked; }).length;
+    countLabel.textContent = n + ' selected';
+    downloadBtn.disabled = n === 0;
+  }
+
+  // Master checkbox toggles all.
+  if (selectAllMaster) {
+    selectAllMaster.addEventListener('change', function () {
+      checkboxes.forEach(function (cb) { cb.checked = selectAllMaster.checked; });
+      updateCount();
+    });
+  }
+
+  // "Select All" / "Deselect All" buttons + click-row-to-toggle affordance.
+  root.querySelectorAll('[data-select]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var on = btn.dataset.select === 'all';
+      checkboxes.forEach(function (cb) { cb.checked = on; });
+      if (selectAllMaster) selectAllMaster.checked = on;
+      updateCount();
+    });
+  });
+
+  // Keep the master checkbox in sync with per-row clicks.
+  checkboxes.forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      if (selectAllMaster) {
+        selectAllMaster.checked = checkboxes.every(function (c) { return c.checked; });
+      }
+      updateCount();
+    });
+    // Click anywhere on the row toggles the checkbox (without breaking link clicks).
+    var row = cb.closest('tr');
+    if (row) {
+      row.addEventListener('click', function (e) {
+        if (e.target === cb || e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event('change'));
+      });
+    }
+  });
+
+  // Download Selected — POST checked track IDs to the download route; each
+  // becomes its own Job with kind="track" sharing one group_id (server-side).
+  downloadBtn.addEventListener('click', function () {
+    var trackIds = checkboxes.filter(function (cb) { return cb.checked; })
+                             .map(function (cb) { return cb.value; });
+    if (!trackIds.length) return;
+
+    downloadBtn.disabled = true;
+    downloadBtn.textContent = 'Queuing…';
+
+    fetch(root.dataset.downloadUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': (typeof csrfToken === 'function' ? csrfToken() : (document.querySelector('meta[name="csrf-token"]') || {}).getAttribute('content') || '')
+      },
+      body: JSON.stringify({
+        playlist_id: root.dataset.playlistId,
+        playlist_name: root.dataset.playlistName,
+        track_ids: trackIds
+      })
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (data && data.queued) {
+        window.location.href = '/download/jobs';
+      } else {
+        downloadBtn.disabled = false;
+        downloadBtn.textContent = 'Download Selected';
+        alert('Download failed: ' + ((data && data.error) || 'unknown error'));
+      }
+    }).catch(function (err) {
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download Selected';
+      alert('Download failed: ' + err);
+    });
+  });
+
+  updateCount();
+})();
+</script>
+{% endif %}

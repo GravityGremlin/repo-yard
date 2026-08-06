@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}qoochie — Auth{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <h1>Qobuz Connection</h1>
+
+  {% if connected %}
+    <div class="auth-status connected">
+      <p>✅ Connected to Qobuz</p>
+      <p class="hint">Token stored at <code>~/.config/qobuz/qobuz_token.json</code></p>
+    </div>
+  {% else %}
+    <div class="auth-status disconnected">
+      <p>⚪ Not connected to Qobuz</p>
+      <p>Enter your Qobuz user token to authenticate. Obtain it from your browser DevTools or the Qobuz API.</p>
+      <form id="token-form" onsubmit="validateToken(event)">
+        <input type="text" id="token-input" name="token" placeholder="Paste your Qobuz token here..."
+               autocomplete="off" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;">
+        <button type="submit" id="login-btn">Connect to Qobuz</button>
+      </form>
+      <div id="login-status" class="login-status"></div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+function validateToken(e) {
+  e.preventDefault();
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.textContent = 'Validating...';
+  const status = document.getElementById('login-status');
+  const tokenInput = document.getElementById('token-input');
+  const tok = tokenInput.value.trim();
+
+  if (!tok) {
+    status.innerHTML = '<p class="error">Please enter a token.</p>';
+    btn.disabled = false;
+    btn.textContent = 'Connect to Qobuz';
+    return;
+  }
+
+  const meta = document.querySelector('meta[name="csrf-token"]');
+  const csrf = meta ? meta.getAttribute('content') : '';
+  fetch('/qobuz/auth/validate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf },
+    body: JSON.stringify({ token: tok })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === 'ok') {
+      status.innerHTML = '<p class="hint">✅ Token validated successfully! Redirecting...</p>';
+      setTimeout(() => { window.location.reload(); }, 1500);
+    } else {
+      status.innerHTML = '<p class="error">✗ ' + (data.message || 'Validation failed') + '</p>';
+      btn.disabled = false;
+      btn.textContent = 'Connect to Qobuz';
+    }
+  })
+  .catch(err => {
+    status.innerHTML = '<p class="error">Failed: ' + err + '</p>';
+    btn.disabled = false;
+    btn.textContent = 'Connect to Qobuz';
+  });
+}
+</script>
+{% endblock %}

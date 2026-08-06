@@ -1,0 +1,56 @@
+{% if events %}
+<table class="tracks-table">
+  <thead>
+    <tr>
+      <th>Timestamp</th>
+      <th>Event</th>
+      <th>Job ID</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td class="hint">{{ event.created_at }}</td>
+      <td>
+        {% set ev = event.event %}
+        {% if 'completed' in ev %}
+          <span class="status-badge" style="background:#1a4731;color:#3fb950;">{{ ev }}</span>
+        {% elif 'failed' in ev %}
+          <span class="status-badge" style="background:#490b0b;color:#f85149;">{{ ev }}</span>
+        {% elif 'cancelled' in ev %}
+          <span class="status-badge" style="background:#4a3200;color:#d29922;">{{ ev }}</span>
+        {% else %}
+          <span class="status-badge" style="background:#0c2d6b;color:#58a6ff;">{{ ev }}</span>
+        {% endif %}
+      </td>
+      <td><code>{{ event.job_id or '—' }}</code></td>
+      <td>
+        {% if event.data and event.data != '{}' %}
+          <details>
+            <summary style="cursor:pointer;">Show details</summary>
+            <pre style="margin-top:0.5rem;padding:0.5rem;background:var(--bg-subtle,#161b22);border-radius:4px;font-size:0.8rem;overflow-x:auto;">{{ event.data }}</pre>
+          </details>
+        {% else %}
+          —
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if events|length >= limit %}
+<div style="text-align:center;padding:1rem;">
+  <button class="btn btn-sm"
+          hx-get="/audit/list?offset={{ offset + limit }}&limit={{ limit }}{% if job_id %}&job_id={{ job_id }}{% endif %}"
+          hx-target="#audit-list"
+          hx-swap="beforeend">Load more</button>
+</div>
+{% endif %}
+
+{% else %}
+<div class="empty-state">
+  <p>No audit events yet. Start downloading to populate the log.</p>
+</div>
+{% endif %}

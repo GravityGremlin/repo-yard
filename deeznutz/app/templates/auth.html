@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}deeznutz — Auth{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <h1>Deezer Connection</h1>
+
+  {% if connected %}
+    <div class="auth-status connected">
+      <p>✅ Connected to Deezer</p>
+      {% if info and info.user %}
+        <p class="hint">Logged in as user #{{ info.user }}</p>
+      {% endif %}
+      <p class="hint">Token stored at <code>~/.config/deeznutz_dz/deezer_token.json</code></p>
+    </div>
+  {% else %}
+    <div class="auth-status disconnected">
+      <p>⚪ Not connected to Deezer</p>
+      <p>Paste your Deezer ARL cookie below to authenticate.</p>
+      <form id="arl-form" style="margin-top:1rem;">
+        <input type="text" id="arl-input" placeholder="Paste ARL cookie here"
+               style="width:100%;max-width:420px;padding:0.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-family:monospace;font-size:0.85rem;" />
+        <button type="submit" id="arl-btn"
+                style="margin-top:0.5rem;padding:0.5rem 1.2rem;border:none;border-radius:4px;background:var(--purple);color:#fff;cursor:pointer;">
+          Save ARL
+        </button>
+      </form>
+      <div id="arl-status" class="login-status" style="margin-top:0.5rem;"></div>
+    </div>
+  {% endif %}
+</div>
+
+{% if not connected %}
+<script>
+document.getElementById('arl-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('arl-btn');
+  var status = document.getElementById('arl-status');
+  var arl = document.getElementById('arl-input').value.trim();
+
+  if (!arl) {
+    status.innerHTML = '<p class="error">Please paste an ARL cookie.</p>';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Validating…';
+  status.innerHTML = '';
+
+  var meta = document.querySelector('meta[name="csrf-token"]');
+  var token = meta ? meta.getAttribute('content') : '';
+
+  fetch('/deezer/auth/validate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': token },
+    body: JSON.stringify({ arl: arl })
+  })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.status === 'ok') {
+        status.innerHTML = '<p class="success">✅ Connected! <a href="/">Go to search</a></p>';
+      } else {
+        status.innerHTML = '<p class="error">❌ ' + (data.message || 'ARL rejected by Deezer') + '</p>';
+        btn.disabled = false;
+        btn.textContent = 'Save ARL';
+      }
+    })
+    .catch(function(e) {
+      status.innerHTML = '<p class="error">Network error: ' + e + '</p>';
+      btn.disabled = false;
+      btn.textContent = 'Save ARL';
+    });
+});
+</script>
+{% endif %}
+{% endblock %}

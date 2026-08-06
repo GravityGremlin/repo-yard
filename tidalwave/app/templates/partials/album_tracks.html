@@ -1,0 +1,38 @@
+<div class="album-tracks-list">
+  <h3>{{ album.name }} — {{ album.artist.name if album.artist else 'Unknown' }}</h3>
+  <table class="tracks-table">
+    <thead>
+      <tr><th>#</th><th>Title</th><th>Duration</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ track.track_num or loop.index }}</td>
+        <td>{{ track.name }}</td>
+        <td>{{ track.duration|duration }}</td>
+        <td>
+          <button onclick="downloadTrack(event, '{{ track.id }}', '{{ track.name|e }}', '{{ track.artist.name|e if track.artist else '' }}')"
+                  class="btn-download btn-small">Download</button>
+          <button hx-get="/track/{{ track.id }}/lyrics"
+                  hx-target="#lyrics-{{ track.id }}"
+                  hx-swap="innerHTML"
+                  class="btn-small">Lyrics</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" id="lyrics-{{ track.id }}"></td>
+      </tr>
+      <tr>
+        <td>{{ track.track_num or loop.index }}</td>
+        <td>{{ track.name }}</td>
+        <td>{{ track.duration|duration }}</td>
+        <td>
+          <button onclick="downloadTrack(event, '{{ track.id }}', '{{ track.name|e }}', '{{ track.artist.name|e if track.artist else '' }}')"
+                  class="btn-download btn-small">Download</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button onclick="downloadAlbum(event, '{{ album.id }}', '{{ album.name|e }}', '{{ album.artist.name|e if album.artist else '' }}')"
+          class="btn-download">Download All</button>
+</div>

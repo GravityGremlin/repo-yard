@@ -1,0 +1,39 @@
+{# Library + queue stats partial — included by stats.html, refreshed every 10s #}
+<div class="stats-grid">
+  <div class="stats-card">
+    <div class="stats-card-label">Tracks</div>
+    <div class="stats-card-value">{{ library.tracks | default(0) }}</div>
+  </div>
+  <div class="stats-card">
+    <div class="stats-card-label">Albums</div>
+    <div class="stats-card-value">{{ library.albums | default(0) }}</div>
+  </div>
+  <div class="stats-card">
+    <div class="stats-card-label">Artists</div>
+    <div class="stats-card-value">{{ library.artists | default(0) }}</div>
+  </div>
+  <div class="stats-card">
+    <div class="stats-card-label">Total</div>
+    <div class="stats-card-value">{{ library.bytes | default(0) | human_size }}</div>
+  </div>
+</div>
+
+<h3 class="stats-subhead">Queue</h3>
+<div class="stats-grid stats-grid-queue">
+  <div class="stats-card stats-card-queued">
+    <div class="stats-card-label">Queued</div>
+    <div class="stats-card-value">{{ queue.queued | default(0) }}</div>
+  </div>
+  <div class="stats-card stats-card-running">
+    <div class="stats-card-label">Running</div>
+    <div class="stats-card-value">{{ queue.running | default(0) }}</div>
+  </div>
+  <div class="stats-card stats-card-completed">
+    <div class="stats-card-label">Completed</div>
+    <div class="stats-card-value">{{ queue.completed | default(0) }}</div>
+  </div>
+  <div class="stats-card stats-card-errored">
+    <div class="stats-card-label">Errored</div>
+    <div class="stats-card-value">{{ queue.error | default(0) }}</div>
+  </div>
+</div>

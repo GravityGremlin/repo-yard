@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}qoochie — Downloads{% endblock %}
+
+{% block content %}
+<div class="jobs-page">
+  <h1>Download Jobs</h1>
+  <div class="jobs-toolbar">
+    <button hx-post="/download/jobs/retry-all-errored"
+            hx-confirm="Retry all errored and cancelled jobs?"
+            hx-target="#jobs-list"
+            hx-swap="innerHTML"
+            class="btn-retry">Retry All Errored</button>
+    <button hx-post="/download/jobs/purge"
+            hx-confirm="Delete all completed jobs?"
+            hx-target="#jobs-list"
+            hx-swap="innerHTML"
+            class="btn-purge">Purge Completed</button>
+    <button type="button"
+            onclick="deleteSelected()"
+            class="btn-delete-selected">Delete Selected</button>
+  </div>
+  <div id="jobs-list"
+       hx-get="/download/jobs/list"
+       hx-trigger="load, every 10s"
+       hx-swap="innerHTML">
+    {% include "partials/jobs_list.html" %}
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function deleteSelected() {
+  const checked = document.querySelectorAll('.job-select:checked');
+  const ids = Array.from(checked).map(c => c.value);
+  if (!ids.length) {
+    alert('Select one or more completed/errored/cancelled jobs to delete.');
+    return;
+  }
+  if (!confirm('Delete ' + ids.length + ' selected job(s)?')) return;
+  fetch('/download/jobs/delete-selected', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken(),
+      'HX-Request': 'true'
+    },
+    body: JSON.stringify({ids: ids})
+  }).then(r => {
+    if (!r.ok) {
+      console.error('delete-selected failed', r.status);
+      return;
+    }
+    return r.text().then(html => {
+      const list = document.getElementById('jobs-list');
+      if (list && html) list.innerHTML = html;
+    });
+  }).catch(err => console.error('delete-selected error:', err));
+}
+// Pause polling when no active (queued/running) jobs exist, resume if any appear.
+// The partial sets data-active-count on .jobs-list after each swap.
+(function () {
+  const list = document.getElementById('jobs-list');
+  if (!list || !window.htmx) return;
+  function activeCountInList() {
+    const inner = list.querySelector('.jobs-list');
+    if (!inner) return 0;
+    return parseInt(inner.getAttribute('data-active-count') || '0', 10) || 0;
+  }
+  // Polling is on by default (hx-trigger="load, every 10s"). When a swap
+  // completes with zero active jobs we remove the trigger to stop the
+  // 10s poll; if active jobs reappear (e.g. on manual refresh) we reinstate it.
+  list.addEventListener('htmx:afterSwap', function () {
+    const active = activeCountInList();
+    if (active > 0) {
+      if (!list.hasAttribute('data-paused')) return;
+      list.setAttribute('hx-trigger', 'load, every 10s');
+      list.removeAttribute('data-paused');
+      window.htmx.process(list);
+    } else {
+      list.setAttribute('data-paused', 'true');
+      list.removeAttribute('hx-trigger');
+      window.htmx.process(list);
+    }
+  });
+})();
+</script>
+{% endblock %}

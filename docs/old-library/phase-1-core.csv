@@ -1,0 +1,1778 @@
+artist,albums,tracks,bytes,in_active,active_tracks
+Johnny Cash,210,3046,12180978770,no,0
+Queen,85,1460,5278577978,no,0
+Insane Clown Posse,84,1031,3794481673,no,0
+Leadbelly,42,905,1881174897,no,0
+Lynyrd Skynyrd,70,805,5838508541,no,0
+Ramones,31,790,2935374135,no,0
+Buckethead,91,783,4880144365,yes,767
+Kottonmouth Kings,57,782,2815139915,no,0
+Eminem,64,757,3597331896,no,0
+Ghostemane,43,681,1699709063,no,0
+The Fall,34,668,5261505605,no,0
+Megadeth,48,641,2636905411,no,0
+Sepultura,44,637,3598889196,no,0
+Dolly Parton,51,608,3825316870,no,0
+Lady Gaga,86,600,2835035637,no,0
+8-Bit Misfits,67,595,2509206982,no,0
+Dead Can Dance,35,578,3286556570,no,0
+The Rolling Stones,54,573,3192514576,no,0
+Wiz Khalifa,91,568,1866707604,no,0
+They Might Be Giants,36,562,1739382737,no,0
+KMFDM,49,540,4610571919,no,0
+Bon Jovi,63,537,2339190432,no,0
+Dennis Brown,56,524,3690431074,no,0
+The Exploited,27,518,1247347455,no,0
+Tech N9ne,25,517,3437796793,no,0
+The Kinks,38,512,2605542804,no,0
+Killah Priest,52,497,1492555958,no,0
+Rob Zombie,35,494,1746281761,yes,115
+Black Sabbath,33,487,3133266000,yes,462
+Ministry,54,483,2400534047,yes,508
+Cypress Hill,50,482,1543018389,no,0
+The Who,24,477,2941338866,no,0
+Woody Guthrie,15,475,1331202793,no,0
+Aretha Franklin,36,471,3610449267,no,0
+Linkin Park,35,468,1894427354,no,0
+The Beach Boys,43,460,2186452293,no,0
+Nightwish,41,448,3457981811,no,0
+Bathory,31,445,2241116225,no,0
+Talking Heads,38,444,2023673343,no,0
+The Roots,36,439,1605919126,no,0
+Velvet Acid Christ,34,434,2453374386,no,0
+Enter Shikari,69,432,1688112682,no,0
+Jefferson Airplane,27,431,1777476578,no,0
+Sodom,32,429,2618712583,no,0
+Beastie Boys,42,426,1310720207,no,0
+Chicago,27,426,3407283212,no,0
+Röyksopp,102,425,2284316763,no,0
+Cradle Of Filth,35,417,2415268858,no,0
+Overkill,36,412,1916639198,no,0
+Venom,26,411,1421189815,no,0
+Soulfly,28,409,2092125283,no,0
+The Mountain Goats,46,406,2359716598,no,0
+War,44,398,2216354451,no,0
+Imagine Dragons,54,393,1346653164,no,0
+Crass,28,391,1726256054,no,0
+Melvins,33,391,2406159623,no,0
+Green Day,28,385,1256996167,yes,309
+Creedence Clearwater Revival,31,378,1249091527,no,0
+David Bowie,40,374,2343426447,no,0
+Pink Floyd,29,372,2839870910,no,0
+Red Hot Chili Peppers,45,370,2527773555,no,0
+Fugazi,21,369,1069824667,yes,11
+Leonard Cohen,31,364,1632790809,no,0
+King Gizzard & The Lizard Wizard,42,361,1856898930,no,0
+Lordi,31,355,1538159970,no,0
+Three 6 Mafia,20,350,2010555015,no,0
+Minutemen,15,347,528644990,no,0
+Dropkick Murphys,32,345,1018725191,no,0
+Onyx,51,345,1120144853,no,0
+The B-52's,30,341,1490897435,no,0
+Bring Me The Horizon,52,340,1354630899,no,0
+The Charlie Daniels Band,33,339,2781224622,no,0
+Outkast,25,337,1149377471,no,0
+The Offspring,37,337,1322184586,no,0
+ODESZA,51,332,1241386893,no,0
+Nine Inch Nails,23,327,2026073594,no,0
+Shinedown,49,325,1835621026,no,0
+Bart Graft,29,323,2305937417,no,0
+Combichrist,34,323,1871042571,yes,1
+UNKLE,64,321,1574375267,no,0
+Hüsker Dü,21,319,842261528,no,0
+Slipknot,36,319,1473534830,yes,320
+RJD2,38,315,1055276888,no,0
+Bad Religion,26,314,1163311963,no,0
+Misfits,20,311,779443369,no,0
+Anal Cunt,11,308,331989310,no,0
+Faith No More,27,302,1150295613,no,0
+GWAR,24,302,1170083770,no,0
+Skinny Puppy,35,301,2432852899,no,0
+Grateful Dead,17,300,2712797536,no,0
+The Beatles,35,297,890864657,no,0
+Charli xcx,76,296,922930643,no,0
+Six Feet Under,26,296,1301962858,no,0
+The Flashbulb,24,296,1147665499,no,0
+Jesse Welles,25,295,848908396,no,0
+Sublime,17,294,1061673621,yes,137
+Emmylou Harris,25,293,2047537707,no,0
+Blind Guardian,28,292,1717861694,yes,224
+Richard Cheese,19,290,1096446070,no,0
+Rancid,16,289,907799041,yes,21
+blink‐182,32,289,947750528,no,0
+Trentemøller,56,288,1600978957,no,0
+Annihilator,30,287,1285720769,no,0
+Halestorm,52,282,1324364647,no,0
+Janis Joplin,15,279,1654283850,no,0
+Nirvana,19,278,1449727826,yes,22
+Vader,34,277,944597880,no,0
+Aphex Twin,33,275,1268667753,yes,3
+Britney Spears,27,275,2188951407,yes,231
+Deep Purple,25,272,2401767819,no,0
+Depeche Mode,21,270,2266294722,yes,23
+Liam Lynch,20,270,1450395431,no,0
+The Smashing Pumpkins,17,270,1541120561,no,0
+Coil,34,269,1673514529,no,0
+Geto Boys,18,269,1054287938,yes,14
+Prong,23,269,1014346986,no,0
+Primus,26,268,1301288799,no,0
+Barenaked Ladies,16,266,1829718072,no,0
+EKTOMORF,36,265,863323963,no,0
+Hollywood Undead,43,262,1078660782,yes,191
+Exhumed,25,261,752516702,no,0
+Napalm Death,21,261,1130178640,no,0
+Agnostic Front,21,260,472558917,no,0
+Bad Brains,21,260,921509581,no,0
+Ludacris,31,259,947775070,no,0
+Poison Idea,16,258,606987323,no,0
+The Killers,35,258,1687865816,no,0
+DEATH ANGEL,20,257,1198329499,no,0
+The Prodigy,40,255,1570965555,no,0
+Killer Mike,30,253,1265371174,no,0
+Jimi Hendrix,30,252,1835132024,no,0
+Limp Bizkit,23,252,1006749270,no,0
+Electric Callboy,43,247,804886205,no,0
+Thievery Corporation,22,246,872073458,no,0
+Chumbawamba,18,244,1386034711,no,0
+Anti-Flag,42,243,667206288,no,0
+Laur,118,243,816204232,no,0
+Bonobo,42,242,1068383004,yes,182
+Slayer,22,242,1209989353,yes,297
+Funker Vogt,14,241,1442743354,no,0
+Marilyn Manson,28,240,1160334632,yes,100
+Neko Case,14,237,706500696,no,0
+Testament,30,235,994301067,no,0
+The Moody Blues,18,232,1766276677,no,0
+Negativland,16,231,1482933484,no,0
+Post Malone,27,231,962540874,no,0
+Korn,26,230,1540393217,yes,31
+Cannibal Corpse,24,227,1265080605,yes,78
+Rush,21,227,1860412698,no,0
+Metallica,26,225,1850731592,yes,57
+Dwight Yoakam,18,224,1446789010,no,0
+Glass Animals,32,224,740824670,no,0
+Strong Bad,9,223,297301597,no,0
+Boobs of DOOM,32,218,1920019775,yes,203
+Led Zeppelin,22,218,1688077337,no,0
+Arch Enemy,23,217,1520565771,no,0
+Psychostick,29,216,810531156,no,0
+Dead Kennedys,14,215,651999365,no,0
+Rodney Crowell,20,215,1678815101,no,0
+Black Label Society,18,214,1029565492,no,0
+Gogol Bordello,32,212,862956267,no,0
+Primordial,30,212,1274294577,no,0
+Alkaline Trio,23,211,697085590,no,0
+Suicidal Tendencies,20,210,747901915,no,0
+Corrosion of Conformity,19,209,728535533,no,0
+Mike Oldfield,15,206,2447382357,no,0
+Black Flag,23,205,802423924,no,0
+Apashe,47,204,689110971,no,0
+Borgore,62,204,705160120,yes,153
+Dio,24,204,847678653,no,0
+Fishbone,22,204,876560875,no,0
+NOFX,15,202,616230600,no,0
+The Cure,24,202,851704710,no,0
+VNV Nation,21,202,1652017844,no,0
+My Chemical Romance,32,201,1063459115,no,0
+The White Stripes,27,201,991374793,yes,16
+Type O Negative,10,201,1980481390,no,0
+Gorillaz,18,200,1015553428,no,0
+Soilwork,24,200,1241644499,no,0
+Boozoo Bajou,45,197,939092833,no,0
+Rollins Band,15,197,1416934307,no,0
+Bad Bunny,44,194,667416605,no,0
+Sloan,14,194,1008502766,no,0
+The Notorious B.I.G_,13,193,728939150,no,0
+Kanye West,11,192,1379185629,no,0
+Killswitch Engage,36,191,656405707,no,0
+"Lofi Fruits Music, Chill Fruits Music",24,191,352520605,no,0
+Taylor Swift,29,191,751096110,no,0
+M.D.C_,10,188,357031942,no,0
+Sigh,26,188,825242542,no,0
+Doja Cat,36,187,583732949,yes,120
+Entombed,21,187,687179589,no,0
+Puscifer,25,187,1338704338,no,0
+Machine Head,26,186,869165141,no,0
+Goldfinger,26,185,502688808,no,0
+Subhumans,15,185,694112957,no,0
+Figure,18,184,1358751379,no,0
+:wumpscut:,12,183,1273464307,no,0
+Circle Jerks,16,182,530308662,no,0
+John Cale,16,182,1562632737,no,0
+Craig Duncan,13,179,1322758125,no,0
+Static‐X,26,179,755661852,no,0
+Biohazard,30,178,565918811,no,0
+Fear Factory,16,178,1439571170,yes,141
+Eat Static,16,177,2440147328,no,0
+Journey,16,177,1503585121,no,0
+New Found Glory,15,177,1077115488,no,0
+Exodus,18,176,880534549,no,0
+Infected Mushroom,16,175,1751640406,no,0
+King Missile,10,175,789334706,yes,29
+Iron Maiden,21,174,1594372153,yes,285
+Ozzy Osbourne,16,174,934258968,no,0
+Chief Keef,12,172,1208939431,no,0
+Papa Roach,18,172,1097881266,yes,1
+Steve Miller Band,21,171,1134995304,no,0
+Assemblage 23,11,170,1181939604,no,0
+Hozier,29,170,630029673,no,0
+Rabbit Junk,46,170,1048913431,no,0
+Darude,25,169,890528933,no,0
+Deicide,12,169,745793753,no,0
+Placebo,16,169,681213554,no,0
+Pennywise,12,168,537944862,no,0
+The Jerky Boys,6,168,464796645,no,0
+mc chris,12,168,731700810,yes,80
+Guilt Trip,34,166,552188566,no,0
+Anthrax,13,165,1107127465,yes,15
+Stone Temple Pilots,16,163,1161177669,no,0
+Vulvodynia,26,163,622463623,no,0
+ABBA,11,162,1010104599,no,0
+Descendents,14,161,314346900,no,0
+Lords of Acid,12,161,889146253,no,0
+Tourist,57,161,712275919,no,0
+XXXTENTACION,13,161,689145674,no,0
+Celtic Frost,16,160,583327777,no,0
+King Crimson,18,160,1872136701,no,0
+Radiohead,16,160,2064455759,no,0
+Voodoo Glow Skulls,12,160,403529951,no,0
+All Time Low,16,159,998143632,no,0
+Prof,28,159,510494443,yes,99
+“Weird Al” Yankovic,15,159,1120635537,no,0
+Filth,51,158,554624697,no,0
+Danzig,14,156,897803617,no,0
+Foo Fighters,15,155,1217414594,no,0
+Jonathan Richman,13,154,878043151,no,0
+Nashville Pussy,14,154,479804358,no,0
+Lang Lang,8,153,1221370917,no,0
+Zombie Nation,32,153,1079552442,no,0
+Today Is the Day,10,152,1082177219,no,0
+Wormrot,16,152,312088008,no,0
+Denzel Curry,13,150,937188924,no,0
+Kris Goldek,139,150,496810071,no,0
+Obituary,14,150,670359818,no,0
+Coheed and Cambria,12,148,1243178342,no,0
+Fu Manchu,13,148,771518673,no,0
+Me First And The Gimme Gimmes,18,148,348959515,no,0
+Toto,14,148,1362565335,no,0
+Alphaxone,17,146,1687770192,no,0
+The Browning,20,145,516124780,no,0
+The Selecter,16,145,1079949030,no,0
+Aborted,17,144,736155402,no,0
+Amon Amarth,20,144,1348203407,no,0
+Korpiklaani,9,144,563857709,no,0
+Marduk,16,144,698197777,no,0
+Perturbator,22,144,693493341,no,0
+Skindred,24,144,464151003,no,0
+Gang Green,9,143,346997330,no,0
+Lotus,13,143,1354731591,no,0
+Alanis Morissette,10,142,1277052881,no,0
+Crowbar,13,142,1007637417,no,0
+Robert Hood,14,142,1564436149,no,0
+Skunk Anansie,10,142,526974040,no,0
+Alice in Chains,14,141,650290913,no,0
+Tim Hecker,13,140,1135634628,no,0
+Alestorm,25,139,753839455,no,0
+Mother Mother,12,139,857848974,no,0
+Pogo,17,139,870490703,no,0
+Suicide Silence,18,138,428685981,no,0
+Howard Jones,14,137,1326825141,no,0
+Powerman 5000,12,137,823342566,no,0
+Anti‐Flag,29,136,369084927,no,0
+Muse,12,136,760434235,no,0
+S.O.D. Stormtroopers of Death,6,136,268666867,no,0
+Bill Hicks,5,135,370876001,no,0
+Eyehategod,19,135,486762760,no,0
+Leprous,26,135,1157111623,no,0
+Bella Morte,12,134,666800486,no,0
+Cattle Decapitation,14,133,498652356,no,0
+Hatebreed,9,132,670013774,yes,90
+Lamb of God,10,132,605151627,no,0
+Mission Of Burma,16,132,397782125,no,0
+Pilotpriest,16,132,654453229,no,0
+Revocation,20,132,575931382,no,0
+The National,10,132,944440363,no,0
+Blackberry Smoke,11,131,520718080,no,0
+Blaze Ya Dead Homie,21,131,392562811,yes,119
+Children of Bodom,13,131,785152529,no,0
+KING 810,39,131,488300227,no,0
+Meshuggah,12,131,987661917,yes,9
+Nile,14,131,1090976673,no,0
+Tears for Fears,11,131,655575497,no,0
+Ho99o9,26,130,445704153,no,0
+Madball,9,130,469873941,no,0
+Manowar,12,130,1195199849,no,0
+League of Legends,12,129,647264082,no,0
+Professor Electric,17,129,476579231,no,0
+Better Than Ezra,10,128,891202451,no,0
+Counterfeit,38,128,448382591,no,0
+Death Grips,15,128,1002973468,no,0
+Flogging Molly,13,128,568177886,no,0
+MAGNAVOLT,40,128,446283725,yes,4
+MASTER BOOT RECORD,19,127,624419883,no,0
+Queens Of The Stone Age,19,127,513626544,no,0
+deadmau5,14,127,1878676986,no,0
+Apocalyptica,11,126,946768904,no,0
+Blondie,15,126,847785690,no,0
+Body Count,16,126,760135334,no,0
+RAMIREZ,10,126,649310499,no,0
+Rubber O Cement,4,126,260707219,no,0
+SZA,16,125,375361273,no,0
+High on Fire,15,124,676894872,no,0
+Mindless Self Indulgence,9,124,356467757,yes,171
+DevilDriver,10,123,909545166,yes,141
+Rise Against,10,123,745823893,no,0
+Sinéad O’Connor,9,123,1016158398,no,0
+ZEDD,37,123,781515361,no,0
+Bolt Thrower,15,122,780925014,yes,120
+Hopsin,42,122,447293169,no,0
+Macy Gray,10,122,640703411,no,0
+Disrupt,7,121,213088837,no,0
+Otep,9,121,756545151,no,0
+The Avalanches,12,121,390757698,no,0
+Dj Noriken,37,120,493279836,no,0
+Dead Prez,14,118,347176786,no,0
+Duane Eddy,15,118,606386969,no,0
+Leftöver Crack,9,117,330717006,no,0
+Soundgarden,9,117,723597294,no,0
+Tribulation,26,117,577636116,no,0
+Qveen Herby,32,116,391512626,no,0
+Escape the Fate,8,115,665068723,no,0
+The Jimi Hendrix Experience,8,115,616187477,no,0
+Daft Punk,9,114,726302622,no,0
+Fleshgod Apocalypse,12,114,506080332,no,0
+Chelsea Grin,26,113,406423591,no,0
+Disturbed,10,113,972273481,no,0
+Red Fang,23,113,382447206,no,0
+Deftones,10,112,681298914,no,0
+Lee “Scratch” Perry,15,111,472126495,no,0
+Manufactura,8,111,1409959528,no,0
+Sidewalks and Skeletons,24,110,636352704,no,0
+The Suicide Machines,7,110,398125405,no,0
+Matisyahu,9,109,921232704,no,0
+The Black Dahlia Murder,10,109,761510349,no,0
+DJ Myosuke,39,108,336201237,no,0
+Dashboard Confessional,10,108,296124912,no,0
+The Weeknd,11,108,755831900,no,0
+Dweller,19,107,409180318,no,0
+Kublai Khan TX,11,107,259846881,yes,11
+Neil Hamburger,6,107,303002971,no,0
+Bongzilla,18,106,637522479,yes,71
+"Emerson, Lake & Palmer",11,106,746053676,yes,119
+PeelingFlesh,16,106,251709696,no,0
+Quintron,11,106,313091114,no,0
+Steven Wilson,9,106,1287517545,no,0
+Whitechapel,27,106,442958667,no,0
+The Cars,7,105,724786349,no,0
+Goatwhore,9,104,532891410,no,0
+Godsmack,11,104,775056943,no,0
+raza odiada,16,104,457534533,no,0
+Immortal Technique,8,103,618172335,no,0
+The Sisters of Mercy,14,103,595562846,no,0
+Amon Tobin,9,102,986672112,no,0
+At the Gates,8,102,490783304,no,0
+Bloodhound Gang,6,102,297921366,yes,211
+Usao,25,102,421477616,no,0
+$uicideboy$,21,101,468586812,no,0
+10cc,9,101,860118908,no,0
+Dying Fetus,15,101,431871836,no,0
+Issues,20,101,333409038,no,0
+Metalocalypse_ Dethklok,7,101,319376552,no,0
+Skrillex,9,101,515969035,yes,149
+The Tower Recordings,9,101,340612602,no,0
+Unleash The Archers,15,101,621962203,no,0
+Gangsta Blac,6,100,562081507,no,0
+A Tribe Called Quest,7,99,732819931,no,0
+Apoptygma Berzerk,7,99,707641165,no,0
+Cavalera Conspiracy,13,99,359823116,no,0
+Chris Thile,8,98,858660769,no,0
+Justin Townes Earle,8,98,664653234,no,0
+Mastodon,8,98,856913368,no,0
+Pantera,10,98,460010452,yes,61
+Carnifex,9,97,509146732,no,0
+Cult of Luna,11,97,754933471,no,0
+Grandson,46,97,286871649,no,0
+Queens of the Stone Age,9,97,748078366,no,0
+Seventh Wonder,17,97,621294854,no,0
+Wage War,25,97,306908749,no,0
+And_Oceans,18,96,430503675,no,0
+Good Riddance,7,96,337472782,no,0
+Igorrr,20,96,352629149,no,0
+Paramore,15,96,347239900,no,0
+twenty one pilots,10,96,597278383,no,0
+In This Moment,9,95,676905450,no,0
+Poison,9,95,661534376,no,0
+Captain Beefheart & His Magic Band,3,94,295264532,no,0
+Caravan Palace,18,94,425056491,no,0
+Cro-Mags,10,93,311040243,no,0
+Mick Gordon,3,93,411613780,yes,76
+Rammstein,10,93,579237659,yes,62
+The Mars Volta,8,92,613310793,no,0
+City Morgue,8,91,243084205,no,0
+Lorde,23,91,322513872,no,0
+Coal Chamber,6,90,428269284,no,0
+Sylosis,15,90,399700964,no,0
+Tenacious D,14,90,338633651,no,0
+Víkingur Ólafsson,9,90,587890085,no,0
+"Big Brother & The Holding Company, Janis Joplin",6,89,380155805,no,0
+Freedy Johnston,8,89,681804168,no,0
+Ill Niño,7,89,638556309,no,0
+Immortal,11,89,461891593,no,0
+The Crystal Method,11,89,697443214,no,0
+Camper Van Beethoven,5,88,359319956,no,0
+Electric Six,7,88,371389213,no,0
+Jesus Piece,50,88,238087798,no,0
+Kittie,10,88,443308415,yes,104
+Michiru Yamane,4,87,271296638,no,0
+Rage Against the Machine,7,87,373818991,no,0
+The Kills,8,87,466847801,no,0
+Tiffany Day,37,87,222583955,no,0
+Kobaryo,35,86,291434402,no,0
+Pere Ubu,10,86,555959938,no,0
+Social Distortion,8,86,413206295,no,0
+The Coup,6,86,402352659,no,0
+Highly Suspect,24,85,324343592,no,0
+Nhato,35,85,518927994,no,0
+Redalice,25,85,283799297,no,0
+Whitney,17,85,253689811,no,0
+Morgan Wallen,3,84,538368454,no,0
+Paleface Swiss,23,84,280914682,no,0
+Billy Strings,7,83,464243556,no,0
+Cornelius,7,83,710425217,no,0
+Psychedelic Porn Crumpets,8,83,461166959,no,0
+The Dream Eaters,10,83,175693706,no,0
+YUNGBLUD,25,83,303734658,no,0
+Late Arcane,8,82,611377703,no,0
+Turnstile,16,82,224414645,no,0
+In Love With a Ghost,11,81,172550405,no,0
+Little People,17,81,317955851,no,0
+Regina Spektor,8,81,325173302,no,0
+Sabrina Carpenter,7,81,388537782,no,0
+Silverchair,8,81,462869037,no,0
+Skold,8,81,469049252,no,0
+Thy Art Is Murder,16,81,311948092,no,0
+Tool,9,81,539147909,yes,69
+A Perfect Circle,8,80,511819612,no,0
+DJ Cummerbund,80,80,294750634,no,0
+Stone Sober,24,80,239674187,no,0
+Wagon Christ,7,80,768012135,no,0
+t.A.T.u_,8,80,566886741,no,0
+Danny Brown,5,79,186613566,no,0
+Horace Andy,6,79,294395742,no,0
+Ka,7,79,467238613,no,0
+Kendrick Lamar,8,79,354799474,no,0
+Philip Glass,8,79,1119751047,no,0
+Spice Girls,6,79,637768657,no,0
+The String Cheese Incident,8,79,764378938,no,0
+Austrian Death Machine,7,78,391641033,no,0
+Aye Mammoth,13,78,198974919,no,0
+Electric Octopus,14,78,1195840525,no,0
+Kanine,49,78,294472151,no,0
+grandson,31,78,254273085,no,0
+Cannabis Corpse,8,77,428323185,no,0
+Gruff Rhys,7,77,559919053,no,0
+Ludwig van Beethoven,3,77,981659475,no,0
+Nekrogoblikon,11,77,459384597,no,0
+Periphery,7,77,429476625,no,0
+Portishead,15,77,328663681,no,0
+"Run The Jewels, El-P, Killer Mike",18,77,298945508,no,0
+Flobots,6,76,487085639,no,0
+Nova Twins,20,76,211907390,no,0
+PinkPantheress,21,76,198072926,no,0
+"Stock, Hausen & Walkman",4,76,201143346,no,0
+The xx,8,76,255068945,no,0
+"Tyler, The Creator",10,76,229176095,no,0
+First Blood,10,75,206757456,no,0
+Haste the Day,6,75,521556927,no,0
+"Iron Reich, Akira Yamaoka",3,75,230983631,no,0
+Layo & Bushwacka,15,75,474754990,no,0
+R.A. the Rugged Man,6,75,259554465,no,0
+The Sword,7,75,465503187,no,0
+Three Days Grace,10,75,242942973,no,0
+Knocked Loose,10,74,205993632,no,0
+Spike and the Gimme Gimmes,6,74,271603694,no,0
+System Of A Down,6,74,206491243,yes,74
+Iscariot,19,73,258715035,no,0
+DADA1K,31,72,171599678,no,0
+Ratatat,11,72,250227998,no,0
+Shadows Fall,7,72,366726304,no,0
+BOREDOMS,6,71,280278869,no,0
+Bob Vylan,16,71,191658670,no,0
+J.B.O_,8,71,238260962,no,0
+Paul Cauthen,25,71,221298911,no,0
+The Dillinger Escape Plan,6,71,400819715,no,0
+Abysmal Dawn,13,70,569405792,no,0
+Amyl and The Sniffers,12,70,166390126,no,0
+Billie Eilish,19,70,315648089,no,0
+Childish Gambino,6,70,504236476,no,0
+Grails,8,70,576152235,no,0
+The Farm,4,70,681764232,no,0
+Tropical Fuck Storm,21,70,395889813,no,0
+Young Widows,6,70,274749495,no,0
+Yungblud,11,70,259670443,no,0
+Gojira,6,69,359351028,no,0
+MF DOOM,5,69,360310431,no,0
+Rings of Saturn,9,69,501911274,no,0
+cupcakKe,7,69,427293379,no,0
+Chrome,9,68,311512617,no,0
+Die Antwoord,5,68,468374594,yes,75
+Haggus,9,68,115974660,no,0
+Richie Kavanagh,6,68,198667769,no,0
+The Halluci Nation,18,68,226411320,no,0
+Faith and the Muse,5,67,509818997,no,0
+Mitski,7,67,175760673,no,0
+Escuela Grind,16,66,130027249,no,0
+Kneecap,23,66,185787921,no,0
+Marshmello,6,66,321554363,no,0
+Seven Spires,17,66,296027323,no,0
+Ashnikko,15,65,188639946,yes,37
+Conquer Divide,16,65,241726563,no,0
+Crazy & the Brains,29,65,183751367,no,0
+Des’ree,6,65,575711080,no,0
+Justice,6,65,524628423,no,0
+Michael Nyman,4,65,498946025,no,0
+Wesley Willis,4,65,320193267,no,0
+Flipper,15,64,242423554,no,0
+The Glitch Mob,5,64,402980829,no,0
+_wumpscut_,6,64,495729547,no,0
+Dido,5,63,537168779,no,0
+FOG,4,63,204352288,no,0
+Teargas,11,63,229909608,no,0
+Yakui the Maid,6,63,224081734,no,0
+Altın Gün,6,62,417603770,no,0
+CKY,7,62,324499546,yes,62
+Crystal Lake,16,62,288050088,no,0
+Datsik,8,62,454904127,no,0
+"Filth, Smell",44,62,358590507,no,0
+King Krule,4,62,404689794,no,0
+Mephistofeles,10,62,309167800,no,0
+New Order,14,62,314456522,no,0
+Run the Jewels,4,62,402042953,yes,63
+Vampire Weekend,6,62,169203385,no,0
+Waveshaper,7,62,237988800,no,0
+Fox Lake,22,61,185122872,no,0
+Logic System,6,61,515201089,no,0
+Blind Guardian Twilight Orchestra,2,60,300788851,yes,58
+Strapping Young Lad,6,60,388183782,no,0
+ohGr,5,60,325039586,no,0
+Drug Church,7,59,120724330,no,0
+"Lady Gaga, Bradley Cooper",8,59,141941054,no,0
+Party Cannon,15,59,307391539,no,0
+Pixies,6,59,169810685,no,0
+Spiritbox,21,59,245974466,no,0
+The Police,10,59,172484455,no,0
+unholy,42,59,187951015,no,0
+Animals as Leaders,6,58,397122615,no,0
+Gracie Abrams,5,58,245742496,no,0
+PNAU,5,58,450349694,no,0
+Tove Lo,5,58,184990359,no,0
+DREGG,23,57,153489181,no,0
+Howard Shore,4,57,224554997,no,0
+Little Feat,5,57,250050182,no,0
+Rihanna,24,57,212713712,no,0
+Adele,7,56,247351201,no,0
+Massive Attack,6,56,417805904,no,0
+S Y Z Y G Y X,12,56,375309144,yes,16
+Sanguisugabogg,15,56,226025748,no,0
+Starjunk 95,31,56,434099111,no,0
+Viagra Boys,4,56,333776191,no,0
+iwrestledabearonce,4,56,338811018,no,0
+Alien Ant Farm,11,55,197775837,no,0
+Boards of Canada,5,55,261823936,yes,53
+Crystal Castles,5,55,364332202,no,0
+Diplo,4,55,445798078,no,0
+Kraftwerk,9,55,389410332,no,0
+Mac Miller,5,55,219919685,no,0
+Amyl and the Sniffers,11,54,129780592,no,0
+Melanie Martinez,6,54,183845816,no,0
+The Accused,3,54,93917938,no,0
+The Dead South,5,54,304584014,no,0
+BLP KOSHER,4,53,306855372,no,0
+El‐P,4,53,232040712,no,0
+Fantastic Plastic Machine,4,53,250592026,no,0
+Cop Shoot Cop,4,52,305310987,no,0
+Durry,22,52,162696716,no,0
+"Filth, Pleasure",24,52,308692290,no,0
+Flo Rida,5,52,317294292,no,0
+Fraser Edwards,18,52,207576292,no,0
+Goblin Cock,5,52,171751589,no,0
+Job for a Cowboy,6,52,212734551,no,0
+KAYTRANADA,3,52,321555521,no,0
+Pink Fairies,6,52,550854268,no,0
+Skinless,6,52,263483563,no,0
+Suede,3,52,242093173,no,0
+Code_ Pandorum,8,51,224544269,no,0
+Dead Pony,16,51,151628404,no,0
+Dethklok,4,51,385957203,no,0
+Dicks,3,51,128818299,no,0
+FreeTEMPO,7,51,258170364,no,0
+Green Jellÿ,4,51,259141138,no,0
+Lou Reed,6,51,255732752,no,0
+Luke Slott,10,51,364099502,no,0
+The Alan Parsons Project,3,51,184122981,no,0
+Violent Onsen Geisha,6,51,252652365,no,0
+Flagman,18,50,220287900,no,0
+Pleasantries,8,50,170001051,no,0
+Richard Cheese & Lounge Against The Machine,4,50,233768083,no,0
+The Subhumans,3,50,255293782,no,0
+Adam X,6,49,631704542,no,0
+Bongripper,10,49,707708739,yes,44
+Dance With the Dead,6,49,218098456,yes,2
+KNEECAP,13,49,155794701,no,0
+Mechina,13,49,341235476,no,0
+Razed in Black,5,49,259716591,no,0
+Slowdive,4,49,236115109,no,0
+Stoned Jesus,11,49,554264877,no,0
+Velvet Revolver,5,49,195964377,no,0
+"War, Endel",3,49,131565321,no,0
+Bob Dylan,13,48,223989323,no,0
+"Dead Prez, Outlawz",3,48,156589280,no,0
+Oculi Melancholiarum,9,48,241513404,no,0
+Run The Jewels,6,48,163807286,yes,63
+Tom Waits,5,48,168718550,no,0
+letlive_,4,48,182186754,no,0
+Breaking Benjamin,9,47,165334719,no,0
+The Byrds,6,47,129669761,no,0
+Cave Dweller,14,46,203567206,no,0
+Cocteau Twins,14,46,175745107,no,0
+Grip Inc_,5,46,165573893,no,0
+Kontrust,7,46,153195108,no,0
+Michael Jackson,14,46,217024595,no,0
+Neil Young,8,46,228184691,no,0
+Photek,5,46,307283956,no,0
+Cro‐Mags,5,45,146784037,no,0
+Glenn Gould,3,45,139949006,no,0
+Polyphia,4,45,309757804,no,0
+SPK,6,45,180288065,no,0
+Scum,14,45,142423512,no,0
+Soul Coughing,3,45,179197941,no,0
+African Head Charge,4,44,187015903,no,0
+Garbage,7,44,169945829,no,0
+Halsey,7,44,134386029,no,0
+Neil Young & Crazy Horse,4,44,282906297,no,0
+Revenge,5,44,164572389,no,0
+SCANDAL,20,44,170553800,no,0
+William Shatner,5,44,183123012,no,0
+Bio-Tek,4,43,318072890,no,0
+Bix Beiderbecke,2,43,122816911,no,0
+Bladee,2,43,104520768,no,0
+Panic! At The Disco,7,43,132290293,no,0
+Solar Eruption,10,43,168849846,no,0
+Dayglow,6,42,112089359,no,0
+Hank Williams,3,42,109233612,no,0
+Jack Stauber,3,42,81754607,no,0
+Superjoint Ritual,3,42,277175430,no,0
+The Posies,3,42,123001933,no,0
+Unicorn Kid,10,42,146028159,no,0
+Alien Weaponry,3,41,370216581,no,0
+DJ Sabrina The Teenage DJ,2,41,196881165,no,0
+DMX,2,41,130210839,no,0
+Half Moon Run,5,41,261672069,no,0
+Hobo Johnson,5,41,107694153,no,0
+Infant Annihilator,3,41,307165973,no,0
+Jah Lloyd,4,41,125123015,no,0
+Just a Band,3,41,162169279,no,0
+Karyn White,4,41,371328536,no,0
+Lorna Shore,5,41,209695823,no,0
+The Upsetters,4,41,150176376,no,0
+Vile,4,41,276383882,no,0
+上海アリス幻樂団,2,41,129206047,no,0
+ArnoCorps,7,40,111992808,no,0
+Bretus,5,40,436379583,no,0
+Cage The Elephant,5,40,128978821,no,0
+Crywank,4,40,84736440,no,0
+Current 93,5,40,200516867,no,0
+Oasis,8,40,161055354,no,0
+Panopticon,7,40,287429068,no,0
+Shaboozey,6,40,236409254,no,0
+Teddy Swims,4,40,209942166,no,0
+Year of the Knife,7,40,92963359,no,0
+Bikini Kill,5,39,75946182,no,0
+David Guetta,8,39,122938580,no,0
+Fall Out Boy,12,39,127974321,no,0
+Fat Worm of Error,3,39,113242337,no,0
+Green Lung,8,39,184618171,no,0
+Heavn,25,39,52349116,no,0
+Kid_,22,39,61190654,no,0
+Klein,22,39,59736474,no,0
+MAJIC,22,39,59731818,no,0
+Switchblade Symphony,3,39,186178679,no,0
+Wolly,25,39,51796600,no,0
+Yowshi,25,39,51941932,no,0
+dj BC,3,39,118313772,no,0
+dulcet,22,39,58292408,no,0
+Ariana Grande,6,38,121994117,no,0
+Asura,5,38,274635613,no,0
+Bleachers,3,38,129889042,no,0
+Blossom,21,38,57211591,no,0
+Cashmere,12,38,57899663,no,0
+Hikaru Utada,5,38,353365939,no,0
+Juuzou,9,38,58197985,no,0
+Karma,3,38,177199930,no,0
+Lonely Boy,24,38,49236691,no,0
+Loodwig,21,38,57535499,no,0
+Minor Threat,6,38,60237816,no,0
+Nivla,21,38,57749963,no,0
+Pablo Casals,1,38,109178502,no,0
+Rascal,24,38,49543431,no,0
+Snow_,21,38,57571714,no,0
+Sumthin,24,38,51001080,no,0
+Tashi,12,38,56633847,no,0
+The Germs,2,38,89024460,no,0
+The Magic Beans,3,38,432573791,no,0
+Vital,22,38,151415067,no,0
+WARGASM,17,38,126897782,no,0
+Wells,24,38,49460226,no,0
+Wire,3,38,81592231,no,0
+YAKUITHEMAID,5,38,150737917,no,0
+saamson,24,38,51733593,no,0
+yums_,24,38,49789871,no,0
+BTS,14,37,121351373,no,0
+Bohren & Der Club Of Gore,10,37,291145569,no,0
+Darknet,6,37,223772793,no,0
+Dolly Parton & Family,1,37,211138922,no,0
+Fatboy Slim,5,37,156009216,no,0
+Hocico,21,37,182521024,no,0
+Jon Bellion,4,37,142881877,no,0
+London Funk Allstars,3,37,237793168,no,0
+Motionless In White,7,37,134018675,no,0
+Paul Clayton,2,37,119015087,no,0
+her.story,22,37,58570994,no,0
+A Day to Remember,4,36,121690021,no,0
+Alizée,3,36,140796530,no,0
+Conan Gray,4,36,105977096,no,0
+Darkthrone,6,36,184445069,no,0
+Dreams For Two,21,36,60982310,no,0
+Eiji,21,36,55476568,no,0
+Elevators to the Grateful Sky,3,36,243283784,no,0
+Flôr,21,36,58958172,no,0
+Just Johnny,21,36,54941032,no,0
+Kevin Ayers,4,36,182302109,no,0
+Lin-Manuel Miranda,1,36,108514093,no,0
+Nothing Less,21,36,59764470,no,0
+Persecutor,12,36,102827201,no,0
+Softhead,21,36,54041909,no,0
+Summoning,4,36,228688388,no,0
+Tashan,3,36,293788224,no,0
+mëow mëow,21,36,58190944,no,0
+三宅優,1,36,159227905,no,0
+Adeem the Artist,6,35,128789381,no,0
+Against Me!,6,35,111021331,no,0
+American Nightmare,4,35,139965974,no,0
+Castlevania Sound Team,1,35,70496430,no,0
+Finishing Move Inc_,1,35,124628581,no,0
+The 1975,6,35,120572272,no,0
+Tortuga,6,35,175907894,no,0
+Weezer,7,35,103001675,yes,167
+Black Elephant,5,34,136929901,no,0
+Bong Kong,9,34,118616156,yes,26
+Claude‐Michel Schönberg,1,34,106860683,no,0
+Die Spitz,10,34,102078542,no,0
+End It,12,34,48933373,no,0
+Hunx and His Punx,3,34,149457527,no,0
+Iron Butterfly,4,34,239805808,no,0
+Katy Perry,11,34,116421582,no,0
+Orgy,3,34,144679240,no,0
+Powerflo,6,34,124374370,no,0
+Rage Against The Machine,5,34,125654067,no,0
+Razika,3,34,96143473,no,0
+Sleep,6,34,353968692,yes,18
+Sun City Girls,3,34,92654312,no,0
+Thank You Scientist,3,34,196860404,no,0
+The Kooks,4,34,99501190,no,0
+The Zenith Passage,9,34,140996136,no,0
+Van Halen,6,34,125942598,no,0
+Vienna Vienna,17,34,94516891,no,0
+WINTERSUN,5,34,332672559,no,0
+Abyssus,7,33,110535755,no,0
+Ancst,6,33,118894198,no,0
+Asking Alexandria,9,33,131925695,no,0
+Bratmobile,5,33,57523614,no,0
+Charly Bliss,3,33,205928556,no,0
+Death in June,3,33,113170658,no,0
+Eight Foot Manchild,11,33,130019116,no,0
+Gnome,8,33,263972426,no,0
+Nick Drake,5,33,135447267,no,0
+Onyx & Snowgoons,2,33,111676005,no,0
+The Inner Devil,1,33,192612855,no,0
+Year of the Cobra,5,33,165470104,no,0
+Alec Benjamin,5,32,91090503,no,0
+Archspire,11,32,126110784,no,0
+Harley Poe,8,32,112858992,no,0
+Iwrestledabearonce,7,32,111920757,no,0
+Raised by Owls,2,32,126136859,no,0
+The Plimsouls,2,32,92112506,no,0
+"Blatz, Filth",1,31,123232869,no,0
+Bratkilla,5,31,157590568,no,0
+DJ Sabrina the Teenage DJ,1,31,135652953,no,0
+Dismembered Fetus,1,31,92224026,no,0
+Effortless,20,31,48159951,no,0
+IDLES,5,31,103720049,no,0
+Jason Isbell and the 400 Unit,3,31,235685940,no,0
+Kim Boekbinder,3,31,99413324,no,0
+Macklemore & Ryan Lewis,4,31,133042312,no,0
+Natsu,20,31,48903375,no,0
+Roxy Music,4,31,157826231,no,0
+Sum 41,8,31,81136511,no,0
+"fourseasns, Laur",6,31,62469598,no,0
+omniboi,3,31,119253375,no,0
+山根ミチル,1,31,107810596,no,0
+Akasha,19,30,44153722,no,0
+Black Spell,3,30,261582895,no,0
+Blind Willie McTell,2,30,72506644,no,0
+Cordyceps Corpse,7,30,55262362,no,0
+Falls of Rauros,5,30,218765678,no,0
+Hexis,3,30,99071842,no,0
+KISS,5,30,140324270,no,0
+Murmur,19,30,47282877,no,0
+Ocean of Illusions,9,30,104754912,no,0
+"Outlawz, Outlawz, Dead Prez, Dead Prez",1,30,95300475,no,0
+Pimsleur,1,30,957660056,no,0
+"Queen, Adam Lambert",5,30,106135333,no,0
+Terence Mckenna,1,30,1963520809,no,0
+The Rationals,1,30,77745555,no,0
+Violet Cold,7,30,157631263,no,0
+Void Singer,3,30,83128343,no,0
+half•alive,2,30,98151841,no,0
+Apel8,2,29,171120511,no,0
+"Bathory, Quorthon",2,29,135268914,no,0
+Buckethead & Viggo Mortensen,3,29,250855999,no,0
+CAKE,4,29,100937279,no,0
+Carsie Blanton,9,29,86488668,no,0
+ColdWorld,4,29,152346085,no,0
+Dawn Ray'd,5,29,112069075,no,0
+"Discipline, Agnostic Front",1,29,64124039,no,0
+No$hu,3,29,75873899,no,0
+Owl City,4,29,107919974,no,0
+Popol Vuh,4,29,198433353,no,0
+Pupil Slicer,3,29,90495039,no,0
+Reggie Watts,3,29,120825556,no,0
+Riot Games Music Team,1,29,195573869,no,0
+Shockwire,6,29,65541608,no,0
+Sia,21,29,110968902,no,0
+Sordide,4,29,159867104,no,0
+Stevie Wonder,8,29,134277875,no,0
+Third Eye Blind,2,29,120822641,no,0
+Caroline Polachek,3,28,98187160,no,0
+Clazziquai Project,2,28,105831030,no,0
+DANCE WITH THE DEAD,3,28,271045962,yes,2
+El-P,6,28,124283619,yes,55
+Exuma,3,28,124672725,no,0
+INHUMAN,1,28,109529105,no,0
+Idyllic,18,28,45197666,no,0
+John Carpenter & Alan Howarth,1,28,64396425,no,0
+Komorebi,18,28,48349993,no,0
+Scorbut,2,28,111582640,no,0
+Shou,18,28,46184007,no,0
+Steely Dan,3,28,131233120,no,0
+Toby Fox,3,28,45191625,no,0
+Vukari,5,28,160628425,no,0
+Whimsical,18,28,44535853,no,0
+Added Color,14,27,87599790,no,0
+"Akira Yamaoka, Arkadiusz Reikowski",1,27,104473232,no,0
+"Buckethead, Bryan “Brain” Mantia & Melissa Reese",1,27,222473345,no,0
+CHINCHILLA,11,27,76915592,no,0
+Depravation,3,27,92659372,no,0
+Don Broco,2,27,98591912,no,0
+"Faith Evans, The Notorious B.I.G_",1,27,73528069,no,0
+Gnarkill,2,27,61756194,no,0
+Harley D,8,27,112161629,no,0
+Ice Nine Kills,6,27,95461410,no,0
+Kesha,6,27,86748569,no,0
+MGMT,4,27,114598875,no,0
+Oliver Tree,5,27,139551858,no,0
+PRESIDENT,13,27,86624140,no,0
+Pissgrave,3,27,194835488,no,0
+Ragana,4,27,128457542,no,0
+Shroud Eater,4,27,124581223,no,0
+Slowtorch,3,27,132220164,no,0
+The Strokes,3,27,81030865,no,0
+The Waterboys,2,27,119875692,no,0
+Utada,2,27,213655525,no,0
+WILLOW,4,27,83040735,no,0
+A Camp,2,26,196053921,no,0
+Alter Bridge,2,26,120360271,no,0
+Babes In Toyland,6,26,74381017,no,0
+Brian Tyler,1,26,69345386,no,0
+Cavetown,10,26,90848277,no,0
+Ecca Vandal,10,26,83170803,no,0
+Frozen Soul,7,26,104677747,no,0
+Hasan Salaam,2,26,86782187,no,0
+John Powell,2,26,75412256,no,0
+La Coka Nostra,2,26,189883260,no,0
+"Snoop Dogg, Wiz Khalifa",2,26,96711547,no,0
+"Woody Guthrie, Leadbelly",1,26,61522994,no,0
+Acid Bath,2,25,119493991,no,0
+Bob Marley & The Wailers,9,25,104931623,no,0
+"Cypress Hill, London Symphony Orchestra",5,25,98911115,no,0
+"DJ Myosuke, Joe Fight",6,25,66352704,no,0
+Devics,5,25,100577601,no,0
+Dr. Alimantado,2,25,77338794,no,0
+Esselfortium,3,25,109322810,no,0
+Formula,10,25,96547945,no,0
+Fragrance,5,25,93471368,no,0
+Glenn Danzig,3,25,66462377,no,0
+Lee Perry & The Upsetters,2,25,76959126,no,0
+Marskye,1,25,89299425,no,0
+Martha Argerich,2,25,119222914,no,0
+Mumford & Sons,2,25,90513500,no,0
+P!nk,10,25,89730688,no,0
+Penelope Scott,4,25,292003846,no,0
+Prince,15,25,130199820,no,0
+Quicksilver Messenger Service,3,25,142438193,no,0
+Rainbow Kitten Surprise,4,25,76800608,no,0
+Skinny Girl Diet,4,25,63035645,no,0
+Sleater-Kinney,6,25,70322591,no,0
+The Black Keys,4,25,81110456,no,0
+The Velvet Underground,4,25,133903671,no,0
+"Usao, Massive New Krew",3,25,80867359,no,0
+Willie Nelson,4,25,92640416,no,0
+Wolves In The Throne Room,7,25,203934941,no,0
+alt-J,3,25,79924530,no,0
+desert sand feels warm at night,7,25,199593933,no,0
+girl in red,13,25,73554821,no,0
+1782,3,24,234823984,no,0
+Acid Mammoth,4,24,363241586,no,0
+El Cuarteto de Nos,2,24,94226290,no,0
+Francis Bebey,2,24,142522135,no,0
+M.M.M.F.D_,4,24,81071277,no,0
+Moby Grape,2,24,72801931,no,0
+Paysage D'hiver,2,24,174014023,no,0
+Phoebe Bridgers,2,24,84433938,no,0
+Traitors Among Us,10,24,102319364,no,0
+Zombie Hyperdrive,2,24,83010047,no,0
+splatmusicofficial,24,24,61860399,no,0
+100 gecs,3,23,52146865,no,0
+Aim,3,23,140389736,no,0
+Anjimile,3,23,62944581,no,0
+"Avith Ortega, Akira Yamaoka",5,23,52584521,no,0
+Bakar,3,23,150250060,no,0
+Czeluść,5,23,78992413,no,0
+Dua Lipa,4,23,75029370,no,0
+Emmylou Harris & Rodney Crowell,2,23,162892135,no,0
+"Filth, Splendour",5,23,155035144,no,0
+Full of Hell,2,23,42396198,no,0
+Great Grandpa,2,23,84229275,no,0
+Haywire 617,4,23,40210322,no,0
+Hole,5,23,76980615,no,0
+Ignaz Friedman,1,23,125096324,no,0
+Iskandr,5,23,201924471,no,0
+Këkht Aräkh,2,23,66643588,no,0
+L7,6,23,77063040,no,0
+Lin‐Manuel Miranda,1,23,73980164,no,0
+MALO,4,23,191646481,no,0
+MOMENTUM,2,23,78599549,no,0
+Madvillain,2,23,50600535,no,0
+Mannequin Pussy,3,23,41432297,no,0
+Max Romeo,2,23,90431441,no,0
+Monomorte,22,23,97617049,no,0
+NEU!,3,23,142495765,no,0
+Olivia Rodrigo,2,23,73203584,no,0
+Paul Zimmermann & Waveshaper,1,23,58512290,no,0
+Slaughter to Prevail,2,23,170957825,no,0
+Spectral Lore,3,23,245146903,no,0
+Streetlight Manifesto,3,23,109093601,no,0
+TOWA TEI,2,23,81905142,no,0
+The Incredible String Band,2,23,123869530,no,0
+The Warning,3,23,78186795,no,0
+Thirty Seconds to Mars,4,23,94229050,no,0
+Aretha Franklin with The Ray Bryant Combo,1,22,118939370,no,0
+Björk,3,22,95677723,no,0
+Bo Burnham,2,22,66105707,no,0
+"Borgore, Tima Dee",11,22,70956285,no,0
+Born Slave,6,22,92022826,no,0
+Bou,8,22,79328931,no,0
+Celldweller,6,22,88444526,no,0
+Chvrn,10,22,74258499,no,0
+Daniel Deluxe,3,22,55999660,yes,2
+Grim Salvo,2,22,86307558,no,0
+Harry Styles,3,22,77203307,no,0
+Jo Mama,2,22,150607257,no,0
+Kilo G,2,22,89166039,no,0
+Neurotech,9,22,98591392,no,0
+"Prof, Rahzwell",1,22,51298060,no,0
+Reol,2,22,72048755,no,0
+The Mechanisms,3,22,57167659,no,0
+"Usao, Shandy kubota",8,22,89175391,no,0
+Woe,4,22,142573325,no,0
+_zoviet_france_,2,22,69532136,no,0
+Acid Ghost,4,21,53129037,no,0
+Alexisonfire,2,21,87105511,no,0
+Antecantamentum,4,21,112018452,no,0
+Chainsaw Kittens,2,21,67092487,no,0
+"Coil, Elph",1,21,121649129,no,0
+Gaerea,3,21,137511231,no,0
+"Geto Boys, Scarface",1,21,68094116,no,0
+Hailu Mergia,2,21,129850406,no,0
+Lana Del Rey,7,21,124720891,no,0
+Leila Josefowicz,1,21,106636609,no,0
+Lil Peep,9,21,64700330,no,0
+Lola Young,2,21,122024434,no,0
+Maha Sohona,5,21,147270473,no,0
+Rampancy,4,21,58575600,no,0
+Revolting Cocks,8,21,117459538,no,0
+Soft Machine,2,21,124307656,no,0
+The East Pointers,2,21,81373998,no,0
+Void of Sleep,3,21,222590341,no,0
+Wiegedood,4,21,140257927,no,0
+Yaotl Mictlan,2,21,111976424,no,0
+Yellow Claw,2,21,61393680,no,0
+AC_DC,7,20,81944559,no,0
+Alvarius B_,3,20,54732384,no,0
+Anaïs Mitchell,1,20,59387537,no,0
+Backxwash,2,20,77837224,no,0
+Bebopovsky And The Orkestry Podyezdov,17,20,105405769,no,0
+Black Rainbows,2,20,162732254,no,0
+Brainoil,3,20,147365145,no,0
+Claude Debussy,3,20,86220008,no,0
+Diamond Rings,2,20,169644213,no,0
+Do Nothing,3,20,67756748,no,0
+Doechii,2,20,52750384,no,0
+Downfall Of Gaia,3,20,113002741,no,0
+Dr. Octagon,1,20,64258918,no,0
+Fugitive,10,20,71763082,no,0
+Gong,2,20,122456954,no,0
+Hante_,7,20,91899736,no,0
+Hyems,3,20,118736612,no,0
+Joseph Haydn,1,20,141069493,no,0
+Junior Byles & The Upsetters,1,20,51797291,no,0
+Lizard Queen,2,20,278288183,no,0
+Louane,3,20,64888620,no,0
+Martyrdöd,4,20,65620054,no,0
+Nathan Furst,1,20,71767240,no,0
+Necrophagist,3,20,126802934,no,0
+Pedro Bromfman,1,20,47026656,no,0
+Savage Grace,2,20,91733716,no,0
+Simula,16,20,84453945,no,0
+Sunday Cruise,4,20,59398766,no,0
+Sybreed,6,20,91875714,no,0
+Tempers,4,20,128931324,no,0
+The Melvins,2,20,102712666,no,0
+The Necromancers,5,20,122977684,no,0
+たかやん,4,20,37819579,no,0
+柴田直人プロジェクト,2,20,84698055,no,0
+Arael,16,19,71651977,no,0
+"Black Country, New Road",2,19,113259604,no,0
+Brat,4,19,66037470,yes,18
+Carlo Gesualdo,1,19,78264978,no,0
+Coldplay,9,19,84296497,no,0
+Corporate Avenger,2,19,70736500,no,0
+"DJ Myosuke, Gram",4,19,55310344,no,0
+Destroy Boys,6,19,45278657,no,0
+Elvis Presley,12,19,45660938,no,0
+Jamie xx,4,19,73207783,no,0
+Jordan River Banks,1,19,51703004,no,0
+Khai Dreams,15,19,42159806,no,0
+"Kilo Curt, Mac Dre",1,19,61627781,no,0
+"Kingspade, Kottonmouth Kings",1,19,53260684,no,0
+Lady Gaga & Bradley Cooper,1,19,61315960,no,0
+Les Rallizes Dénudés,2,19,206087897,no,0
+Metro Boomin,1,19,66393552,no,0
+Mickey Newbury,2,19,83567228,no,0
+Operation Ivy,1,19,35138605,no,0
+Paul Haslinger,1,19,42960445,no,0
+"Philip Glass; Philip Glass Ensemble, Michael Riesman, Robert Wilson",1,19,393595425,no,0
+Pure Healing Waves,19,19,24253018,no,0
+Rufus Zuphall,2,19,115244832,no,0
+Sankara,2,19,51508854,no,0
+Shelagh McDonald,1,19,68167381,no,0
+The Future Sound of London,1,19,100269368,no,0
+The Moldy Peaches,1,19,46288183,no,0
+ゆるふわギャング,1,19,130502705,no,0
+Abyssic Hate,2,18,201879889,no,0
+"Akira Yamaoka, Corentin Brasart, Alt236",1,18,54221577,no,0
+Arctic Monkeys,6,18,54288580,no,0
+Arturo Benedetti Michelangeli Plays Debussy,1,18,70792409,no,0
+Autechre,1,18,175374418,no,0
+Automatic,2,18,132175487,no,0
+Benson Boone,2,18,119855830,no,0
+BlackLab,2,18,88432759,no,0
+Buckethead _ Travis Dickerson,3,18,285409076,no,0
+Cannons,7,18,64167422,no,0
+Cast Of Mamma Mia The Movie,1,18,65025265,no,0
+Chief Keef & Mike WiLL Made‐It,1,18,105582612,no,0
+Crack Amico,8,18,52027207,no,0
+David Teie,4,18,282554866,no,0
+Dirtyphonics,4,18,73882771,no,0
+Donda,1,18,53755848,no,0
+Dr. Dre,3,18,66922734,no,0
+Dryad,2,18,47442051,no,0
+Dödsrit,4,18,142965539,no,0
+"Felix Mendelssohn; Steven Isserlis, Melvyn Tan",1,18,124586927,no,0
+Genitorturers,3,18,69903326,no,0
+Heretoir,3,18,107973704,no,0
+Hulder,2,18,74024545,no,0
+JPEGMAFIA,1,18,44719306,no,0
+Joan Jett,7,18,51201592,no,0
+Lady Gaga feat. Beyoncé,2,18,96311395,no,0
+Le Tigre,5,18,48088764,no,0
+Lunar Funeral,3,18,98964517,no,0
+Macklemore,3,18,72003467,no,0
+Magic Lady,2,18,137269012,no,0
+Ministry and Co-Conspirators,2,18,72980498,no,0
+Mommy Long Legs,3,18,40606706,no,0
+Mordran,3,18,105707967,no,0
+Mott the Hoople,2,18,94881636,no,0
+NONE,4,18,125670273,no,0
+Nickelback,6,18,64565376,no,0
+Out of Darkness,1,18,68459157,no,0
+Ov Sulfur,4,18,71901127,no,0
+Pearl Jam,7,18,74484471,no,0
+Phibes,16,18,58111061,no,0
+R.M.F.C_,2,18,35374654,no,0
+Reinhard Mey,2,18,81248274,no,0
+Robert Wyatt,3,18,110745419,no,0
+SKYND,14,18,88361833,no,0
+Skeler,15,18,58023280,no,0
+Snail’s House,2,18,59553580,no,0
+Speedealer,2,18,71703995,no,0
+Spike Jones & His City Slickers,1,18,49164733,no,0
+Street Sweeper Social Club,2,18,77763204,no,0
+Sun Worship,4,18,136995680,no,0
+The Brian Jonestown Massacre,1,18,82584921,no,0
+The Coathangers,5,18,46343305,no,0
+The George–Edwards Group,1,18,55509891,no,0
+There Is No Us,10,18,72986775,no,0
+Tim Minchin,2,18,72123146,no,0
+Tribe 8,3,18,47710974,no,0
+Tyhjä,3,18,76374727,no,0
+blackbear,4,18,52293356,no,0
+ГОМК,3,18,165584849,no,0
+Aksak Maboul,1,17,57491374,no,0
+Alda,3,17,118499211,no,0
+Ascia,3,17,168873169,no,0
+Baby Opaque,2,17,44448126,no,0
+Big Joanie,4,17,45110291,no,0
+Billy Strings & Don Julin,1,17,85737623,no,0
+Cast of Mamma Mia! The Movie,1,17,59814907,no,0
+Chappell Roan,4,17,61217730,no,0
+Conflict,3,17,86679450,no,0
+"Dead Prez, DJ Green Lantern",2,17,50627197,no,0
+Delaying the Inevitable,3,17,76613166,no,0
+"Edvard Grieg, Jean Sibelius; Berliner Philharmoniker, Herbert von Karajan",1,17,96931744,no,0
+Ernte,2,17,78448794,no,0
+Flesh,7,17,75520688,no,0
+Fratura,3,17,44132078,no,0
+Freshman Biology,1,17,43274131,no,0
+Future,1,17,57416326,no,0
+Gorgoroth,3,17,66774442,yes,8
+Haruomi Hosono,2,17,78703195,no,0
+Jerry Lee Lewis,3,17,48835160,no,0
+Lee “Scratch” Perry & The Upsetters,3,17,52421716,no,0
+Liberteer,1,17,25391048,no,0
+Love,3,17,74596142,no,0
+Mona Lisa,2,17,96973518,no,0
+Non Serviam,3,17,95993491,no,0
+Oliver,1,17,55195760,no,0
+Oneohtrix Point Never,1,17,44535866,no,0
+Rita Ora,2,17,55011451,no,0
+Sewerslvt,3,17,101693958,no,0
+Shamayna,6,17,78305443,no,0
+Smallz One,4,17,50778016,no,0
+Stone Sour,8,17,60030691,no,0
+The Doors,5,17,69043076,no,0
+The Muslims,3,17,32177099,no,0
+Toadeater,3,17,112019279,no,0
+Wild's Reprisal,3,17,155498436,no,0
+clipping_,3,17,74601257,no,0
+nachzehrer,4,17,61382593,no,0
+1986オメガトライブ,1,16,70452963,no,0
+83hades,16,16,47161215,no,0
+A Dark Halo,7,16,67638740,no,0
+AFI,2,16,25161998,no,0
+AFSKY,3,16,104299411,no,0
+Alphaxone & Dronny Darko,2,16,203375942,no,0
+Andromeda,1,16,71601034,no,0
+Antonín Dvořák,1,16,287040445,no,0
+"Antonín Dvořák; Peter Toperczer, Marián Lapšanský",1,16,74371754,no,0
+Behemoth,8,16,73252780,no,0
+"Ben Platt, SZA, Sam Smith",1,16,65557041,no,0
+Botanist,3,16,65576085,no,0
+Boy Harsher,10,16,67383298,no,0
+Brothel,16,16,43942048,no,0
+Exmagma,2,16,79149060,no,0
+Fall Of Efrafa,3,16,164615899,no,0
+Four Tet,1,16,51106783,no,0
+Get Scared,4,16,52987552,no,0
+In Flames,4,16,62159936,no,0
+"Joaquin Phoenix, Lady Gaga, Cast of Joker_ Folie à Deux",1,16,38071592,no,0
+John Cale _ Bob Neuwirth,1,16,136430489,no,0
+John Carpenter,1,16,47001362,no,0
+"Juicy J, Wiz Khalifa, Tm88",1,16,58925528,no,0
+M-Beat,5,16,47936960,no,0
+Onyx & L’uZine,1,16,57143416,no,0
+Pierce The Veil,5,16,56639089,no,0
+Poison the Preacher,7,16,62054312,no,0
+Poppy,11,16,45432012,no,0
+Seasick Gladiator,5,16,128654721,no,0
+Simon Viklund,2,16,48888184,no,0
+The Animals,5,16,45768443,no,0
+The Dwarfs of East Agouza,4,16,214228115,no,0
+The Gray Goo,2,16,193809787,no,0
+Turia,3,16,117928609,no,0
+Unwoman,1,16,74431312,no,0
+Villain Accelerate,1,16,43348874,no,0
+Vitamin String Quartet,4,16,62723920,no,0
+Year One,1,16,70198057,no,0
+Yo La Tengo,1,16,74729229,no,0
+Yovel,2,16,78112363,no,0
+Zara Larsson,2,16,50777593,no,0
+“Weird Al” Yankovic & Wendy Carlos,1,16,123497313,no,0
+花冷え。,4,16,56998937,no,0
+ANTLERS,2,15,84690262,no,0
+Agoraphobic Nosebleed _ Converge,1,15,53788608,no,0
+Alphaxone & protoU,2,15,196934655,no,0
+Anarchist Wolves,3,15,28967075,no,0
+Annix,10,15,52430978,no,0
+Ashenspire,2,15,96763379,no,0
+Barenaked Ladies & The Persuasions,1,15,97892765,no,0
+Bilmuri,2,15,40269326,no,0
+Borbetomagus,3,15,169552335,no,0
+"City Morgue, ZillaKami & SosMula",1,15,62753226,no,0
+Clay K Slider,1,15,53502213,no,0
+DWIG,3,15,75911244,no,0
+"Dope D.O.D., Onyx",3,15,44704472,no,0
+Dystopia,3,15,95020112,no,0
+Een Glish,1,15,35423252,no,0
+Egg,15,15,44489301,no,0
+Emmylou Harris with Carl Jackson,1,15,96618192,no,0
+Felix Mendelssohn; Igor Levit,1,15,88826646,no,0
+Fuckface Unstoppable,2,15,74878743,no,0
+Gangsta Blac & Kingpin Skinny Pimp,1,15,124666453,no,0
+John Oswald,1,15,117797773,no,0
+Judas Priest,4,15,62924554,no,0
+"Kendrick Lamar, SZA",1,15,49209636,no,0
+Lightnin' Hopkins,1,15,45185409,no,0
+Lil Texas,1,15,42587120,no,0
+MXMS,15,15,54876215,no,0
+Nailbomb,2,15,109286552,no,0
+New Years Day,3,15,49979505,no,0
+Nick Cave & The Bad Seeds,5,15,80069182,no,0
+Noisia,7,15,59488095,no,0
+"Onyx, Snowgoons",8,15,53837817,no,0
+Painface,2,15,70804916,no,0
+Path to Ixtab,2,15,79738141,no,0
+Princess Nokia,3,15,57485535,no,0
+Qwälen,2,15,61266597,no,0
+Rick James,10,15,67398924,no,0
+Seeds in Barren Fields,2,15,104761546,no,0
+Set It Off,5,15,45314420,no,0
+Shepherds Reign,3,15,72632343,no,0
+Solbrud,2,15,135261890,no,0
+Teargas & Plateglass,2,15,61908627,no,0
+Tom Zé,1,15,52308438,no,0
+Verwoed,3,15,93007736,no,0
+Ween,2,15,51095995,no,0
+"Wiz Khalifa, Curren$y",1,15,46171373,no,0
+"ZZT, Tiga, Zombie Nation",3,15,57963235,no,0
+glass beach,1,15,61046223,no,0
+宇多田ヒカル,4,15,131742017,no,0
+郎朗,1,15,135968328,no,0
+3 Doors Down,3,14,50986718,no,0
+Aretha Franklin with the Royal Philharmonic Orchestra,1,14,99628018,no,0
+Ash Ra Tempel,3,14,181474571,no,0
+Ava Max,9,14,42026252,no,0
+B.o.B,4,14,56317779,no,0
+Bonjour Tristesse,3,14,84884246,no,0
+Bruce Springsteen,6,14,61737732,no,0
+Castle Rat,6,14,52732582,no,0
+Childbirth,2,14,27205965,no,0
+Chiodos,2,14,59385755,no,0
+Circa Waves,2,14,40042867,no,0
+Culture Club,2,14,60193708,no,0
+DJ Shadow,2,14,48231697,no,0
+DNCE,1,14,45523903,no,0
+Da Captain Trips,2,14,182777002,no,0
+"Dj Noriken, P_Light",1,14,63731551,no,0
+Drouth,3,14,85008440,no,0
+Flavia Coelho,1,14,54876723,no,0
+Grinning Death's Head,1,14,35928463,no,0
+"Henry Rollins, Rollins Band",1,14,56028326,no,0
+"Hopsin, SwizZz",1,14,56012813,no,0
+Ic3peak,7,14,39488821,no,0
+Kode9 + The Spaceape,1,14,65345750,no,0
+Kooks,1,14,38152490,no,0
+Louis Prima,1,14,35770562,no,0
+MC Abdul,9,14,32976235,no,0
+MF DOOM & MF Grimm,1,14,87491756,no,0
+Madison Cunningham,1,14,49526626,no,0
+Mess,2,14,112509702,no,0
+Mom Jeans_,2,14,38228111,no,0
+Mozey,10,14,48767165,no,0
+Nervosa,1,14,45486780,no,0
+One Direction,5,14,45527609,no,0
+Overthrust,2,14,41817478,no,0
+Paul Linford,1,14,40999304,no,0
+Quintron & Miss Pussycat,2,14,45473033,no,0
+Razed In Black,1,14,126490810,no,0
+Rex Orange County,7,14,46201742,no,0
+Sabaton,4,14,51690088,no,0
+Shawn Wasabi,3,14,43895044,no,0
+Soul Glo,3,14,39463146,no,0
+Swmrs,1,14,42642435,no,0
+Sørgelig,2,14,68065210,no,0
+Tabata,3,14,54607204,no,0
+The Decemberists,2,14,68369546,no,0
+The Warriors,2,14,31397152,no,0
+Tom Grennan,1,14,91658858,no,0
+Trespasser,3,14,65853899,no,0
+"Triple Threat, Twiztid, Blaze Ya Dead Homie",1,14,45476171,no,0
+Vampyric,3,14,52132681,no,0
+Vladimir Horowitz,1,14,64236957,no,0
+"Wiz Khalifa, Cardo, Sledgren",1,14,39370998,no,0
+face to face,1,14,46459365,no,0
+nayz,1,14,63863379,no,0
+Øde Vinter,2,14,70844941,no,0
+Aberdeen is Dead,1,13,44182427,no,0
+"Annihilator, Stu Block, Dave Lombardo",3,13,64263659,no,0
+Arcadia,1,13,41982844,no,0
+"Architeuthis, Black Stag Rising",1,13,32489079,no,0
+Astray We Bloom,9,13,42338502,no,0
+Augustus Pablo,1,13,42880085,no,0
+Billy Joel,9,13,53823252,no,0
+Black Star,1,13,42118872,no,0
+Bo Hansson,1,13,55976839,no,0
+Boy Pablo,1,13,37768111,no,0
+CRX,6,13,42843228,no,0
+"Cara Neir, Wildspeaker",1,13,36560016,no,0
+"Charli xcx, Troye Sivan",5,13,40558728,no,0
+"Coil, Zos Kia, Ake",1,13,58872741,no,0
+Country Mike & the Boys,1,13,67413337,no,0
+Demi Lovato,8,13,42141393,no,0
+Der Weg einer Freiheit,2,13,96622092,no,0
+Dj Seduction,10,13,59487833,no,0
+Djo,2,13,38079264,no,0
+Dopemass,2,13,230370079,no,0
+Emperor,4,13,72385292,no,0
+Ewïg Frost,1,13,27317973,no,0
+Giant Robot,1,13,108625066,no,0
+Gladkill,10,13,50637590,no,0
+Gotye,2,13,51182924,no,0
+Gza,1,13,57434214,no,0
+Heartlay,5,13,44640424,no,0
+ICU,1,13,97917627,no,0
+Illidiance,5,13,49140848,no,0
+Joe Glazer,1,13,39077396,no,0
+"Johnny Cash, Mike McCready",1,13,38478633,no,0
+Kamaiyah,1,13,45852878,no,0
+Kerry King,1,13,105223209,no,0
+Kim Wilde,2,13,39313248,no,0
+King Apathy,2,13,57088372,no,0
+"Leila Josefowicz, John Novacek",1,13,150890534,no,0
+Little Teeth,2,13,63187305,no,0
+Mac Sabbath,0,13,73160104,no,0
+Macy Gray & The California Jet Club,1,13,92037454,no,0
+Maroon 5,4,13,44333536,no,0
+Mayday Parade,2,13,51129393,no,0
+Minuit Machine,6,13,58549010,no,0
+Moncreep,3,13,31624328,no,0
+Montaigne,1,13,54032031,no,0
+Oklou,1,13,37290576,no,0
+Pulp,2,13,56078232,no,0
+REOL,1,13,47577194,no,0
+Roy Blair,1,13,43857212,no,0
+SOFT PLAY,1,13,33912483,no,0
+Scar Symmetry,6,13,55048794,no,0
+Scarlxrd,9,13,34029302,no,0
+"Selena Gomez, OneRepublic, Yungblud",1,13,48003006,no,0
+Serpentshrine,2,13,59775091,no,0
+Shlohmo,8,13,50677641,no,0
+Spiritual Flower,13,13,18210091,no,0
+Steppenwolf,3,13,61551558,no,0
+Tantra,3,13,95617709,no,0
+Taramis,1,13,57497889,no,0
+TenGraphs,2,13,47397505,no,0
+The Callous Daoboys,1,13,57090505,no,0
+The Gerogerigegege,1,13,43353094,no,0
+The Oh Hellos,1,13,42070955,no,0
+The Red Hot Chili Peppers,1,13,71633386,no,0
+The S.O.S Band,5,13,73200020,no,0
+The Wallflowers,1,13,49307876,no,0
+Thom Yorke,4,13,54076248,no,0
+Torch Runner,1,13,20713592,no,0
+Tumultuous Ruin,4,13,49176670,no,0
+U2,11,13,54501889,no,0
+UTADA HIKARU,1,13,57710529,no,0
+Ultha,3,13,157851262,no,0
+WANDAR,2,13,89738638,no,0
+Wilco,2,13,77534540,no,0
+"Wiz Khalifa, Big K.R.I.T., Girl Talk",4,13,36775231,no,0
+Woman is the Earth,3,13,102474063,no,0
+Wynter Myst,3,13,77109368,no,0
+Zach Hill,1,13,37616301,no,0
+Zapp & Roger,1,13,56850478,no,0
+"efise, Akira Yamaoka",8,13,31787757,no,0
+Ночные Снайперы,1,13,50005317,no,0
+"5 Seconds Of Summer, Yungblud, Alexander 23",1,12,43732018,no,0
+Adorable,1,12,93861055,no,0
+Ahzura,5,12,22356968,no,0
+Ash Borer,3,12,138869972,no,0
+Atmos,6,12,44225902,no,0
+Audioslave,1,12,109464397,no,0
+Avril Lavigne,6,12,39655075,no,0
+Baby Queen,1,12,41746246,no,0
+"Bad Musician, Cave Dweller",7,12,54214925,no,0
+Bobby Krlic,1,12,79612592,no,0
+Body Void,3,12,119838293,no,0
+Brodinski,1,12,31830218,no,0
+Buckethead & Friends,1,12,86938577,no,0
+Charlie Daniels,3,12,81579337,no,0
+Chase & Status,4,12,22876587,no,0
+Chicago Transit Authority,1,12,152880737,no,0
+Christ vs. Warhol,2,12,43619882,no,0
+Closterkeller,4,12,55001796,no,0
+Cloudkicker,4,12,69455080,no,0
+Crimson Throne,2,12,72562644,no,0
+DAY6,2,12,37632828,no,0
+Daegho,2,12,71553532,no,0
+"Daniel Welch, Akira Yamaoka",8,12,31081123,no,0
+Dead To A Dying World,2,12,112734510,no,0
+Destructo Disk,1,12,34847164,no,0
+Det Eviga Leendet,2,12,67113110,no,0
+Devo,1,12,41141124,no,0
+Diavol Strâin,5,12,45525518,no,0
+Dire Straits,1,12,67395680,no,0
+Don Felder,2,12,108806527,no,0
+Duck Sauce,1,12,53553036,no,0
+Elton John,10,12,50861839,no,0
+FKA twigs,2,12,47798728,no,0
+Felix Mendelssohn,1,12,154267921,no,0
+Fermata,3,12,90679207,no,0
+Folque,1,12,42032873,no,0
+Frank Zappa,5,12,69473424,no,0
+Funhouse,6,12,49238771,no,0
+Gee Tee,3,12,20902871,no,0
+"Girls Against Boys, The Original Harmony Ridge Creek Dippers, Akinyele, Onyx",1,12,52673494,no,0
+Grimes,9,12,46442119,no,0
+Ground Zero System,2,12,54500151,no,0
+Gumshoes,1,12,49918925,no,0
+Guns N’ Roses,5,12,48224212,no,0
+Hapax,4,12,48301187,no,0
+Helleruin,2,12,77770559,no,0
+In Death It Ends,1,12,62671064,no,0
+In Mitra Medusa Inri,4,12,53277595,no,0
+JFA,1,12,32971472,no,0
+Jake Blount,1,12,44880082,no,0
+Jam Thieves,8,12,53292406,no,0
+Jib Kidder,1,12,45610584,no,0
+Joel Fausto & Illusion Orchestra,3,12,75970387,no,0
+Johannes Brahms; Primrose Piano Quartet,1,12,248870508,no,0
+John Lennon,2,12,46581690,no,0
+Johnny Cash and the Royal Philharmonic Orchestra,1,12,80137921,no,0
+"Johnny Cash, The Royal Philharmonic Orchestra",1,12,56744897,no,0
+Joseph Haydn; Chilingirian Quartet,1,12,126805165,no,0
+Kanonenfieber,1,12,49640070,no,0
+Kvelgeyst,2,12,70227322,no,0
+LORN,1,12,45996449,no,0
+Latte,6,12,48941714,no,0
+Lifelover,1,12,38375416,no,0
+Light Bearer,2,12,130600360,no,0
+Linea Aspera,4,12,45947422,no,0
+MAULED,6,12,36914198,no,0
+Marcos Valle & Azymuth,1,12,34930692,no,0
+Marsheaux,1,12,68284100,no,0
+Matthew McCheskey _ Early Attic,2,12,49795493,no,0
+Melt-Banana,2,12,33870636,no,0
+Miazma,2,12,41390742,no,0
+Minority Sound,3,12,47880753,no,0
+Monks,1,12,33402429,no,0
+Myteri,1,12,35683874,no,0
+Nat King Cole,1,12,72902190,no,0
+Nick The Lot,8,12,46090384,no,0
+Nürnberg,5,12,35798811,no,0
+October Country,1,12,24368088,no,0
+Ominous Hymn,1,12,41775813,no,0
+"Onyx, Sticky Fingaz, Fredro Starr",1,12,45072363,no,0
+PILOTPRIEST,2,12,61098904,no,0
+"Parasitic Ejaculation, Party Cannon, Gorevent, Bloodscribe",1,12,42308555,no,0
+Pastel Ghost,4,12,43927203,no,0
+Paul Revere & the Raiders,1,12,35274901,no,0
+Phaseone,4,12,43215786,no,0
+Porter Robinson,2,12,51605393,no,0
+Prophets of Rage,1,12,55699388,no,0
+Providence,1,12,33677072,no,0
+Pythagoras,1,12,40089321,no,0
+ROSÉ,1,12,73733268,no,0
+Racetraitor,3,12,24911673,no,0
+Rings Of Saturn,1,12,49269212,no,0
+Rolling Stones,3,12,55530290,no,0
+Scary Bitches,5,12,43711152,no,0
+Scratch Acid,1,12,57010768,no,0
+Selofan,5,12,37134860,no,0
+Sickheart,8,12,33699460,no,0
+Simple Minds,6,12,61619023,no,0
+Skantia,10,12,43238279,no,0
+Skip Spence,1,12,50250252,no,0
+Snakefinger,2,12,38199660,no,0
+Snoop Dogg & Wiz Khalifa,1,12,48438711,no,0
+Sod The Earth,2,12,49047330,no,0
+Sonz Of A Loop Da Loop Era,7,12,56371855,no,0
+Space Drum Meditation,1,12,100656900,no,0
+Spectral Wound,2,12,69324228,no,0
+"Stasevich, Onyx",1,12,29868363,no,0
+Svdden Death,3,12,35515130,no,0
+Sweet Ermengarde,3,12,59505373,no,0
+Switchfoot,2,12,49050612,no,0
+THE SWEET KILL,4,12,36427347,no,0
+Teddy Hyde,1,12,40650823,no,0
+The Bellwether Syndicate,3,12,43252333,no,0
+The Business _ Dropkick Murphys,1,12,25909455,no,0
+The Holocaust,1,12,40902157,no,0
+The Last Shadow Puppets,1,12,31538791,no,0
+The Living Tombstone,12,12,36949571,no,0
+The Norman Haines Band,1,12,59468981,no,0
+The Regrettes,4,12,31205608,no,0
+The Seeds,1,12,28472062,no,0
+The Smiths,10,12,46030375,no,0
+Thou,2,12,78704513,no,0
+Thränenkind,2,12,53289556,no,0
+Tim Hecker & Daniel Lopatin,1,12,109347374,no,0
+Trampled By Turtles,1,12,45879300,no,0
+Trigg & Gusset,8,12,60440803,no,0
+Tunde Olaniran,1,12,50432833,no,0
+Twin Tribes,4,12,37831802,no,0
+Utada Hikaru,1,12,108883839,no,0
+"Vader, Axton Kincaid",1,12,27848422,no,0
+Vision Video,4,12,38360543,no,0
+Vital Spirit,2,12,49636118,no,0
+"William Shatner, Ben Folds, National Symphony Orchestra & Steven Reineke",1,12,43654559,no,0
+XTC,1,12,43401119,no,0
+chloe moriondo,6,12,32725121,no,0
+femtanyl,2,12,27658545,no,0
+underscores,1,12,54638397,no,0
+A Hawk and a Hacksaw,1,11,45533170,no,0
+Aim & QBall & Curt Cazal,1,11,82113974,no,0
+Arcane & League of Legends,1,11,37236828,no,0
+Ash Code,8,11,38047498,no,0
+Athletics,1,11,44346631,no,0
+Awenden,2,11,77716990,no,0
+Bekor Qilish,2,11,80624796,no,0
+Black Veil Brides,8,11,37830245,no,0
+Bokaj Retsiem,1,11,34248197,no,0
+Bon Iver,2,11,36385465,no,0
+Bones,3,11,18856086,no,0
+Bunny Wailer,2,11,58316462,no,0
+CAPSULE,2,11,58123695,no,0
+Chris Thile & Brad Mehldau,1,11,136265691,no,0
+Clan Of Xymox,5,11,52285870,no,0
+Clarion Knell,1,11,67306111,no,0
+Corduroy Heart,3,11,33736262,no,0
+Cult of Luna and Julie Christmas,2,11,117487606,no,0
+DJ Screw,1,11,115420358,no,0
+Daddy Issues,3,11,29990893,no,0
+Das Ich,6,11,57153826,no,0
+David Arkenstone,1,11,58592331,no,0
+Dice,1,11,50706176,no,0
+Dishammer,1,11,24248217,no,0
+Dizzy Fae,1,11,30777035,no,0
+"Dolly Parton, Linda Ronstadt & Emmylou Harris",1,11,62380157,no,0
+Dreadnaught,9,11,39760229,no,0
+Duncan Laurence,2,11,36140216,no,0
+"Entombed, Some Girls",1,11,40711849,no,0
+Feminazgul,2,11,64622729,no,0
+Finneus Gauge,1,11,69413320,no,0
+Fleetwood Mac,8,11,38887630,no,0
+Foul Play,5,11,50537484,no,0
+Fredro Starr,1,11,245061613,no,0
+Fäulnis,2,11,69274369,no,0
+Genesis Owusu,1,11,37868080,no,0
+Good Kid,2,11,26627753,no,0
+Grace Petrie,1,11,44927822,no,0
+Henry Rollins,1,11,40720476,no,0
+Hotel Mira,1,11,37816883,no,0
+I See Stars,2,11,38774988,no,0
+Imminent Doom,2,11,23688267,no,0
+Implore,1,11,29143221,no,0
+J Balvin,2,11,38964267,no,0
+JPhelpz,4,11,39425707,no,0
+Jack Stauber's Micropop,7,11,26742534,no,0
+Jackson Browne,2,11,54257131,no,0
+Jah Lion,1,11,37626471,no,0
+John‐Allison Weiss,1,11,40096317,no,0
+Joseph Trapanese,1,11,32495235,no,0
+Kaipa,2,11,54797413,no,0
+Klangkuenstler,8,11,59383843,no,0
+LINK,2,11,47408195,no,0
+Loather,2,11,54111326,no,0
+Lou Quinse,2,11,39700095,no,0
+Lunachicks,4,11,31147440,no,0
+"M1, Bonnot, Dead Prez",2,11,37580586,no,0
+MC5,1,11,31162231,no,0
+Marie “Queenie” Lyons,1,11,31383691,no,0
+Marina,6,11,36705458,no,0
+Mendelssohn; Eroica Quartet,1,11,147165180,no,0
+Mendelssohn; William Whitehead,1,11,78604609,no,0
+Michael Chapman,1,11,55320747,no,0
+Molotov,1,11,41476070,no,0
+Nature And Organisation,1,11,37610501,no,0
+Nature Ganganbaigal,1,11,85467928,no,0
+Neckbeard Deathcamp,1,11,39772171,no,0
+Neung Phak,1,11,39389560,no,0
+Neutral Milk Hotel,1,11,40189520,no,0
+Ozone,5,11,41680757,no,0
+Pessimista,4,11,80797044,no,0
+"Philip Glass, Arvo Pärt, გია ყანჩელი, 梅林茂; Gidon Kremer, Kremerata Baltica",1,11,159729879,no,0
+Quarteto 1111,1,11,32104722,no,0
+Red Harvest,4,11,45144839,no,0
+Saccage,1,11,27237584,no,0
+Seduction,2,11,119364905,no,0
+Skold & KMFDM,1,11,77243331,no,0
+Smashing Pumpkins,3,11,42371882,no,0
+Solaris,1,11,61803077,no,0
+Starcrawler,4,11,32585979,no,0
+Starship,2,11,50182380,no,0
+Stereolab,2,11,79112483,no,0
+Studio Killers,7,11,37828113,no,0
+Tacocat,3,11,25180576,no,0
+Terminalhead,1,11,109357185,no,0
+The Auteurs,1,11,41615996,no,0
+The Awakening,4,11,42194760,no,0
+The Distillers,3,11,30717001,no,0
+The Flying Burrito Brothers,1,11,44299505,no,0
+The Interbeing,4,11,48486531,no,0
+The Mr. Albert Show,1,11,61315535,no,0
+Tycho,2,11,56583249,no,0
+"V.M. Bhatt, Béla Fleck & Jie Bing Chen",1,11,69715180,no,0
+Vazio,1,11,35215189,no,0
+Wildspeaker,1,11,35597623,no,0
+Woccon,1,11,53001579,no,0
+Wonder Girls,1,11,36274148,no,0
+Wratheon,2,11,30976056,no,0
+Zamilska,4,11,43312263,no,0
+"kors k, Redalice",1,11,44961337,no,0
+mgk,5,11,29980278,no,0
+mxmtoon,7,11,32499320,no,0
+A Plague,5,10,43186248,no,0
+Air,1,10,43377318,no,0
+"Altrr, Akira Yamaoka",2,10,37979212,no,0
+Amygdala,2,10,25647599,no,0
+Andy Shauf,1,10,34505271,no,0
+Archivist,3,10,63177836,no,0
+Arthur Brown,1,10,42327470,no,0
+Asarhaddon,3,10,92910934,no,0
+Awaken Eternity,1,10,45580269,no,0
+Baest,1,10,46696601,no,0
+Benton Falls,1,10,38573952,no,0
+Better Oblivion Community Center & Conor Oberst,1,10,34601204,no,0
+"Blaze Ya Dead Homie, Bukshot",2,10,30829117,no,0
+Bobby Womack,2,10,36860632,no,0
+"Bongzilla, Tons",1,10,111795421,no,0
+Bria Valente,1,10,88164682,no,0
+Brojob,1,10,25347486,no,0
+Bull of Apis Bull of Bronze,2,10,112917469,no,0
+C.O.B_,1,10,43128554,no,0
+Chimp Spanner,2,10,43270465,no,0
+Chon,2,10,28397465,no,0
+Chris Thile & Edgar Meyer,1,10,104546235,no,0
+Chrome _ Damon Edge,1,10,32777935,no,0
+Chthonic,1,10,38136677,no,0
+D'Cruze,6,10,52414095,no,0
+DJ Hype,5,10,49735545,no,0
+"DJ Red Alert, Mike Slammer",8,10,47171337,no,0
+Deadspace,1,10,44682132,no,0
+Dennis Brown and Frankie Paul,1,10,76112925,no,0
+Destructo,1,10,37318669,no,0
+Donovan,1,10,41501583,no,0
+EYES,1,10,23838034,no,0
+"Eastside Ninjas, ABK, Blaze Ya Dead Homie, Twiztid",1,10,34486718,no,0
+Energy Healer,10,10,12537249,no,0
+Erlkoenig,1,10,59788069,no,0
+Evelyn _Champagne_ King,7,10,46250104,no,0
+Exivious,2,10,54821464,no,0
+"Felix Mendelssohn, Edvard Grieg, Stephen Hough; Steven Isserlis, Stephen Hough",1,10,148739588,no,0
+"Felix Mendelssohn, Ludwig van Beethoven; Wiener Oktett",1,10,147367355,no,0
+Felix Mendelssohn; Escher String Quartet,1,10,143155314,no,0
+Fluisteraars,4,10,89619438,no,0
+Foster the People,1,10,38618035,no,0
+Freddie King,1,10,38199272,no,0
+Ghostofblu,8,10,20067642,no,0
+Giraffage,2,10,40335048,no,0
+Girls Under Glass,5,10,45965554,no,0
+Greyhaven,1,10,37269571,no,0
+HANABIE_,1,10,35257172,no,0
+Impavida,2,10,87454601,no,0
+Jerry Garcia,1,10,45906633,no,0
+Jockstrap,1,10,41169226,no,0
+Johnny Cash & June Carter Cash,1,10,59117275,no,0
+Johnny Cash & Waylon Jennings,1,10,62439381,no,0
+Jorge Ben,1,10,46507534,no,0
+Junkie XL,1,10,34834528,no,0
+Justine,1,10,51191026,no,0
+KNASH,7,10,25655289,no,0
+Kasbo,7,10,35045906,no,0
+Katharine McPhee,1,10,41959904,no,0
+Keith Mansfield,1,10,83703145,no,0
+Kid Kapichi,4,10,29005236,no,0
+King Tubby,1,10,27861888,no,0
+Kormz,2,10,38901807,no,0
+"Lady Gaga, OneRepublic, Lorne Balfe, Harold Faltermeyer, Hans Zimmer",1,10,32378706,no,0
+Low,1,10,52419937,no,0
+Ludwig van Beethoven; Sophia Agranovich,1,10,134943915,no,0
+Lupe Fiasco,3,10,39877450,no,0
+MACROSS 82–99,1,10,21463366,no,0
+Masakari,1,10,25805955,no,0
+Medusa In My Knickers,1,10,38996682,no,0
+Midnight Star,4,10,54529763,no,0
+Mott The Hoople,2,10,45593503,no,0
+Moving Mountains,1,10,48663902,no,0
+Mr. Bungle,1,10,47803699,no,0
+Mutoid Man,1,10,38497410,no,0
+NOFX vs. Frank Turner,1,10,59243551,no,0
+Nadir,1,10,40466056,no,0
+NehruvianDOOM,2,10,36147623,no,0
+New Riders of The Purple Sage,1,10,47847971,no,0
+Nico Moreno,8,10,51203009,no,0
+No Sun Rises,2,10,82820071,no,0
+Nocthun,1,10,44934168,no,0
+Northwind,1,10,62410328,no,0
+O.P.M.C_,1,10,35216992,no,0
+"Oh! the Horror, Blaze Ya Dead Homie",1,10,20719299,no,0
+Olivia Neutered John,3,10,13370729,no,0
+PIG v KMFDM,1,10,91882338,no,0
+Para establecer un rio,2,10,67521710,no,0
+Parasite Inc_,3,10,40211398,no,0
+Pat The Bunny,1,10,21956285,no,0
+Peter Tosh,1,10,43699178,no,0
+Prefab Sprout,1,10,49760058,no,0
+Pulse,2,10,42993334,no,0
+Raccoo-oo-oon,2,10,61411490,no,0
+Red Apollo,1,10,53621455,no,0
+"Redalice, Aran",2,10,37553637,no,0
+Ricky Montgomery,1,10,33414582,no,0
+Run the Jewels & El‐P,1,10,36939223,no,0
+SCANDAL（Rock）,2,10,37923480,no,0
+Santana,6,10,45702722,no,0
+Scientist,1,10,39561597,no,0
+Scrapper Blackwell,1,10,43210037,no,0
+Shannon Curtis,1,10,36704526,no,0
+Skating Polly,3,10,34873674,no,0
+Slow Magic,1,10,41219669,no,0
+Smoke Hollow,1,10,40046664,no,0
+Someone's Band,1,10,43363374,no,0
+Summon the Crows,1,10,23365205,no,0
+The 13th Floor Elevators,1,10,38906863,no,0
+The Bad Plus,1,10,49072865,no,0
+The Downtown Fiction,1,10,32967773,no,0
+The Orb,1,10,121705083,no,0
+The Postal Service,1,10,34891104,no,0
+The Yellow River Boys,2,10,31492030,no,0
+Thy Light,2,10,81658954,no,0
+Tiësto,6,10,35411893,no,0
+Toothpuller,1,10,22987184,no,0
+Traffic,1,10,46892266,no,0
+VHS Dreams,1,10,32045375,no,0
+Voak,1,10,31401249,no,0
+Who,1,10,35636782,no,0
+Will Wood,1,10,42176955,no,0
+Will Wood and the Tapeworms,4,10,39276809,no,0
+Wisent,1,10,92336301,no,0
+Witchaven,1,10,31505270,no,0
+"WoT Music Team, Akira Yamaoka",1,10,35218962,no,0
+Wolven Daughter,1,10,25465790,no,0
+XXYYXX,2,10,33671981,no,0
+Xasthur & Leviathan,1,10,61645840,no,0
+Young Culture,1,10,23083880,no,0
+Zunou Keisatsu,1,10,30076164,no,0
+arde,2,10,66243525,no,0
+uKanDanZ,3,10,52318391,no,0
+Θλίψις_Thlipsis,2,10,42458410,no,0

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#1DB954">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="spotifryer">
+  <link rel="apple-touch-icon" href="/static/icon.svg">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/sw.js');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}spotifryer{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230d1117'/><path d='M6 16 Q12 8 16 16 Q20 24 26 16' stroke='%231DB954' fill='none' stroke-width='3' stroke-linecap='round'/><path d='M6 22 Q12 14 16 22 Q20 30 26 22' stroke='%233be477' fill='none' stroke-width='2' stroke-linecap='round' opacity='0.7'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <script src="{{ url_for('static', filename='js/htmx.min.js') }}" defer></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('htmx:configRequest', function(evt) {
+        evt.detail.headers['X-CSRFToken'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="/">spotifryer</a>
+      <span class="version">v{{ version }}{% if build_time %} · built {{ build_time }}{% endif %}</span>
+    </div>
+    <div class="nav-links">
+      <a href="/">Search</a>
+      <a href="/download/jobs">Downloads</a>
+      <a href="/import/">Import</a>
+      <a href="/library/">Library</a>
+      <a href="/collection/">Collection</a>
+      <a href="/stats/">Stats</a>
+      <a href="/audit/">Audit</a>
+      {% include "partials/auth_badge.html" %}
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer style="text-align:center;padding:1.5rem;color:var(--text-dim);font-size:0.8rem;border-top:1px solid var(--border);">
+    spotifryer
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

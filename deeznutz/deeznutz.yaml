@@ -1,0 +1,41 @@
+server:
+  port: 19290
+  gunicorn_workers: 1
+  gunicorn_threads: 8
+paths:
+  download_dir: /app/downloads
+  library_dir: /music
+  deezer_config_dir: ~/.config/deeznutz_dz
+  jobs_dir: /app/data
+  beets_dir: /app/.config/beets
+deezer:
+  max_concurrent: 8
+  quality: FLAC
+downloads:
+  promote_to_library: true
+  promote_exists: skip
+  organize_with_beets: true
+  override_existing: false
+network:
+  proxy_list:
+  - ''
+import_upload:
+  staging_dir: /opt/data/deeznutz/import_staging
+  max_upload_mb: 512
+  allowed_extensions:
+  - .flac
+  - .wav
+  - .mp3
+  - .m4a
+  - .aac
+  - .ogg
+  - .dsf
+  - .aiff
+  - .wma
+  accepted_archives:
+  - .zip
+  - .tar
+  - .tar.gz
+navidrome:
+  url: http://navidrome:4533
+  auto_scan: true

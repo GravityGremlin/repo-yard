@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jobs-heading library-heading">
+    <div>
+      <div class="masthead"><h1>Library</h1></div>
+      <p class="eyebrow">browse files · all services</p>
+    </div>
+    <span class="refresh-note"><span class="refresh-dot"></span>browse view</span>
+  </div>
+
+  <div id="library-browse" class="library-browse"
+       hx-get="/library/browse" hx-trigger="load"
+       hx-target="this" hx-swap="outerHTML">
+    <p class="jobs-loading">loading library<span class="caret"></span></p>
+  </div>
+{% endblock %}

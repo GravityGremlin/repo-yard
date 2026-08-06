@@ -1,0 +1,53 @@
+directory: /music
+
+import:
+    copy: no
+    move: yes
+    autotag: yes
+    quiet: yes
+    quiet_fallback: asis
+    timid: no
+    default_action: apply
+    incremental: yes
+    resume: no
+    write: yes
+    ignore:
+        - re:[/]0{2,}\.\w+$
+
+plugins:
+    - convert
+    - fetchart
+    - duplicates
+    - scrub
+
+paths:
+    default: $albumartist/$album/$track - $title
+    singleton: Non-Album/$artist/$title
+    comp: Various Artists/$album/$track - $title
+
+asciify_paths: yes
+art_filename: cover
+
+fetchart:
+    auto: yes
+    maxwidth: 1000
+    sources:
+        - filesystem
+        - coverart
+        - fanarttv
+        - spotify
+        - itunes
+        - amazon
+
+convert:
+    auto: no
+    format: opus
+    delete_originals: yes
+    formats:
+        opus:
+            command: ffmpeg -i $source -y -c:a libopus -b:a 160k -ac 2 $dest
+            extension: opus
+    threads: 2
+
+scrub:
+    auto: yes
